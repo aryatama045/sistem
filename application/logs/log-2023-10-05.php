@@ -1,0 +1,116 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2023-10-05 10:15:54 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:15:55 --> Language file contains no data: language/indonesian/form_validation_lang.php
+ERROR - 2023-10-05 10:15:56 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:16:50 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:16:57 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:17:01 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:17:02 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:17:59 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:02 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:02 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:05 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:05 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:12 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:12 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:15 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:15 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:19 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:19 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:22 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:22 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:23 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:23 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:25 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:25 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:27 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:27 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:32 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:32 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:34 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:34 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:38 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:38 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:40 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:40 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:41 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:41 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:43 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:43 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:46 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:46 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:47 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:47 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:49 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:49 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:51 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:51 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:54 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:54 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:55 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:55 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:57 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:57 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:58 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:18:58 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:03 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:03 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:04 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:04 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:06 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:06 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:07 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:07 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:09 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:09 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:16 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:16 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:26 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:27 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:27 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:31 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:31 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:36 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:19:36 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:20:09 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:20:09 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:20:11 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:20:49 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:20:50 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:20:51 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:20:58 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:20:58 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:20:58 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:30:15 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 10:30:15 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:01:43 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:01:45 --> Severity: Warning --> mysqli::real_connect(): php_network_getaddresses: getaddrinfo failed: No such host is known.  D:\xampp\htdocs\hrd_cuti\system\database\drivers\mysqli\mysqli_driver.php 211
+ERROR - 2023-10-05 11:01:47 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): php_network_getaddresses: getaddrinfo failed: No such host is known.  D:\xampp\htdocs\hrd_cuti\system\database\drivers\mysqli\mysqli_driver.php 211
+ERROR - 2023-10-05 11:01:47 --> Unable to connect to the database
+ERROR - 2023-10-05 11:01:48 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:01:48 --> Severity: Warning --> mysqli::real_connect(): php_network_getaddresses: getaddrinfo failed: No such host is known.  D:\xampp\htdocs\hrd_cuti\system\database\drivers\mysqli\mysqli_driver.php 211
+ERROR - 2023-10-05 11:01:48 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): php_network_getaddresses: getaddrinfo failed: No such host is known.  D:\xampp\htdocs\hrd_cuti\system\database\drivers\mysqli\mysqli_driver.php 211
+ERROR - 2023-10-05 11:01:48 --> Unable to connect to the database
+ERROR - 2023-10-05 11:01:57 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:12:24 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:16:04 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:16:04 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:16:07 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:16:07 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:16:09 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:16:09 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:16:10 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:16:10 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:16:12 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:16:12 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:16:15 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 11:16:15 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 13:47:38 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 13:47:39 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 13:47:46 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 13:47:46 --> Language file contains no data: language/indonesian/form_validation_lang.php
+ERROR - 2023-10-05 13:47:46 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 13:47:52 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 13:47:53 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2023-10-05 13:52:18 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php

@@ -1,0 +1,10 @@
+[
+    {
+        "label": "Dashboard",
+        "url": "dashboard"
+    },
+    {
+        "label": "Apps > Chat",
+        "url": "Apps.Chat.html"
+    }
+]

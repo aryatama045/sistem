@@ -1,0 +1,12 @@
+td.details-control {
+    background: url('theme/assets/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+
+tr.shown td.details-control {
+    background: url('theme/assets/details_close.png') no-repeat center center;
+}
+
+.btn-toolbar.sw-toolbar.sw-toolbar-bottom.justify-content-end {
+    display: none;
+}
