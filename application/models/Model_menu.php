@@ -6,7 +6,7 @@ class Model_menu extends CI_Model {
 function __construct() {
     parent::__construct();
 
-    $this->tableName = 'menus';
+    $this->tableName = 'permissions';
 }
 
 
@@ -75,14 +75,14 @@ function __construct() {
                             <i data-acorn-icon="'.$parents['icon'].'" class="icon" data-acorn-size="18"></i>';
                 }
 
-                $tree .= '<span class="label">'.$parents['name'].'</span></a>';
+                $tree .= '<span class="label">'.$parents['display_name'].'</span></a>';
 
                         $subtree = $this->get_sub($pId);
                         if($subtree==TRUE){
                             $tree .= '<ul id="menu-'.$parents['id'].'">';
                                 foreach($subtree as $sub){
                                     $tree .= '<li><a href="'.base_url($sub['link']).'">';
-                                    $tree .= '<span class="label">'.$sub['name'].'</span></a>';
+                                    $tree .= '<span class="label">'.$sub['display_name'].'</span></a>';
                                     $tree .= '</li>';
                                 }
                             $tree .= '</ul>';

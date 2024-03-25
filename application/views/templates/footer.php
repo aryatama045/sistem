@@ -79,7 +79,7 @@
     <script src="<?= base_url('assets/') ?>js/vendor/datatables.min.js"></script>
 
 	<script src="<?= base_url('assets/') ?>js/cs/datatable.extend.js"></script>
-	<script src="<?= base_url('assets/') ?>js/plugins/datatable.ajax.js"></script>
+
     <!-- Vendor Scripts End -->
 
     <!-- Template Base Scripts Start -->

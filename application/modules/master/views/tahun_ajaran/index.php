@@ -80,7 +80,7 @@
 				<!-- Search Start -->
 				<div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
 					<div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
-						<input class="form-control datatable-search" placeholder="Search" data-datatable="#datatableRowsAjax" />
+						<input class="form-control datatable-search" placeholder="Search" data-datatable="#RowsAjaxTA" />
 						<span class="search-magnifier-icon">
 						<i data-acorn-icon="search"></i>
 						</span>
@@ -137,7 +137,7 @@
 						<button
 							class="btn btn-icon btn-icon-only btn-foreground-alternate shadow datatable-print"
 							data-bs-delay="0"
-							data-datatable="#datatableRowsAjax"
+							data-datatable="#RowsAjaxTA"
 							data-bs-toggle="tooltip"
 							data-bs-placement="top"
 							title="Print"
@@ -148,7 +148,7 @@
 						<!-- Print Button End -->
 
 						<!-- Export Dropdown Start -->
-						<div class="d-inline-block datatable-export" data-datatable="#datatableRowsAjax">
+						<div class="d-inline-block datatable-export" data-datatable="#RowsAjaxTA">
 							<button class="btn p-0" data-bs-toggle="dropdown" type="button" data-bs-offset="0,3">
 								<span
 								class="btn btn-icon btn-icon-only btn-foreground-alternate shadow dropdown"
@@ -169,7 +169,7 @@
 						<!-- Export Dropdown End -->
 
 						<!-- Length Start -->
-						<div class="dropdown-as-select d-inline-block datatable-length" data-datatable="#datatableRowsAjax" data-childSelector="span">
+						<div class="dropdown-as-select d-inline-block datatable-length" data-datatable="#RowsAjaxTA" data-childSelector="span">
 							<button class="btn p-0 shadow" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-offset="0,3">
 								<span
 								class="btn btn-foreground-alternate dropdown-toggle"
@@ -195,14 +195,14 @@
 
 			<!-- Table Start -->
 			<div class="data-table-responsive-wrapper">
-				<table id="datatableRowsAjax" class="data-table nowrap w-100">
+				<table id="RowsAjaxTA" class="data-table nowrap w-100">
 				<thead>
 					<tr>
 					<th class="text-muted text-small text-uppercase">Name</th>
-					<th class="text-muted text-small text-uppercase">Sales</th>
-					<th class="text-muted text-small text-uppercase">Stock</th>
-					<th class="text-muted text-small text-uppercase">Category</th>
-					<th class="text-muted text-small text-uppercase">Tag</th>
+					<th class="text-muted text-small text-uppercase">Tahun Ajaran</th>
+					<th class="text-muted text-small text-uppercase">Semester</th>
+					<th class="text-muted text-small text-uppercase">Aktif</th>
+					<th class="text-muted text-small text-uppercase">Aktif</th>
 					<th class="empty">&nbsp;</th>
 					</tr>
 				</thead>
@@ -278,5 +278,10 @@
 	</div>
 </div>
 
-
-
+<script type="text/javascript">
+	window.base_url = '<?php echo base_url() ?>';
+	<?php $mod = lowercase($modul); $func = to_strip($pagetitle);  ?>
+	window.link = '<?php echo $mod.'/'.$func ?>';
+</script>
+<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+<?php echo $this->load->assets('tahun_ajaran', 'index', 'js');  ?>
