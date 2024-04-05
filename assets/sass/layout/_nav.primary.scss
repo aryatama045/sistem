@@ -477,10 +477,10 @@ html[data-placement='vertical'] .nav-container.mobile-side-ready {
   height: 100%;
   padding-left: initial;
   padding-right: initial;
-  border-top-left-radius: 0;
-  border-top-right-radius: var(--border-radius-lg);
-  border-bottom-right-radius: var(--border-radius-lg);
-  border-bottom-left-radius: 0;
+  // border-top-left-radius: 0;
+  // border-top-right-radius: var(--border-radius-lg);
+  // border-bottom-right-radius: var(--border-radius-lg);
+  // border-bottom-left-radius: 0;
   flex-direction: column;
   justify-content: initial;
 

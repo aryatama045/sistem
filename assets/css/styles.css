@@ -8901,6 +8901,7 @@ input[type=file]::file-selector-button {
 .page-item:first-child .page-link,
 .page-item:last-child .page-link {
   border-radius: var(--border-radius-md);
+  margin-right: 30px !important;
 }
 
 .pagination.bordered .page-item .page-link {
@@ -14768,10 +14769,6 @@ html[data-placement=vertical] .nav-container.mobile-side-ready {
   height: 100%;
   padding-left: initial;
   padding-right: initial;
-  border-top-left-radius: 0;
-  border-top-right-radius: var(--border-radius-lg);
-  border-bottom-right-radius: var(--border-radius-lg);
-  border-bottom-left-radius: 0;
   flex-direction: column;
   justify-content: initial;
 }

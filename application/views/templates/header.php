@@ -9,8 +9,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Leprindo | Login Page</title>
-    <meta name="description" content="Login Page" />
+    <title>Leprindo | <?= $pagetitle; ?></title>
+    <meta name="description" content="<?= $pagetitle; ?>" />
 
     <!-- Favicon Tags Start -->
     <link rel="shortcut icon" href="https://place-hold.it/100x100/127352/fff/fff?text=LEP.&fontsize=35&bold" type="image/x-icon" >
@@ -34,10 +34,11 @@
     <link rel="stylesheet" href="<?= base_url('assets/') ?>css/vendor/datatables.min.css" />
     <!-- Vendor Styles End -->
 
-
     <!-- Template Base Styles Start -->
     <link rel="stylesheet" href="<?= base_url('assets/') ?>css/styles.css" />
     <link rel="stylesheet" href="<?= base_url('assets/') ?>css/main.css" />
+
+    <link rel="stylesheet" href="<?= base_url('assets/') ?>css/vendor/tagify.css" />
     <!-- Template Base Styles End -->
 
     <script src="<?= base_url('assets/') ?>js/base/loader.js"></script>

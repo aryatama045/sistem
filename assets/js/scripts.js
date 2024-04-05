@@ -225,26 +225,26 @@ class Scripts {
     if (typeof Sortables !== 'undefined') {
       const sortables = new Sortables();
     }
-    // datatable.editablerows.js initialization
-    if (typeof EditableRows !== 'undefined') {
-      const editableRows = new EditableRows();
-    }
-    // datatable.editableboxed.js initialization
-    if (typeof EditableBoxed !== 'undefined') {
-      const editableBoxed = new EditableBoxed();
-    }
-    // datatable.ajax.js initialization
-    if (typeof RowsAjax !== 'undefined') {
-      const rowsAjax = new RowsAjax();
-    }
-    // datatable.serverside.js initialization
-    if (typeof RowsServerSide !== 'undefined') {
-      const rowsServerSide = new RowsServerSide();
-    }
-    // datatable.serverside.js initialization
-    if (typeof BoxedVariations !== 'undefined') {
-      const boxedVariations = new BoxedVariations();
-    }
+    // // datatable.editablerows.js initialization
+    // if (typeof EditableRows !== 'undefined') {
+    //   const editableRows = new EditableRows();
+    // }
+    // // datatable.editableboxed.js initialization
+    // if (typeof EditableBoxed !== 'undefined') {
+    //   const editableBoxed = new EditableBoxed();
+    // }
+    // // datatable.ajax.js initialization
+    // if (typeof RowsAjax !== 'undefined') {
+    //   const rowsAjax = new RowsAjax();
+    // }
+    // // datatable.serverside.js initialization
+    // if (typeof RowsServerSide !== 'undefined') {
+    //   const rowsServerSide = new RowsServerSide();
+    // }
+    // // datatable.serverside.js initialization
+    // if (typeof BoxedVariations !== 'undefined') {
+    //   const boxedVariations = new BoxedVariations();
+    // }
   }
 
   // Pages initialization
@@ -332,6 +332,10 @@ class Scripts {
     // profile.standard.js initialization
     if (typeof ProfileStandard !== 'undefined') {
       const profileStandard = new ProfileStandard();
+    }
+     // customers.detail.js initialization
+    if (typeof CustomersDetail !== 'undefined') {
+      const customersDetail = new CustomersDetail();
     }
   }
 

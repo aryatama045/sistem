@@ -52,7 +52,7 @@ class BoxedVariations {
 
   // Boxed variation for pagination, hover and stripe examples
   _initBoxedWithPagination() {
-    jQuery('.data-table-standard').DataTable({
+    jQuery('.tableMahasiswa').DataTable({
       destroy: true,
       paging: true,
       buttons: ['copy', 'excel', 'csv', 'print'],

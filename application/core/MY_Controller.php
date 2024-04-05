@@ -17,6 +17,7 @@ class Admin_Controller extends MY_Controller
 		parent::__construct();
 		$group_data = array();
 		$this->load->model('Model_menu');
+		$this->load->model('Model_global');
 
 	}
 
@@ -44,10 +45,14 @@ class Admin_Controller extends MY_Controller
 
 		$this->auth->route_access();
 
-		$items	= $this->Model_menu->get_items();
-		$menu	= $this->Model_menu->generateTree($items);
+		$menu	= $this->Model_menu->generateTree();
 		$this->data['menu'] = $menu;
 
+		$ta		= $this->Model_global->getTahunAjaranAktif();
+		$this->data['tahun_ajaran']	= $ta['ta'];
+		$this->data['semester']		= $ta['smt'];
+
+		// tesx($this->data['tahun_ajaran'], $this->data['semester']	);
 
 		$this->load->view('templates/header',$this->data);
 		$this->load->view($page, $this->data);

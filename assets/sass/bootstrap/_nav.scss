@@ -61,6 +61,7 @@
 .page-item:first-child .page-link,
 .page-item:last-child .page-link {
   border-radius: var(--border-radius-md);
+  margin-right: 30px !important;
 }
 
 .pagination.bordered {

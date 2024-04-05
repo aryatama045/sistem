@@ -162,10 +162,10 @@ class Auth
      */
     public function route_access()
     {
+
         $this->check();
 
         $routeName = (!is_null($this->CI->uri->segment(2)) ?  $this->CI->uri->segment(1) . "-" . $this->CI->uri->segment(2) : $this->CI->uri->segment(1) );
-
 
         if ($this->CI->uri->segment(1) == 'dashboard'){
             return true;

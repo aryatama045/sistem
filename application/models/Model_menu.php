@@ -7,6 +7,8 @@ function __construct() {
     parent::__construct();
 
     $this->tableName = 'permissions';
+
+    $this->load->library('auth');
 }
 
 
@@ -51,49 +53,129 @@ function __construct() {
         return $query->num_rows();
     }
 
+    function get_permission() {
+        $this->db->select('*');
+        $this->db->from('permission');
+        $query = $this->db->get();
+        // die(nl2br($this->db->last_query()));
+        return $query->result_array();
+    }
 
-    function generateTree($items = array(), $parent_id = 0){
+    function get_permission_roles($id) {
+        $this->db->select('permission_id');
+        $this->db->from('permission_roles');
+        $this->db->where('role_id', $id);
+        $query = $this->db->get();
+        // die(nl2br($this->db->last_query()));
+        return $query->result_array();
+    }
+
+
+    function generateTree($parent_id = 0)
+    {
+        $items = $this->Model_menu->get_items();
+        // tesx($items);
+
+        $user_session = $this->session->userdata('roles');
+
+        $permission = $this->get_permission_roles($user_session['0']);
+
+        $log_perm = array();
+        foreach($permission as $k=>$v) {
+            $res = $v['permission_id'];
+            array_push($log_perm, $res);
+        }
+
+
         $tree = '<ul id="menu" class="menu">';
 
         for($i=0, $ni=count($items); $i < $ni; $i++){
-            if($items[$i]['parent_id'] == $parent_id){
 
-                $pId = $items[$i]['id'];
-                $parents = $this->get_parent($pId);
+            $idMenu = $items[$i]['id'];
 
-                $tree .= '<li>';
+            $headmenucheck = $this->menu_cek($log_perm, $idMenu);
 
-                $parents_sub = $this->get_sub_count($pId);
-                // tesx($parents_sub);
+            if($headmenucheck == TRUE){
 
-                if($parents_sub == 0){
-                    $tree .= '<a href="'.base_url($parents['link']).'" >
-                            <i data-acorn-icon="'.$parents['icon'].'" class="icon" data-acorn-size="18"></i>';
+                if($items[$i]['parent_id'] == $parent_id){
 
-                }else{
-                    $tree .= '<a href="#menu-'.$parents['id'].'" data-href="'.base_url($parents['link']).'" >
-                            <i data-acorn-icon="'.$parents['icon'].'" class="icon" data-acorn-size="18"></i>';
-                }
+                    $pId = $items[$i]['id'];
+                    $parents = $this->get_parent($pId);
 
-                $tree .= '<span class="label">'.$parents['display_name'].'</span></a>';
+                    $tree .= '<li >';
+
+                    $parents_sub = $this->get_sub_count($pId);
+
+                    if($parents_sub == 0){
+                        $tree .= '<a href="'.base_url($parents['link']).'" >
+                                <i data-acorn-icon="'.$parents['icon'].'" class="icon" data-acorn-size="18"></i>';
+
+                    }else{
+                        $tree .= '<a href="#menu-'.$parents['id'].'" data-href="'.base_url($parents['link']).'" >
+                                <i data-acorn-icon="'.$parents['icon'].'" class="icon" data-acorn-size="18"></i>';
+                    }
+
+                    $tree .= '<span class="label">'.$parents['display_name'].'</span></a>';
+
 
                         $subtree = $this->get_sub($pId);
+
+                        /**  This subtree */
                         if($subtree==TRUE){
                             $tree .= '<ul id="menu-'.$parents['id'].'">';
                                 foreach($subtree as $sub){
-                                    $tree .= '<li><a href="'.base_url($sub['link']).'">';
-                                    $tree .= '<span class="label">'.$sub['display_name'].'</span></a>';
-                                    $tree .= '</li>';
+
+                                    $subId = $sub['id'];
+
+                                    $submenucheck = $this->menu_cek($log_perm, $subId);
+
+                                    if($submenucheck == TRUE){
+
+                                        $tree .= '<li class="active"><a href="'.base_url($sub['link']).'">';
+                                        $tree .= '<span class="label">'.$sub['display_name'].'</span></a>';
+                                        $tree .= '</li>';
+
+                                    }
+
                                 }
                             $tree .= '</ul>';
                         }
+                        /**  This subtree */
 
-                $tree .= '</li>';
+                    $tree .= '</li>';
+
+                }
+
             }
+
         }
+
         $tree .= '</ul>';
         return $tree;
     }
+
+
+    function menu_cek($array, $id)
+	{
+
+		$array = array_values($array);// get value
+
+        $cek = array();
+        foreach($array as $val){
+
+            // tesx($val, $id);
+
+            if($val == $id)
+            {
+                // Array has
+                return TRUE;
+            }
+            array_push($cek, $id);
+
+        }
+
+        // tesx($cek);
+	}
 
 
 } // End of Model Class

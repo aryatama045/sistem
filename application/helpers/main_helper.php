@@ -1,6 +1,6 @@
 <?php (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-/**
+/***
 	* Debug Error
 */
 
@@ -25,7 +25,7 @@
 		}
 	}
 
-/** -- END Debug Error -- */
+/*** -- END Debug Error -- */
 
 
 /*** Convert Text
@@ -169,7 +169,9 @@
 
 	if(! function_exists("can")) {
 
-		/**  Check if current user has a permission by its name. */
+		/**  Check if current user has a permission by its name.
+		 *   Example: if( can('edit-posts') ) {} or if( can(['edit-posts', 'publish-posts']) ) {}
+		 */
 		function can($permissions)
 		{
 			$auth = new Auth();

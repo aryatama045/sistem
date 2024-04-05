@@ -7,7 +7,7 @@ class Dashboard extends Admin_Controller
 		parent::__construct();
 
 
-		$this->data['page_title'] = 'Dashboard';
+		$this->data['pagetitle'] = 'Dashboard';
 		$this->load->model('Model_dashboard');
 		$this->load->model('Model_auth');
 
@@ -18,9 +18,10 @@ class Dashboard extends Admin_Controller
 	*/
 	public function form()
 	{
-
 		// tesx($this->data);
 	}
+
+
 	public function index()
 	{
 
@@ -41,11 +42,10 @@ class Dashboard extends Admin_Controller
 			tesx( 'error', $result );
 		}
 
-
 	}
 
-	public function page404(){
-
+	public function page404()
+	{
         $this->form();
 		$this->render_template('pages/page404',$this->data);
 
