@@ -54,3 +54,4 @@ ERROR - 2024-04-08 10:37:49 --> Could not find the specified $config['composer_a
 ERROR - 2024-04-08 10:37:49 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
 ERROR - 2024-04-08 10:38:01 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
 ERROR - 2024-04-08 10:38:01 --> Could not find the specified $config['composer_autoload'] path: vendor/autoload.php
+ERROR - 2024-04-08 15:57:51 --> Language file contains no data: language/indonesian/form_validation_lang.php
