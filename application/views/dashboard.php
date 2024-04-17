@@ -176,6 +176,4 @@
     </div>
     <!-- Stats End -->
 
-
-
-    <script src="<?= base_url('assets/') ?>js/base/search.js"></script>
+    <script src="<?= base_url('assets/') ?>js/base/searchD.js"></script>

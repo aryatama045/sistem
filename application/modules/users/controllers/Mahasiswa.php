@@ -51,15 +51,15 @@ class Mahasiswa extends Admin_Controller  {
 		$search_no      = $this->input->post('nim');
         $search_nama    = $this->input->post('nama_mhs');
 
-		$data           = $this->Model_mahasiswa->getDataStore($search_no,$search_nama,$length,$start,$column,$order);
-		$data_jum       = $this->Model_mahasiswa->getDataStoreCount($search_no,$search_nama);
+		$data           = $this->Model_mahasiswa->getDataStore('result',$search_no,$search_nama,$length,$start,$column,$order);
+		$data_jum       = $this->Model_mahasiswa->getDataStore('numrows',$search_no,$search_nama);
 
 		$output=array();
 		$output['draw'] = $draw;
 		$output['recordsTotal'] = $output['recordsFiltered'] = $data_jum;
 
 		if($search_no !="" || $search_nama !="" ){
-			$data_jum = $this->Model_mahasiswa->getDataStoreCount($search_no,$search_nama);
+			$data_jum = $this->Model_mahasiswa->getDataStore('numrows',$search_no,$search_nama);
 			$output['recordsTotal']=$output['recordsFiltered']=$data_jum;
 		}
 

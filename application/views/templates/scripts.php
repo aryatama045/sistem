@@ -16,6 +16,8 @@
 
 <script src="<?= base_url('assets/') ?>js/datatables.min.js"></script>
 
+
+
 <!-- Vendor Scripts End -->
 
 <!-- Template Base Scripts Start -->
@@ -26,9 +28,15 @@
 <script src="<?= base_url('assets/') ?>js/base/settings.js"></script>
 
 <script src="<?= base_url('assets/') ?>js/pages/customerDetails.js"></script>
+
 <!-- Template Base Scripts End -->
 
 <!-- Page Specific Scripts Start -->
 <script src="<?= base_url('assets/') ?>js/common.js"></script>
 <script src="<?= base_url('assets/') ?>js/scripts.js"></script>
 <!-- Page Specific Scripts End -->
+
+<?php $url = $this->uri->segment(1); if($url != 'dashboard'){  ?>
+<script src="<?= base_url('assets/') ?>js/base/search.js"></script>
+<?php } ?>
+

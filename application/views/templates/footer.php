@@ -19,6 +19,9 @@
 						| <?= gethostname() ?>
 						| <?= $this->agent->browser() ?>
 						| <?= $this->agent->version() ?>
+						<br>
+						| Page Loader <?=  $this->benchmark->elapsed_time(); ?>
+						| Memory <?=  $this->benchmark->memory_usage(); ?>
 						</p>
 					</div>
 					<div class="col-sm-6 d-none d-sm-block">
