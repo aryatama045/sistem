@@ -79,7 +79,7 @@
                 <div class="sw-lg-70 min-h-100 bg-foreground d-flex justify-content-center align-items-center shadow-deep py-5 full-page-content-left-border">
                     <div class="sw-lg-50 px-5">
                         <div class="sh-11">
-                        <a href="index.html">
+                        <a href="#">
                             <div class="logo-default-login"></div>
                         </a>
                         </div>
@@ -92,7 +92,7 @@
                             <p class="h6">Please use your credentials to login.</p>
                             <p class="h6">
                                 If you are not a member, please
-                                <a href="Pages.Authentication.Register.html">register</a>
+                                <a href="#">register</a>
                                 .
                             </p>
                         </div>
@@ -127,10 +127,11 @@
                     <div class="w-100 w-lg-75 w-xxl-50">
                         <div>
                             <div class="mb-5">
-                                <h1 class="display-3 text-white">Multiple Niches</h1>
-                                <h1 class="display-3 text-white">Ready for Your Project</h1>
+                                <h5 class="display-5 text-white">AKADEMI REFRAKSI OPTISI</h5>
+                                <h1 class="display-2 text-white">LEPRINDO</h1>
+                                <h2 class="display-4 text-white">J A K A R T A</h2>
                             </div>
-                            <p class="h6 text-white lh-1-5 mb-5">
+                            <!-- <p class="h6 text-white lh-1-5 mb-5">
                                 Dynamically target high-payoff intellectual capital for customized technologies. Objectively integrate emerging core competencies before
                                 process-centric communities...
                             </p>
@@ -138,7 +139,7 @@
                                 <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdropExample">
                                     Launch static backdrop modal
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
