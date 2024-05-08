@@ -106,12 +106,20 @@ function __construct() {
 
                     $parents_sub = $this->get_sub_count($pId);
 
+                    $urlm = $this->uri->segment(1);
+
+                    if($urlm == $parents['link'])
+                        $activem = "active";
+                    else
+                        $activem = "";
+
                     if($parents_sub == 0){
-                        $tree .= '<a href="'.base_url($parents['link']).'" >
+                        $tree .= '<a href="'.base_url($parents['link']).'" class="'.$activem.'">
                                 <i data-acorn-icon="'.$parents['icon'].'" class="icon" data-acorn-size="18"></i>';
 
                     }else{
-                        $tree .= '<a href="#menu-'.$parents['id'].'" data-href="'.base_url($parents['link']).'" >
+
+                        $tree .= '<a href="#menu-'.$parents['id'].'" class="'.$activem.'" data-href="'.base_url($parents['link']).'" >
                                 <i data-acorn-icon="'.$parents['icon'].'" class="icon" data-acorn-size="18"></i>';
                     }
 
@@ -131,7 +139,18 @@ function __construct() {
 
                                     if($submenucheck == TRUE){
 
-                                        $tree .= '<li class="active"><a href="'.base_url($sub['link']).'">';
+                                        $url = curl();
+                                        $url1 = $this->uri->segment(1);
+                                        $url2 = $this->uri->segment(2);
+
+                                        $surl = $url1.'/'.$url2;
+
+                                        if($url == $sub['link'] || $surl == $sub['link'])
+                                            $active = "active";
+                                        else
+                                            $active = "";
+
+                                        $tree .= '<li ><a href="'.base_url($sub['link']).'" class="'.$active.'">';
                                         $tree .= '<span class="label">'.$sub['display_name'].'</span></a>';
                                         $tree .= '</li>';
 

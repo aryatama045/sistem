@@ -34,5 +34,14 @@ class Model_mahasiswa extends CI_Model
 	}
 
 
+	public function detail($id)
+	{
+		$this->db->select('*');
+        $this->db->from('db_lep.mst_mhs');
+		$this->db->where('nim',$id);
+		$query	= $this->db->get();
+		// die(nl2br($this->db->last_query()));
+		return $query->row_array();
 
+	}
 }

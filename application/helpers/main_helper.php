@@ -25,6 +25,18 @@
 		}
 	}
 
+	if(! function_exists("curl")) {
+		function curl(){
+			$current_url = current_url();
+			$string = base_url();
+
+			$url = str_replace($string, '', $current_url);
+			return $url;
+		}
+	}
+
+
+
 /*** -- END Debug Error -- */
 
 

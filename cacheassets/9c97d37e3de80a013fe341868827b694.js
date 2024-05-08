@@ -83,6 +83,8 @@ $(document).ready(function() {
     $("#tableMahasiswa_filter").css("display", "none");
     $("#tableMahasiswa_length").css("display", "none");
 
+    tableMahasiswa.columns.adjust().draw();
+
     $('#nim').on('keyup', function(event) { // for text boxes
         tableMahasiswa.ajax.reload(); //just reload table
     });

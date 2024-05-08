@@ -25,21 +25,10 @@
                         <div class="card h-100 hover-scale-up cursor-pointer">
                             <div class="card-body d-flex flex-column align-items-center">
                             <div class="sw-6 sh-6 rounded-xl d-flex justify-content-center align-items-center border border-primary mb-4">
-                                <i data-acorn-icon="dollar" class="text-primary"></i>
+                                <i data-acorn-icon="chart-4" class="text-primary"></i>
                             </div>
                             <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">EARNINGS</div>
-                            <div class="text-primary cta-4">$ 315.20</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2">
-                        <div class="card h-100 hover-scale-up cursor-pointer">
-                            <div class="card-body d-flex flex-column align-items-center">
-                            <div class="sw-6 sh-6 rounded-xl d-flex justify-content-center align-items-center border border-primary mb-4">
-                                <i data-acorn-icon="cart" class="text-primary"></i>
-                            </div>
-                            <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">ORDERS</div>
-                            <div class="text-primary cta-4">16</div>
+                            <div class="text-primary cta-4">Rp. 315.20</div>
                             </div>
                         </div>
                     </div>
@@ -49,7 +38,7 @@
                             <div class="sw-6 sh-6 rounded-xl d-flex justify-content-center align-items-center border border-primary mb-4">
                                 <i data-acorn-icon="server" class="text-primary"></i>
                             </div>
-                            <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">SESSIONS</div>
+                            <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">MODUL</div>
                             <div class="text-primary cta-4">463</div>
                             </div>
                         </div>
@@ -73,6 +62,17 @@
                             </div>
                             <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">RETURNS</div>
                             <div class="text-primary cta-4">2</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="card h-100 hover-scale-up cursor-pointer">
+                            <div class="card-body d-flex flex-column align-items-center">
+                            <div class="sw-6 sh-6 rounded-xl d-flex justify-content-center align-items-center border border-primary mb-4">
+                                <i data-acorn-icon="message" class="text-primary"></i>
+                            </div>
+                            <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">COMMENTS</div>
+                            <div class="text-primary cta-4">5</div>
                             </div>
                         </div>
                     </div>

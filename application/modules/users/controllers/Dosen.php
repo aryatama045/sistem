@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mahasiswa extends Admin_Controller  {
+class Dosen extends Admin_Controller  {
 
 	public function __construct()
 	{
@@ -26,15 +26,13 @@ class Mahasiswa extends Admin_Controller  {
 	public function index()
 	{
 		$this->starter();
-		$this->render_template('mahasiswa/index',$this->data);
+		$this->render_template('dosen/index',$this->data);
 	}
 
 	public function detail($id)
 	{
 		$this->starter();
-		$this->data['mahasiswa'] = $this->Model_mahasiswa->detail($id);
-
-		$this->render_template('mahasiswa/detail',$this->data);
+		$this->render_template('dosen/detail',$this->data);
 	}
 
     public function getDataStore()

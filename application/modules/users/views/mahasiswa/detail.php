@@ -4,11 +4,11 @@
     <!-- Title Start -->
     <div class="col-auto mb-3 mb-md-0 me-auto">
       <div class="w-auto sw-md-30">
-        <a href="#" class="muted-link pb-1 d-inline-block breadcrumb-back">
+        <a href="<?= base_url(lowercase($modul).'/'.lowercase($pagetitle)); ?>" class="muted-link pb-1 d-inline-block breadcrumb-back">
           <i data-acorn-icon="chevron-left" data-acorn-size="13"></i>
-          <span class="text-small align-middle">Customers</span>
+          <span class="text-small align-middle"> <?= $pagetitle ?></span>
         </a>
-        <h1 class="mb-0 pb-0 display-4" id="title">Customer Detail</h1>
+        <h1 class="mb-0 pb-0 display-4" id="title"><?= $pagetitle ?> Detail</h1>
       </div>
     </div>
     <!-- Title End -->
@@ -46,32 +46,56 @@
 <!-- Title and Top Buttons End -->
 
 <div class="row gx-4 gy-5">
-  <!-- Customer Start -->
+  <!-- Person Start -->
   <div class="col-12 col-xl-4 col-xxl-3">
     <h2 class="small-title">Info</h2>
     <div class="card">
       <div class="card-body mb-n5">
+
         <div class="d-flex align-items-center flex-column">
           <div class="mb-5 d-flex align-items-center flex-column">
-            <div class="sw-6 sh-6 mb-3 d-inline-block bg-primary d-flex justify-content-center align-items-center rounded-xl">
+
+            <div class="sw-10 sh-10 mb-3 d-inline-block bg-primary d-flex justify-content-center align-items-center rounded-xl">
               <div class="text-white">BC</div>
             </div>
-            <div class="h5 mb-1">Blaine Cottrell</div>
+
+            <div class="h5 text-black text-center mb-1"><?= $mahasiswa['nama_mhs'] ?></div>
             <div class="text-muted">
-              <i data-acorn-icon="pin" class="text-muted"></i>
-              <span class="align-middle">Montreal, Canada</span>
+              <span class="align-middle"><?= $mahasiswa['nim'] ?></span>
             </div>
           </div>
         </div>
-        <div class="d-flex justify-content-center">
-          <div class="d-flex flex-row justify-content-between w-100 w-sm-50 w-xl-100 mb-5">
-            <button type="button" class="btn btn-primary w-100 me-2">Edit</button>
-            <button type="button" class="btn btn-outline-primary w-100 me-2">Block</button>
-            <button class="btn btn-icon btn-icon-only btn-outline-primary" type="button">
-              <i data-acorn-icon="more-horizontal"></i>
-            </button>
+
+        <div class="mb-2">
+          <div>
+            <p class="text-medium text-muted">ADDRESS</p>
+            <div class="row g-0 mb-2">
+              <div class="col-auto">
+                <div class="sw-3 me-1">
+                  <i data-acorn-icon="pin" class="text-primary" data-acorn-size="17"></i>
+                </div>
+              </div>
+              <div class="col text-alternate"><?= $mahasiswa['alamat'] ?></div>
+            </div>
+            <div class="row g-0 mb-2">
+              <div class="col-auto">
+                <div class="sw-3 me-1">
+                  <i data-acorn-icon="phone" class="text-primary" data-acorn-size="17"></i>
+                </div>
+              </div>
+              <div class="col text-alternate">+6443884455</div>
+            </div>
+            <div class="row g-0 mb-2">
+              <div class="col-auto">
+                <div class="sw-3 me-1">
+                  <i data-acorn-icon="email" class="text-primary" data-acorn-size="17"></i>
+                </div>
+              </div>
+              <div class="col text-alternate">blaine@cottrell.com</div>
+            </div>
           </div>
         </div>
+
         <div class="mb-5">
           <div class="row g-0 align-items-center mb-2">
             <div class="col-auto">
@@ -125,84 +149,12 @@
             </div>
           </div>
         </div>
-        <div class="mb-5">
-          <div>
-            <p class="text-small text-muted mb-2">SHIPPING ADDRESS</p>
-            <div class="row g-0 mb-2">
-              <div class="col-auto">
-                <div class="sw-3 me-1">
-                  <i data-acorn-icon="user" class="text-primary" data-acorn-size="17"></i>
-                </div>
-              </div>
-              <div class="col text-alternate align-middle">Blaine Cottrell</div>
-            </div>
-            <div class="row g-0 mb-2">
-              <div class="col-auto">
-                <div class="sw-3 me-1">
-                  <i data-acorn-icon="pin" class="text-primary" data-acorn-size="17"></i>
-                </div>
-              </div>
-              <div class="col text-alternate">4 Glamis Avenue, Strathmore Park, Wellington 6022, New Zealand</div>
-            </div>
-            <div class="row g-0 mb-2">
-              <div class="col-auto">
-                <div class="sw-3 me-1">
-                  <i data-acorn-icon="phone" class="text-primary" data-acorn-size="17"></i>
-                </div>
-              </div>
-              <div class="col text-alternate">+6443884455</div>
-            </div>
-            <div class="row g-0 mb-2">
-              <div class="col-auto">
-                <div class="sw-3 me-1">
-                  <i data-acorn-icon="email" class="text-primary" data-acorn-size="17"></i>
-                </div>
-              </div>
-              <div class="col text-alternate">blaine@cottrell.com</div>
-            </div>
-          </div>
-        </div>
-        <div class="mb-5">
-          <div>
-            <p class="text-small text-muted mb-2">BILLING ADDRESS</p>
-            <div class="row g-0 mb-2">
-              <div class="col-auto">
-                <div class="sw-3 me-1">
-                  <i data-acorn-icon="user" class="text-primary" data-acorn-size="17"></i>
-                </div>
-              </div>
-              <div class="col text-alternate align-middle">Blaine Cottrell</div>
-            </div>
-            <div class="row g-0 mb-2">
-              <div class="col-auto">
-                <div class="sw-3 me-1">
-                  <i data-acorn-icon="pin" class="text-primary" data-acorn-size="17"></i>
-                </div>
-              </div>
-              <div class="col text-alternate">4 Glamis Avenue, Strathmore Park, Wellington 6022, New Zealand</div>
-            </div>
-            <div class="row g-0 mb-2">
-              <div class="col-auto">
-                <div class="sw-3 me-1">
-                  <i data-acorn-icon="phone" class="text-primary" data-acorn-size="17"></i>
-                </div>
-              </div>
-              <div class="col text-alternate">+6443884455</div>
-            </div>
-            <div class="row g-0 mb-2">
-              <div class="col-auto">
-                <div class="sw-3 me-1">
-                  <i data-acorn-icon="email" class="text-primary" data-acorn-size="17"></i>
-                </div>
-              </div>
-              <div class="col text-alternate">blaine@cottrell.com</div>
-            </div>
-          </div>
-        </div>
+
+
       </div>
     </div>
   </div>
-  <!-- Customer End -->
+  <!-- Person End -->
 
   <div class="col-12 col-xl-8 col-xxl-9">
     <!-- Recent Orders Start -->
