@@ -63,7 +63,7 @@
 			<!-- Search Start -->
 			<div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
 				<div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
-					<input class="form-control" placeholder="Search" type="text" name="nilai" id="nilai" />
+					<input class="form-control" placeholder="Search" type="text" name="nama_biaya" id="nama_biaya" />
 					<span class="search-magnifier-icon">
 						<i data-acorn-icon="search"></i>
 					</span>
@@ -159,11 +159,11 @@
 
 		<div class="card">
 			<div class="card-body">
-				<table id="tableBiaya" class="table table-bordered data-table data-table-pagination  responsive nowrap stripe w-100">
+				<table id="tableJenisBiaya" class="table table-bordered data-table data-table-pagination  responsive nowrap stripe w-100">
 					<thead class="mt-4">
 						<tr >
-							<th class="text-bold text-uppercase">Kd Biaya</th>
-							<th class="text-bold text-uppercase">Biaya</th>
+							<th class="text-bold text-uppercase">Kd Jenis</th>
+							<th class="text-bold text-uppercase">Nama Biaya</th>
 							<th class="text-bold text-uppercase">Action</th>
 						</tr>
 					</thead>
