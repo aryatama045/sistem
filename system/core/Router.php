@@ -122,7 +122,6 @@ class CI_Router {
 	 * @param	array	$routing
 	 * @return	void
 	 */
-	#[AllowDynamicProperties]
 	public function __construct($routing = NULL)
 	{
 		$this->config =& load_class('Config', 'core');
@@ -446,6 +445,7 @@ class CI_Router {
 	 * @deprecated	3.0.0	Read the 'class' property instead
 	 * @return	string
 	 */
+	#[AllowDynamicProperties]
 	public function fetch_class()
 	{
 		return $this->class;
@@ -459,6 +459,7 @@ class CI_Router {
 	 * @param	string	$method	Method name
 	 * @return	void
 	 */
+	#[AllowDynamicProperties]
 	public function set_method($method)
 	{
 		$this->method = $method;
@@ -472,6 +473,7 @@ class CI_Router {
 	 * @deprecated	3.0.0	Read the 'method' property instead
 	 * @return	string
 	 */
+	#[AllowDynamicProperties]
 	public function fetch_method()
 	{
 		return $this->method;
@@ -486,6 +488,7 @@ class CI_Router {
 	 * @param	bool	$append	Whether we're appending rather than setting the full value
 	 * @return	void
 	 */
+	#[AllowDynamicProperties]
 	public function set_directory($dir, $append = FALSE)
 	{
 		if ($append !== TRUE OR empty($this->directory))
@@ -509,6 +512,7 @@ class CI_Router {
 	 * @deprecated	3.0.0	Read the 'directory' property instead
 	 * @return	string
 	 */
+	#[AllowDynamicProperties]
 	public function fetch_directory()
 	{
 		return $this->directory;
