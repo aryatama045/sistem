@@ -97,6 +97,7 @@ class CI_URI {
 	 *
 	 * @return	void
 	 */
+	#[AllowDynamicProperties]
 	public function __construct()
 	{
 		$this->config =& load_class('Config', 'core');
