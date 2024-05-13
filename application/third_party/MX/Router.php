@@ -107,6 +107,7 @@ class MX_Router extends CI_Router
 	}
 
 	/** Locate the controller **/
+	#[AllowDynamicProperties]
 	public function locate($segments)
 	{
 		$this->located = 0;
@@ -207,6 +208,7 @@ class MX_Router extends CI_Router
 	}
 
 	/* set module path */
+	#[AllowDynamicProperties]
 	protected function _set_module_path(&$_route)
 	{
 		if ( ! empty($_route))
@@ -233,6 +235,7 @@ class MX_Router extends CI_Router
 		}
 	}
 
+	#[AllowDynamicProperties]
 	public function set_class($class)
 	{
 		// $suffix = $this->config->item('controller_suffix');
