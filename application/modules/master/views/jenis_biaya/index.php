@@ -183,4 +183,4 @@
 
 </script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<?php echo $this->load->assets(lowercase($pagetitle), 'index', 'js');  ?>
+<?php echo $this->load->assets(to_strip(lowercase($pagetitle)), 'index', 'js');  ?>

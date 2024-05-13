@@ -18,7 +18,7 @@ class Model_jenis_biaya extends CI_Model
 
         if($search_no !="") $this->db->like('kd_jenis',$search_no);
         if($search_nama !="")
-			$this->db->like('nilai',$search_nama);
+			$this->db->like('nama_biaya',$search_nama);
 			$this->db->or_like('kd_jenis',$search_nama);
 
 		if($result == 'result'){

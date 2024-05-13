@@ -74,7 +74,6 @@ function __construct() {
     function generateTree($parent_id = 0)
     {
         $items = $this->Model_menu->get_items();
-        // tesx($items);
 
         $user_session = $this->session->userdata('roles');
 
