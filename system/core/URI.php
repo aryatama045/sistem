@@ -97,7 +97,6 @@ class CI_URI {
 	 *
 	 * @return	void
 	 */
-	#[AllowDynamicProperties]
 	public function __construct()
 	{
 		$this->config =& load_class('Config', 'core');
@@ -325,6 +324,7 @@ class CI_URI {
 	 * @param	string	$str
 	 * @return	void
 	 */
+	#[AllowDynamicProperties]
 	public function filter_uri(&$str)
 	{
 		if ( ! empty($str) && ! empty($this->_permitted_uri_chars) && ! preg_match('/^['.$this->_permitted_uri_chars.']+$/i'.(UTF8_ENABLED ? 'u' : ''), $str))
@@ -343,6 +343,7 @@ class CI_URI {
 	 * @param	mixed		$no_result	What to return if the segment index is not found
 	 * @return	mixed
 	 */
+	#[AllowDynamicProperties]
 	public function segment($n, $no_result = NULL)
 	{
 		return isset($this->segments[$n]) ? $this->segments[$n] : $no_result;
@@ -363,6 +364,7 @@ class CI_URI {
 	 * @param	mixed		$no_result	What to return if the segment index is not found
 	 * @return	mixed
 	 */
+	#[AllowDynamicProperties]
 	public function rsegment($n, $no_result = NULL)
 	{
 		return isset($this->rsegments[$n]) ? $this->rsegments[$n] : $no_result;
@@ -390,6 +392,7 @@ class CI_URI {
 	 * @param	array	$default	Default values
 	 * @return	array
 	 */
+	#[AllowDynamicProperties]
 	public function uri_to_assoc($n = 3, $default = array())
 	{
 		return $this->_uri_to_assoc($n, $default, 'segment');
@@ -408,6 +411,7 @@ class CI_URI {
 	 * @param 	array	$default	Default values
 	 * @return 	array
 	 */
+	#[AllowDynamicProperties]
 	public function ruri_to_assoc($n = 3, $default = array())
 	{
 		return $this->_uri_to_assoc($n, $default, 'rsegment');
@@ -495,6 +499,7 @@ class CI_URI {
 	 * @param	array	$array	Input array of key/value pairs
 	 * @return	string	URI string
 	 */
+	#[AllowDynamicProperties]
 	public function assoc_to_uri($array)
 	{
 		$temp = array();
@@ -518,6 +523,7 @@ class CI_URI {
 	 * @param	string	$where	Where to add the slash ('trailing' or 'leading')
 	 * @return	string
 	 */
+	#[AllowDynamicProperties]
 	public function slash_segment($n, $where = 'trailing')
 	{
 		return $this->_slash_segment($n, $where, 'segment');
@@ -534,6 +540,7 @@ class CI_URI {
 	 * @param	string	$where	Where to add the slash ('trailing' or 'leading')
 	 * @return	string
 	 */
+	#[AllowDynamicProperties]
 	public function slash_rsegment($n, $where = 'trailing')
 	{
 		return $this->_slash_segment($n, $where, 'rsegment');
@@ -577,6 +584,7 @@ class CI_URI {
 	 *
 	 * @return	array	CI_URI::$segments
 	 */
+	#[AllowDynamicProperties]
 	public function segment_array()
 	{
 		return $this->segments;
@@ -589,6 +597,7 @@ class CI_URI {
 	 *
 	 * @return	array	CI_URI::$rsegments
 	 */
+	#[AllowDynamicProperties]
 	public function rsegment_array()
 	{
 		return $this->rsegments;
@@ -601,6 +610,7 @@ class CI_URI {
 	 *
 	 * @return	int
 	 */
+	#[AllowDynamicProperties]
 	public function total_segments()
 	{
 		return count($this->segments);
@@ -613,6 +623,7 @@ class CI_URI {
 	 *
 	 * @return	int
 	 */
+	#[AllowDynamicProperties]
 	public function total_rsegments()
 	{
 		return count($this->rsegments);
@@ -625,6 +636,7 @@ class CI_URI {
 	 *
 	 * @return	string	CI_URI::$uri_string
 	 */
+	#[AllowDynamicProperties]
 	public function uri_string()
 	{
 		return $this->uri_string;
@@ -637,6 +649,7 @@ class CI_URI {
 	 *
 	 * @return	string
 	 */
+	#[AllowDynamicProperties]
 	public function ruri_string()
 	{
 		return ltrim(load_class('Router', 'core')->directory, '/').implode('/', $this->rsegments);
