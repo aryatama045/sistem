@@ -9,28 +9,17 @@
 					<div class="col-12 col-sm-6">
 						<p class="mb-0 text-muted">
 						Copyright &copy; <?= date('Y') ?>
-						| Tahun Ajaran : <?= $tahun_ajaran ?> - Semeseter <?= $semester ?>
-						| <?= (ENVIRONMENT!='production')?ENVIRONMENT:""?>
-						| <b>CI</b> <?php echo CI_VERSION; ?>
-						| <?= $this->agent->platform() ?>
-						| <?= $this->input->ip_address() ?>
-						| <?= gethostname() ?>
-						| <?= $this->agent->browser() ?>
-						| <?= $this->agent->version() ?>
-						<br>
-						| Page Loader <?=  $this->benchmark->elapsed_time(); ?>
-						| Memory <?=  $this->benchmark->memory_usage(); ?>
 						</p>
 					</div>
 					<div class="col-sm-6 d-none d-sm-block">
-						<ul class="breadcrumb pt-0 pe-0 mb-0 float-end">
+						<!-- <ul class="breadcrumb pt-0 pe-0 mb-0 float-end">
 							<li class="breadcrumb-item mb-0 text-medium">
 								<a href="#" class="btn-link">Review</a>
 							</li>
 							<li class="breadcrumb-item mb-0 text-medium">
 								<a href="#" class="btn-link">Docs</a>
 							</li>
-						</ul>
+						</ul> -->
 					</div>
 				</div>
 			</div>

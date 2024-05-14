@@ -70,7 +70,7 @@
                 </label>
 
                 <button class="btn btn-icon btn-icon-end btn-outline-primary " type="submit">
-                    <span>Submit</span>
+                    <span>Daftar</span>
                     <i data-acorn-icon="chevron-save"></i>
                 </button>
 
