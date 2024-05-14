@@ -1,5 +1,5 @@
 
-<div class="col-8">
+<div class="col-lg-8 col-12">
 
     <section class="scroll-section">
         <div class="card">
