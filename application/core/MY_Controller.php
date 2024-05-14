@@ -60,6 +60,22 @@ class Admin_Controller extends MY_Controller
 	}
 
 
+	public function render_template_pmb($page = null, $data = array())
+	{
+
+		$menu	= $this->Model_menu->generateTree();
+		$this->data['menu'] = $menu;
+
+		$ta		= $this->Model_global->getTahunAjaranAktif();
+		$this->data['tahun_ajaran']	= $ta['ta'];
+		$this->data['semester']		= $ta['smt'];
+
+		$this->load->view('templates/header_pmb',$this->data);
+		$this->load->view($page, $this->data);
+		$this->load->view('templates/footer_pmb',$this->data);
+	}
+
+
 	public function template_email($page = null, $data = array())
 	{
 		$this->load->view($page, $data);

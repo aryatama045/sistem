@@ -131,15 +131,18 @@
                                 <h1 class="display-2 text-white">LEPRINDO</h1>
                                 <h2 class="display-4 text-white">J A K A R T A</h2>
                             </div>
-                            <!-- <p class="h6 text-white lh-1-5 mb-5">
+                            <p class="h6 text-white lh-1-5 mb-5">
                                 Dynamically target high-payoff intellectual capital for customized technologies. Objectively integrate emerging core competencies before
                                 process-centric communities...
                             </p>
                             <div class="mb-5">
-                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdropExample">
-                                    Launch static backdrop modal
-                                </button>
-                            </div> -->
+                                <!-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdropExample">
+                                    Pendaftaran Mahasiswa Baru
+                                </button> -->
+                                <a href="<?= base_url('pmb'); ?>" class="btn btn-danger">
+                                    Pendaftaran Mahasiswa Baru
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
