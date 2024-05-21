@@ -15,32 +15,28 @@
 <script src="<?= base_url('assets/') ?>js/vendor/bootstrap-submenu.js"></script>
 
 <script src="<?= base_url('assets/') ?>js/datatables.min.js"></script>
-
-
-
 <!-- Vendor Scripts End -->
 
 <!-- Template Base Scripts Start -->
 <script src="<?= base_url('assets/') ?>js/base/helpers.js"></script>
 <script src="<?= base_url('assets/') ?>js/base/globals.js"></script>
 <script src="<?= base_url('assets/') ?>js/base/nav_pmb.js"></script>
-
 <script src="<?= base_url('assets/') ?>js/base/settings.js"></script>
+<!-- Template Base Scripts End -->
+
 
 <script src="<?= base_url('assets/') ?>js/pages/customerDetails.js"></script>
 
+<script src="<?= base_url('assets/') ?>js/pages/profile.standard.js"></script>
+
 <script src="<?= base_url('assets/') ?>js/cs/wizard.js"></script>
-
-<script src="<?= base_url('assets/') ?>js/vendor/jquery.validate/jquery.validate.min.js"></script>
-
-<script src="<?= base_url('assets/') ?>js/vendor/jquery.validate/additional-methods.min.js"></script>
-<!-- Template Base Scripts End -->
 
 <script src="<?= base_url('assets/') ?>js/forms/wizards.js"></script>
 
+
 <!-- Page Specific Scripts Start -->
-<script src="<?= base_url('assets/') ?>js/common.js"></script>
-<script src="<?= base_url('assets/') ?>js/scripts.js"></script>
+<script src="<?= base_url('assets/') ?>js/common_pmb.js"></script>
+<script src="<?= base_url('assets/') ?>js/scripts_pmb.js"></script>
 <!-- Page Specific Scripts End -->
 
 <?php $url = $this->uri->segment(1); if($url != 'dashboard'){  ?>

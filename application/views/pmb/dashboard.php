@@ -5,413 +5,58 @@
         <!-- Right Side Start -->
         <div class="col-12 col-xl-8 col-xxl-9 mb-5 tab-content">
             <!-- Overview Tab Start -->
-            <div class="tab-pane fade show active" id="overviewTab" role="tabpanel">
-                <!-- Stats Start -->
-                <h2 class="small-title">Stats</h2>
-                <div class="mb-5">
-                    <div class="row g-2">
-                        <div class="col-12 col-sm-6 col-lg-3">
-                            <div class="card hover-border-primary">
-                                <div class="card-body">
-                                    <div class="heading mb-0 d-flex justify-content-between lh-1-25 mb-3">
-                                        <span>Projects</span>
-                                        <i data-acorn-icon="office" class="text-primary"></i>
-                                    </div>
-                                    <div class="text-small text-muted mb-1">ACTIVE</div>
-                                    <div class="cta-1 text-primary">14</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-lg-3">
-                            <div class="card hover-border-primary">
-                                <div class="card-body">
-                                    <div class="heading mb-0 d-flex justify-content-between lh-1-25 mb-3">
-                                        <span>Tasks</span>
-                                        <i data-acorn-icon="check-square" class="text-primary"></i>
-                                    </div>
-                                    <div class="text-small text-muted mb-1">PENDING</div>
-                                    <div class="cta-1 text-primary">153</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-lg-3">
-                            <div class="card hover-border-primary">
-                                <div class="card-body">
-                                    <div class="heading mb-0 d-flex justify-content-between lh-1-25 mb-3">
-                                        <span>Notes</span>
-                                        <i data-acorn-icon="file-empty" class="text-primary"></i>
-                                    </div>
-                                    <div class="text-small text-muted mb-1">RECENT</div>
-                                    <div class="cta-1 text-primary">24</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-lg-3">
-                            <div class="card hover-border-primary">
-                                <div class="card-body">
-                                    <div class="heading mb-0 d-flex justify-content-between lh-1-25 mb-3">
-                                        <span>Views</span>
-                                        <i data-acorn-icon="screen" class="text-primary"></i>
-                                    </div>
-                                    <div class="text-small text-muted mb-1">THIS MONTH</div>
-                                    <div class="cta-1 text-primary">524</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Stats End -->
+            <div class="tab-pane fade show active" id="statusTerkiniTab" role="tabpanel">
 
-                <!-- Activity Start -->
-                <h2 class="small-title">Activity</h2>
-                <div class="card mb-5">
-                    <div class="card-body">
-                        <div class="sh-35">
-                            <canvas id="bubbleChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <!-- Activity End -->
+              <div class="card mb-5">
+                  <div class="card-body">
+                      <!-- Greeting -->
+                      <h2> Selamat Datang, <?= capital($this->session->userdata('name')); ?></h2>
+                      <p>Lanjutkan proses pendaftaran dengan mengisi data diri anda secara lengkap dan melakukan upload berkas.</p>
 
-                <!-- Timeline Start -->
-                <h2 class="small-title">Timeline</h2>
-                <div class="card mb-5">
-                    <div class="card-body">
-                        <div class="row g-0">
-                            <div class="col-auto sw-1 d-flex flex-column justify-content-center align-items-center position-relative me-4">
-                                <div class="w-100 d-flex sh-1"></div>
-                                <div class="rounded-xl shadow d-flex flex-shrink-0 justify-content-center align-items-center">
-                                    <div class="bg-gradient-light sw-1 sh-1 rounded-xl position-relative"></div>
-                                </div>
-                                <div class="w-100 d-flex h-100 justify-content-center position-relative">
-                                    <div class="line-w-1 bg-separator h-100 position-absolute"></div>
-                                </div>
-                            </div>
-                            <div class="col mb-4">
-                                <div class="h-100">
-                                    <div class="d-flex flex-column justify-content-start">
-                                        <div class="d-flex flex-column">
-                                            <a href="#" class="heading stretched-link">Developing Components</a>
-                                            <div class="text-alternate">21.12.2020</div>
-                                            <div class="text-muted mt-1">
-                                                Jujubes tootsie roll liquorice cake jelly beans pudding gummi bears chocolate cake donut. Jelly-o sugar plum fruitcake bonbon
-                                                bear claw cake cookie chocolate bar. Tiramisu soufflé apple pie.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row g-0">
-                            <div class="col-auto sw-1 d-flex flex-column justify-content-center align-items-center position-relative me-4">
-                                <div class="w-100 d-flex sh-1 position-relative justify-content-center">
-                                    <div class="line-w-1 bg-separator h-100 position-absolute"></div>
-                                </div>
-                                <div class="rounded-xl shadow d-flex flex-shrink-0 justify-content-center align-items-center">
-                                    <div class="bg-gradient-light sw-1 sh-1 rounded-xl position-relative"></div>
-                                </div>
-                                <div class="w-100 d-flex h-100 justify-content-center position-relative">
-                                    <div class="line-w-1 bg-separator h-100 position-absolute"></div>
-                                </div>
-                            </div>
-                            <div class="col mb-4">
-                                <div class="h-100">
-                                    <div class="d-flex flex-column justify-content-start">
-                                        <div class="d-flex flex-column">
-                                            <a href="#" class="heading stretched-link pt-0">HTML Structure</a>
-                                            <div class="text-alternate">14.12.2020</div>
-                                            <div class="text-muted mt-1">
-                                                Pudding gummi bears chocolate chocolate apple pie powder tart chupa chups bonbon. Donut biscuit chocolate cake pie topping.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row g-0">
-                            <div class="col-auto sw-1 d-flex flex-column justify-content-center align-items-center position-relative me-4">
-                                <div class="w-100 d-flex sh-1 position-relative justify-content-center">
-                                    <div class="line-w-1 bg-separator h-100 position-absolute"></div>
-                                </div>
-                                <div class="rounded-xl shadow d-flex flex-shrink-0 justify-content-center align-items-center">
-                                    <div class="bg-gradient-light sw-1 sh-1 rounded-xl position-relative"></div>
-                                </div>
-                                <div class="w-100 d-flex h-100 justify-content-center position-relative">
-                                    <div class="line-w-1 bg-separator h-100 position-absolute"></div>
-                                </div>
-                            </div>
-                            <div class="col mb-4">
-                                <div class="h-100">
-                                    <div class="d-flex flex-column justify-content-start">
-                                        <div class="d-flex flex-column">
-                                            <a href="#" class="heading stretched-link">Sass Structure</a>
-                                            <div class="text-alternate">03.11.2020</div>
-                                            <div class="text-muted mt-1">
-                                                Jelly-o wafer sesame snaps candy canes. Danish dragée toffee bonbon. Jelly-o marshmallow cake oat cake caramels jujubes.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row g-0">
-                            <div class="col-auto sw-1 d-flex flex-column justify-content-center align-items-center position-relative me-4">
-                                <div class="w-100 d-flex sh-1 position-relative justify-content-center">
-                                    <div class="line-w-1 bg-separator h-100 position-absolute"></div>
-                                </div>
-                                <div class="rounded-xl shadow d-flex flex-shrink-0 justify-content-center align-items-center">
-                                    <div class="bg-gradient-light sw-1 sh-1 rounded-xl position-relative"></div>
-                                </div>
-                                <div class="w-100 d-flex h-100 justify-content-center position-relative">
-                                    <div class="line-w-1 bg-separator h-100 position-absolute"></div>
-                                </div>
-                            </div>
-                            <div class="col mb-4">
-                                <div class="h-100">
-                                    <div class="d-flex flex-column justify-content-start">
-                                        <div class="d-flex flex-column">
-                                            <a href="#" class="heading stretched-link pt-0">Final Design</a>
-                                            <div class="text-alternate">15.10.2020</div>
-                                            <div class="text-muted mt-1">Chocolate apple pie powder tart chupa chups bonbon. Donut biscuit chocolate cake pie topping.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row g-0">
-                            <div class="col-auto sw-1 d-flex flex-column justify-content-center align-items-center position-relative me-4">
-                                <div class="w-100 d-flex sh-1 position-relative justify-content-center">
-                                    <div class="line-w-1 bg-separator h-100 position-absolute"></div>
-                                </div>
-                                <div class="rounded-xl shadow d-flex flex-shrink-0 justify-content-center align-items-center">
-                                    <div class="bg-gradient-light sw-1 sh-1 rounded-xl position-relative"></div>
-                                </div>
-                                <div class="w-100 d-flex h-100 justify-content-center position-relative"></div>
-                            </div>
-                            <div class="col">
-                                <div class="h-100">
-                                    <div class="d-flex flex-column justify-content-start">
-                                        <div class="d-flex flex-column">
-                                            <a href="#" class="heading stretched-link pt-0">Wireframe Design</a>
-                                            <div class="text-alternate">08.06.2020</div>
-                                            <div class="text-muted mt-1">Chocolate apple pie powder tart chupa chups bonbon. Donut biscuit chocolate cake pie topping.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Timeline End -->
+                      <hr class="mb-2">
 
-                <!-- Logs Start -->
-                <h2 class="small-title">Logs</h2>
-                <div class="card">
-                  <div class="card-body mb-n2">
-                    <div class="row g-0 mb-2">
-                      <div class="col-auto">
-                        <div class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                          <div class="sh-3">
-                            <i data-acorn-icon="circle" class="text-primary align-top"></i>
-                          </div>
-                        </div>
+                      <!-- Status Terkini Dots -->
+                      <div class="border-0 pb-0 wizard mt-5 mb-5" id="wizardBasic">
+                        <ul class="nav nav-tabs justify-content-center" role="tablist">
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link text-center" role="tab" data-index="1" >
+                              <div class="mb-1 title d-none d-sm-block">Biodata Pendaftar</div>
+                            </a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link text-center"role="tab" data-index="1">
+                              <div class="mb-1 title d-none d-sm-block">Upload Foto</div>
+                            </a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link text-center" role="tab" data-index="2">
+                              <div class="mb-1 title d-none d-sm-block">Upload Berkas</div>
+                            </a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link text-center" role="tab" data-index="2">
+                              <div class="mb-1 title d-none d-sm-block">Pembayaran</div>
+                            </a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link text-center"  role="tab" data-index="2">
+                              <div class="mb-1 title d-none d-sm-block">Finalisasi</div>
+                            </a>
+                          </li>
+                        </ul>
                       </div>
-                      <div class="col">
-                        <div class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                          <div class="d-flex flex-column">
-                            <div class="text-alternate mt-n1 lh-1-25">New user registiration</div>
-                          </div>
-                        </div>
+
+                      <!-- Notif -->
+                      <div class="alert alert-warning mt-4" role="alert">
+                        <p>Anda belum melakukan <b>Finalisasi Data !!</b></p>
+                        <hr>
+                        <p>Setelah melengkapi biodata diri, upload foto, dan upload berkas segera lakukan <b>finalisasi data</b> untuk dapat megikuti tahap selanjutnya.</p>
                       </div>
-                      <div class="col-auto">
-                        <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                          <div class="text-muted ms-2 mt-n1 lh-1-25">18 Dec</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row g-0 mb-2">
-                      <div class="col-auto">
-                        <div class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                          <div class="sh-3">
-                            <i data-acorn-icon="circle" class="text-primary align-top"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                          <div class="d-flex flex-column">
-                            <div class="text-alternate mt-n1 lh-1-25">3 new product added</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                          <div class="text-muted ms-2 mt-n1 lh-1-25">18 Dec</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row g-0 mb-2">
-                      <div class="col-auto">
-                        <div class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                          <div class="sh-3">
-                            <i data-acorn-icon="square" class="text-secondary align-top"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                          <div class="d-flex flex-column">
-                            <div class="text-alternate mt-n1 lh-1-25">
-                              Product out of stock:
-                              <a href="#" class="alternate-link underline-link">Breadstick</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                          <div class="text-muted ms-2 mt-n1 lh-1-25">16 Dec</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row g-0 mb-2">
-                      <div class="col-auto">
-                        <div class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                          <div class="sh-3">
-                            <i data-acorn-icon="square" class="text-secondary align-top"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                          <div class="d-flex flex-column">
-                            <div class="text-alternate mt-n1 lh-1-25">Category page returned an error</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                          <div class="text-muted ms-2 mt-n1 lh-1-25">15 Dec</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row g-0 mb-2">
-                      <div class="col-auto">
-                        <div class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                          <div class="sh-3">
-                            <i data-acorn-icon="circle" class="text-primary align-top"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                          <div class="d-flex flex-column">
-                            <div class="text-alternate mt-n1 lh-1-25">14 products added</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                          <div class="text-muted ms-2 mt-n1 lh-1-25">15 Dec</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row g-0 mb-2">
-                      <div class="col-auto">
-                        <div class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                          <div class="sh-3">
-                            <i data-acorn-icon="hexagon" class="text-tertiary align-top"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                          <div class="d-flex flex-column">
-                            <div class="text-alternate mt-n1 lh-1-25">
-                              New sale:
-                              <a href="#" class="alternate-link underline-link">Steirer Brot</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                          <div class="text-muted ms-2 mt-n1 lh-1-25">15 Dec</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row g-0 mb-2">
-                      <div class="col-auto">
-                        <div class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                          <div class="sh-3">
-                            <i data-acorn-icon="hexagon" class="text-tertiary align-top"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                          <div class="d-flex flex-column">
-                            <div class="text-alternate mt-n1 lh-1-25">
-                              New sale:
-                              <a href="#" class="alternate-link underline-link">Soda Bread</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                          <div class="text-muted ms-2 mt-n1 lh-1-25">15 Dec</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row g-0 mb-2">
-                      <div class="col-auto">
-                        <div class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                          <div class="sh-3">
-                            <i data-acorn-icon="triangle" class="text-warning align-top"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                          <div class="d-flex flex-column">
-                            <div class="text-alternate mt-n1 lh-1-25">Recived a support ticket</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                          <div class="text-muted ms-2 mt-n1 lh-1-25">14 Dec</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row g-0">
-                      <div class="col-auto">
-                        <div class="sw-3 d-inline-block d-flex justify-content-start align-items-center h-100">
-                          <div class="sh-3">
-                            <i data-acorn-icon="hexagon" class="text-tertiary align-top"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="card-body d-flex flex-column pt-0 pb-0 ps-3 pe-4 h-100 justify-content-center">
-                          <div class="d-flex flex-column">
-                            <div class="text-alternate mt-n1 lh-1-25">
-                              New sale:
-                              <a href="#" class="alternate-link underline-link">Cholermüs</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <div class="d-inline-block d-flex justify-content-end align-items-center h-100">
-                          <div class="text-muted ms-2 mt-n1 lh-1-25">13 Dec</div>
-                        </div>
-                      </div>
-                    </div>
+
                   </div>
-                </div>
-                <!-- Logs End -->
+              </div>
+
+
             </div>
             <!-- Overview Tab End -->
 
@@ -1137,3 +782,5 @@
         </div>
         <!-- Right Side End -->
 </div>
+
+

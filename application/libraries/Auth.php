@@ -209,6 +209,7 @@ class Auth
 
         $this->CI->session->set_userdata(array(
             "userID"        => $this->user->id,
+            "name"          => $this->user->name,
             "username"      => $this->user->username,
             "pmb_proses"    => $this->user->pmb,
             "roles"         => $this->userWiseRoles(),
