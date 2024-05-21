@@ -52,8 +52,6 @@ class Admin_Controller extends MY_Controller
 		$this->data['tahun_ajaran']	= $ta['ta'];
 		$this->data['semester']		= $ta['smt'];
 
-		// tesx($this->data['tahun_ajaran'], $this->data['semester']	);
-
 		$this->load->view('templates/header',$this->data);
 		$this->load->view($page, $this->data);
 		$this->load->view('templates/footer',$this->data);
@@ -74,6 +72,7 @@ class Admin_Controller extends MY_Controller
 		$this->load->view($page, $this->data);
 		$this->load->view('templates/footer_pmb',$this->data);
 	}
+
 
 
 	public function template_email($page = null, $data = array())

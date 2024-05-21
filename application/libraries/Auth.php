@@ -74,8 +74,11 @@ class Auth
 
         if ($this->validate($request)) {
             $this->user = $this->credentials($this->userName, $this->password);
+
             if ($this->user) {
+
                 return $this->setUser();
+
             } else {
                 return $this->failedLogin($request);
             }
@@ -167,7 +170,14 @@ class Auth
 
         $routeName = (!is_null($this->CI->uri->segment(2)) ?  $this->CI->uri->segment(1) . "-" . $this->CI->uri->segment(2) : $this->CI->uri->segment(1) );
 
+
         if ($this->CI->uri->segment(1) == 'dashboard'){
+            return true;
+        }
+
+        // tesx($routeName);
+
+        if ($this->CI->uri->segment(1) . "-" . $this->CI->uri->segment(2) == 'pmb-dashboard_pmb'){
             return true;
         }
 
@@ -175,8 +185,19 @@ class Auth
             return true;
         }
 
-        return redirect('dashboard/page404', 'refresh');
+        $sess = $this->CI->session->userdata();
+
+        $sess = $sess['pmb_proses'];
+
+        if(!empty($sess)){
+            return redirect('pmb/page404', 'refresh');
+        } else {
+            return redirect('dashboard/page404', 'refresh');
+        }
+
+
     }
+
 
 
     /**
@@ -187,15 +208,22 @@ class Auth
         $this->userID = $this->user->id;
 
         $this->CI->session->set_userdata(array(
-            "userID" => $this->user->id,
-            "username" => $this->user->username,
-            "roles" => $this->userWiseRoles(),
-            "loginStatus" => true
+            "userID"        => $this->user->id,
+            "username"      => $this->user->username,
+            "pmb_proses"    => $this->user->pmb,
+            "roles"         => $this->userWiseRoles(),
+            "loginStatus"   => true
         ));
 
+        $t = $this->user->pmb;
 
-        return redirect("dashboard");
+        if ($this->user->pmb == 'aktif'){
+            return redirect("pmb/dashboard_pmb");
+        }else{
+            return redirect("dashboard");
+        }
     }
+
 
     /**
      * Get the error message for failed login
@@ -443,7 +471,7 @@ class Auth
      */
     public function logout()
     {
-        $this->CI->session->unset_userdata(array("userID", "username", "loginStatus"));
+        $this->CI->session->unset_userdata(array("userID", "username", "pmb_proses", "loginStatus"));
         $this->CI->session->sess_destroy();
 
         return true;

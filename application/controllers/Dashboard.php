@@ -25,21 +25,15 @@ class Dashboard extends Admin_Controller
 	public function index()
 	{
 
-		try {
+		$pmb = $this->session->userdata('pmb_proses');
+
+
+		if ($pmb == 'aktif'){
+			return redirect("pmb/dashboard_pmb");
+		}else{
 			// normal flow
 			$this->form();
 			$this->render_template('dashboard');
-
-		} catch( Exception $e ) {
-			$trace = $e->getTrace();
-
-			$result = 'Exception: "';
-			$result .= $e->getMessage();
-			$result .= '" @ ';
-			if($trace[4]['file'] != '') {
-				$result .= ' File : '.$trace[4]['file'].'::: Line : '.$trace[4]['line'].' ::: Source :'.$trace[5]['class'].' -> '.$trace[5]['function'].' ::: Function : '.$trace[4]['class'].' -> '.$trace[4]['function'].' ::: Inputs :'.http_build_query($trace[4]['args']);
-			}
-			tesx( 'error', $result );
 		}
 
 	}
@@ -91,4 +85,6 @@ class Dashboard extends Admin_Controller
 			$this->render_template('change_password',$this->data);
 		}
 	}
+
+
 }
