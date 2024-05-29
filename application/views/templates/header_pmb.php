@@ -39,6 +39,12 @@
     <link rel="stylesheet" href="<?= base_url('assets/') ?>css/main.css" />
 
     <link rel="stylesheet" href="<?= base_url('assets/') ?>css/vendor/tagify.css" />
+
+    <link rel="stylesheet" href="<?= base_url('assets/') ?>css/vendor/select2.min.css" />
+
+    <link rel="stylesheet" href="<?= base_url('assets/') ?>css/vendor/select2-bootstrap4.min.css" />
+
+    <link rel="stylesheet" href="<?= base_url('assets/') ?>css/vendor/bootstrap-datepicker3.standalone.min.css" />
     <!-- Template Base Styles End -->
 
     <script src="<?= base_url('assets/') ?>js/base/loader.js"></script>

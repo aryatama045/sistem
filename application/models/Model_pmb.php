@@ -115,11 +115,10 @@ class Model_pmb extends CI_Model
 	}
 
 
-    public function saveCama($dataCama)
+
+	//------- Save Data
+	public function saveCama($dataCama)
     {
-		// tesx($dataCama);
-
-
         if(!empty($dataCama)){
             $insert = $this->db->insert('trn_pmb', $dataCama);
         }
@@ -132,7 +131,8 @@ class Model_pmb extends CI_Model
 			'password' => $password ,
 			'pmb'	   => 'aktif',
 			'status'   => '1',
-			'created_at' => date('Y-m-d h:i:s')
+			'no_pmb'   => $dataCama['no_pendaftaran'],
+			'created_at' => date('d-m-Y h:i:s')
 		);
 		$this->db->insert('users', $data_user);
 
@@ -140,6 +140,15 @@ class Model_pmb extends CI_Model
 		return ($insert)?true:false;
 	}
 
+	public function saveUploadBerkas($data_berkas)
+	{
+		$insert = $this->db->insert('trn_pmb_dok', $data_berkas);
+
+		return ($insert)?true:false;
+	}
+
+
+	//--------- Send Email
 	public function send_mail_create($no_pendaftaran, $data_user)
 	{
         $this->load->config('email');
@@ -173,16 +182,14 @@ class Model_pmb extends CI_Model
 		$this->email->message($this->load->view('pmb/email_template',$data,true));
 		$this->email->send();
 
-		// if($this->email->send()){
-		// 	echo "Mail Sent ok";
-		// }else{
-		// 	echo "Error";
-		// }
+		if($this->email->send()){
+			echo "Mail Sent ok";
+		}else{
+			echo "Error";
+		}
 
 		// tesx($data_user, $data_mhs);
 
     }
-
-
 
 }

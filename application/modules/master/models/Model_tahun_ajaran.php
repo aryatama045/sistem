@@ -7,36 +7,28 @@ class Model_tahun_ajaran extends CI_Model
 		parent::__construct();
 	}
 
-	public function getDataStore(){
-		$this->db->select('*');
-		$this->db->from('mst_ta');
-		$query=$this->db->get();
-		// die(nl2br($this->db->last_query()));
-		return $query->result_array();
-
-	}
-
-	public function getCutiData1($search_no = "", $length = "", $start = "", $column = "", $order = "")
+	public function getDataStore($result, $tahun_ajaran = "", $length = "", $start = "", $column = "", $order = "")
 	{
 
-		if($search_no != "") $this->db->like('ta',$search_no);
 		$this->db->select('*');
-		$this->db->from('mst_ta');
+        $this->db->from('mst_ta');
+        $this->db->order_by('ta', 'DESC');
 
-		$this->db->limit($length,$start);
-		$query=$this->db->get();
+        if($tahun_ajaran !="")
+			$this->db->like('kd_ta',$tahun_ajaran);
+			$this->db->or_like('ta',$tahun_ajaran);
 
-		// die(nl2br($this->db->last_query()));
-		return $query->result_array();
-	}
+		if($result == 'result'){
+			$this->db->limit($length,$start);
+			$query=$this->db->get();
+			// die(nl2br($this->db->last_query()));
+			return $query->result_array();
 
-	public function getCutiData2($search_no = "")
-	{
-		$this->db->select('*');
-		$this->db->from('mst_ta');
-		$jum=$this->db->get();
+		}else{
+			$query=$this->db->get();
+			return $query->num_rows();
+		}
 
-		return $jum->num_rows();
 	}
 
 }

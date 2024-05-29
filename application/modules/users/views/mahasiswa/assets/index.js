@@ -4,11 +4,6 @@ var nama_mhs;
 
 $(document).ready(function() {
 
-    $('.collapse').on('shown.bs.collapse', function (e) {
-        $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
-    });
-
-
     $('#nm_divisi').change(function() {
         var id = $('[name=nm_divisi]').val();
         // alert(id);
@@ -81,7 +76,7 @@ $(document).ready(function() {
     });
 
     $("#tableMahasiswa_filter").css("display", "none");
-    $("#tableMahasiswa_length").css("display", "none");
+    // $("#tableMahasiswa_length").css("display", "none");
 
     tableMahasiswa.columns.adjust().draw();
 

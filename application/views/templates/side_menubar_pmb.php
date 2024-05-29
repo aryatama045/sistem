@@ -35,11 +35,19 @@
 
     </div>
 
+    <?php if($this->session->userdata('loginStatus') == TRUE){ ?>
     <div class="user-container d-flex">
       <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img class="profile" alt="profile" src="<?= base_url('assets/') ?>img/profile/profile-9.webp">
+
+        <?php if(!empty($pmb['foto_profil'])){ ?>
+            <img src="<?= base_url('upload/berkas/'.$pmb['no_pendaftaran'].'/foto/'.$pmb['foto_profil']) ?>" class="profile" alt="profile" />
+        <?php } else { ?>
+            <img src="<?= base_url('assets/') ?>img/profile/profile.webp" class="profile" alt="profile" />
+        <?php } ?>
+
         <div class="name"><?= capital($this->session->userdata('name')) ?></div>
       </a>
+    <?php } ?>
 
       <div class="menu-container flex-grow-1">
           <ul id="menu" class="menu show">
@@ -140,6 +148,7 @@
       </div>
 
     </div>
+
 
     <div class="nav-shadow"></div>
 

@@ -42,6 +42,17 @@
     <!-- Template Base Styles End -->
 
     <script src="<?= base_url('assets/') ?>js/base/loader.js"></script>
+    <style>
+        .dataTables_length {
+            margin-bottom: 2em;
+        }
+        .dataTables_scrollHeadInner {
+            width: 100% !important;
+        }
+        div.dataTables_scrollHead{
+            width: 100% !important;
+        }
+    </style>
 </head>
 
 

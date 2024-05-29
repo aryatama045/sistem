@@ -61,12 +61,20 @@ class Admin_Controller extends MY_Controller
 	public function render_template_pmb($page = null, $data = array())
 	{
 
-		$menu	= $this->Model_menu->generateTree();
+		$username 			= $this->session->userdata('username');
+
+		$menu				= $this->Model_menu->generateTree();
 		$this->data['menu'] = $menu;
 
-		$ta		= $this->Model_global->getTahunAjaranAktif();
+		$ta					= $this->Model_global->getTahunAjaranAktif();
+		$this->data['kd_ta']		= $ta['kd_ta'];
 		$this->data['tahun_ajaran']	= $ta['ta'];
 		$this->data['semester']		= $ta['smt'];
+
+		$getdatauser 	= $this->Model_pmb->getDataUsername($username);
+		$getdataPmb		= $this->Model_pmb->getDataPendaftaran($getdatauser['no_pmb']);
+		$this->data['no_pendaftaran']	 	= $getdatauser['no_pmb'];
+		$this->data['pmb']	 				= $getdataPmb;
 
 		$this->load->view('templates/header_pmb',$this->data);
 		$this->load->view($page, $this->data);

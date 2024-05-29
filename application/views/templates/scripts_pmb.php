@@ -33,11 +33,20 @@
 
 <script src="<?= base_url('assets/') ?>js/forms/wizards.js"></script>
 
+<script src="<?= base_url('assets/') ?>js/vendor/select2.full.min.js"></script>
+
+<script src="<?= base_url('assets/') ?>js/vendor/datepicker/bootstrap-datepicker.min.js"></script>
+
+<script src="<?= base_url('assets/') ?>js/vendor/datepicker/locales/bootstrap-datepicker.es.min.js"></script>
+
+<script src="<?= base_url('assets/') ?>js/forms/genericforms.js"></script>
 
 <!-- Page Specific Scripts Start -->
 <script src="<?= base_url('assets/') ?>js/common_pmb.js"></script>
 <script src="<?= base_url('assets/') ?>js/scripts_pmb.js"></script>
 <!-- Page Specific Scripts End -->
+
+
 
 <?php $url = $this->uri->segment(1); if($url != 'dashboard'){  ?>
 <script src="<?= base_url('assets/') ?>js/base/search.js"></script>

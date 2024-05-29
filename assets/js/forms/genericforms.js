@@ -275,18 +275,18 @@ class GenericForms {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       event.stopPropagation();
-      if (jQuery(form).valid()) {
-        const formValues = {
-          personalName: form.querySelector('[name="personalName"]').value,
-          personalEmail: form.querySelector('[name="personalEmail"]').value,
-          personalPhone: form.querySelector('[name="personalPhone"]').value,
-          personalGender: form.querySelector('[name="personalGender"]').value,
-          personalFiling: form.querySelector('[name="personalFiling"]').value,
-          personalBirthday: form.querySelector('[name="personalBirthday"]').value,
-          personalSocialSecurityNumber: form.querySelector('[name="personalSocialSecurityNumber"]').value,
-        };
-        console.log(formValues);
-      }
+      // if (jQuery(form).valid()) {
+      //   const formValues = {
+      //     personalName: form.querySelector('[name="personalName"]').value,
+      //     personalEmail: form.querySelector('[name="personalEmail"]').value,
+      //     personalPhone: form.querySelector('[name="personalPhone"]').value,
+      //     personalGender: form.querySelector('[name="personalGender"]').value,
+      //     personalFiling: form.querySelector('[name="personalFiling"]').value,
+      //     personalBirthday: form.querySelector('[name="personalBirthday"]').value,
+      //     personalSocialSecurityNumber: form.querySelector('[name="personalSocialSecurityNumber"]').value,
+      //   };
+      //   console.log(formValues);
+      // }
     });
   }
 
@@ -353,19 +353,19 @@ class GenericForms {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       event.stopPropagation();
-      if (jQuery(form).valid()) {
-        const formValues = {
-          addressFirstName: form.querySelector('[name="addressFirstName"]').value,
-          addressLastName: form.querySelector('[name="addressLastName"]').value,
-          addressCompany: form.querySelector('[name="addressCompany"]').value,
-          addressPhone: form.querySelector('[name="addressPhone"]').value,
-          addressCountry: form.querySelector('[name="addressState"]').value,
-          addressCity: form.querySelector('[name="addressCity"]').value,
-          addressZipCode: form.querySelector('[name="addressZipCode"]').value,
-          addressDetail: form.querySelector('[name="addressDetail"]').value,
-        };
-        console.log(formValues);
-      }
+      // if (jQuery(form).valid()) {
+      //   const formValues = {
+      //     addressFirstName: form.querySelector('[name="addressFirstName"]').value,
+      //     addressLastName: form.querySelector('[name="addressLastName"]').value,
+      //     addressCompany: form.querySelector('[name="addressCompany"]').value,
+      //     addressPhone: form.querySelector('[name="addressPhone"]').value,
+      //     addressCountry: form.querySelector('[name="addressState"]').value,
+      //     addressCity: form.querySelector('[name="addressCity"]').value,
+      //     addressZipCode: form.querySelector('[name="addressZipCode"]').value,
+      //     addressDetail: form.querySelector('[name="addressDetail"]').value,
+      //   };
+      //   console.log(formValues);
+      // }
     });
   }
 

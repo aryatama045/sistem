@@ -31,62 +31,51 @@ class Tahun_ajaran extends Admin_Controller  {
 
 	public function store()
 	{
-		$output = array('data' => array());
-
-		$data 		= $this->Model_tahun_ajaran->getDataStore();
-
-
-		foreach($data as $key => $value){
-
-			$output['data'][$key] = [
-				"Name" => $value['kd_ta'],
-				"Sales" =>$value['ta'],
-				"Stock" =>$value['smt'],
-				"Category" =>$value['aktif'],
-				"Tag" =>$value['aktif'],
-				"Check" =>$value['aktif']
-			];
-		}
-
-
-		echo json_encode($output);
-
-	}
-
-	public function store2()
-	{
-		$output = array('data' => array());
-
-		$draw			= $_REQUEST['draw'];
-		$length 		= $_REQUEST['length'];
-		$start			= $_REQUEST['start'];
+		$draw           = $_REQUEST['draw'];
+		$length         = $_REQUEST['length'];
+		$start          = $_REQUEST['start'];
 		$column 		= $_REQUEST['order'][0]['column'];
-		$order			= $_REQUEST['order'][0]['dir'];
-		$search_no   	= $_REQUEST['columns'][0]['search']["value"];
+		$order 			= $_REQUEST['order'][0]['dir'];
 
-		$data 			= $this->Model_tahun_ajaran->getDataStore($search_no,$length,$start,$column,$order);
-		$data_jum 		= $this->Model_tahun_ajaran->getDataStore2($search_no);
-		$output			= array();
-		// $output['draw']	= $draw;
+        $output['data']	= array();
+		$tahun_ajaran   = $this->input->post('tahun_ajaran');
+        $semester    	= $this->input->post('semester');
+
+		$data           = $this->Model_tahun_ajaran->getDataStore('result',$tahun_ajaran,$length,$start,$column,$order);
+		$data_jum       = $this->Model_tahun_ajaran->getDataStore('numrows',$tahun_ajaran);
+
+		$output=array();
+		$output['draw'] = $draw;
 		$output['recordsTotal'] = $output['recordsFiltered'] = $data_jum;
 
-		if($search_no !="" ){
-			$data_jum = $this->Model_tahun_ajaran->getDataStore2($search_no);
+		if($tahun_ajaran !=""  ){
+			$data_jum = $this->Model_tahun_ajaran->getDataStore('numrows',$tahun_ajaran);
 			$output['recordsTotal']=$output['recordsFiltered']=$data_jum;
 		}
 
 		if($data){
 			foreach ($data as $key => $value) {
+				$btn = '';
+				$btn .= '<a href="'.base_url('master/tahun_ajaran/detail/').'"
+						class="btn btn-info btn-sm btn-shadow">
+						<i class="iconsminds-magnifi-glass" ></i> Detail</a>';
+
+				if($value['aktif'] == 1){
+					$aktif = '<span class="btn btn-primary btn-sm">Aktif</span>';
+				}else{
+					$aktif = '';
+				}
+
 				$output['data'][$key] = array(
-					$value['no_dok_tdk_masuk'],
-					$value['tgl_dok'],
-					$value['keterangan'],
-					$value['potong_cuti_dari'],
-					$value['status'],
-					$value['posting']
+					$value['kd_ta'],
+					$value['ta'],
+					$value['smt'],
+					$aktif,
+					$btn,
 				);
 			}
-		}else{
+
+		} else{
 			$output['data'] = [];
 		}
 		echo json_encode($output);

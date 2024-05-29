@@ -20,4 +20,22 @@ class Model_global extends CI_Model {
         return $query->row_array();
     }
 
+    function getMhsNik($nik)
+    {
+        $this->db->select('*');
+		$this->db->from('mst_mhs');
+        $this->db->where('nik', $nik);
+		$query=$this->db->get();
+		return $query->row_array();
+    }
+
+    function getMhsNim($nim)
+    {
+        $this->db->select('*');
+		$this->db->from('mst_mhs');
+        $this->db->where('nim', $nim);
+		$query=$this->db->get();
+		return $query->row_array();
+    }
+
 }
