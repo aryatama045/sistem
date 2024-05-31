@@ -51,47 +51,37 @@
         <!-- Content Start -->
 		<div class="card">
 			<div class="card-body">
-                <h3 class="pb-0">Form Tambah - <?= $pagetitle ?></h3>
+                <h3 class="pb-0">Form  <?= $function ?> - <?= $pagetitle ?></h3>
                 <hr class="mb-2">
 
                 <form class="row g-3" action="<?= base_url($mod.'/'.$func.'/tambah'); ?>" method="POST">
-                    <div class="col-12 col-md-4">
-                        <label class="form-label text-black-50"><strong>Kode Mata Kuliah<span style="color:red">*</span></strong></label>
-                        <input type="text" class="form-control" required name="kode_matkul" placeholder="Input Kode Mata Kuliah" />
+                <div class="col-12 col-md-4">
+                        <label class="form-label text-black-50"><strong>Kode Biaya<span style="color:red">*</span></strong></label>
+                        <input type="text" class="form-control" required name="kd_biaya" placeholder="Input Kode Biaya" />
                     </div>
                     <div class="col-12 col-md-8">
-                        <label class="form-label text-black-50"><strong>Nama Mata Kuliah<span style="color:red">*</span></strong></label>
-                        <input type="text" class="form-control" required name="nama_matkul" placeholder="Input Nama Mata Kuliah" />
+                        <label class="form-label text-black-50"><strong>Nilai Biaya<span style="color:red">*</span></strong></label>
+                        <input type="text" class="form-control" required name="nilai" placeholder="Input Nilai Biaya" />
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label text-black-50"><strong>Jumlah SKS<span style="color:red">*</span></strong></label>
-                        <input type="text" class="form-control" required name="sks" placeholder="Input Jumlah SKS" />
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label text-black-50"><strong> Kode Program<span style="color:red">*</span></strong></label>
-                        <select name="kd_prog" required class="form-select">
-                            <option value="">-- Select Kode Program --</option>
-                            <?php foreach($prodi as $key => $val){ ?>
-                                <option value="<?= $val['kd_prog'] ?>">(<?= $val['kd_prog'] ?>) <?= $val['nama_prog'] ?></option>
+                        <label class="form-label text-black-50"><strong> Jenis Mahasiswa<span style="color:red">*</span></strong></label>
+                        <select name="kd_jenma" required class="form-select">
+                            <option value="">-- Select Jenis Mahasiswa --</option>
+                            <?php foreach($jenma as $key => $val){ ?>
+                                <option value="<?= $val['kd_jenma'] ?>">(<?= $val['kd_jenma'] ?>) <?= $val['jenis_mhs'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
+
                     <div class="col-md-4">
-                        <label class="form-label text-black-50"><strong> Semester<span style="color:red">*</span></strong></label>
-                        <select name="smt" required class="form-select">
-                            <option value="">-- Select Semester --</option>
-                            <option value="1"> Semester 1</option>
-                            <option value="2"> Semester 2</option>
-                            <option value="3"> Semester 3</option>
-                            <option value="4"> Semester 4</option>
+                        <label class="form-label text-black-50"><strong> Tahun Ajaran<span style="color:red">*</span></strong></label>
+                        <select name="kd_ta" required class="form-select">
+                            <option value="">-- Select Tahun Ajaran --</option>
+                            <?php foreach($ta as $key => $val){ ?>
+                                <option value="<?= $val['kd_ta'] ?>"> <?= $val['ta'] ?></option>
+                            <?php } ?>
                         </select>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-check">
-                            <input class="form-check-input" name="aktif" type="checkbox" id="gridCheck" required value="1" />
-                            <label class="form-check-label" > Status Aktif<span style="color:red">*</span></label>
-                        </div>
                     </div>
 
                     <div class="col-12">

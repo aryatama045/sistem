@@ -29,8 +29,9 @@ class Tahun_ajaran extends Admin_Controller  {
 		$this->render_template('tahun_ajaran/index',$this->data);
 	}
 
-	public function store()
-	{
+	public function store() {
+		$cn 	= $this->router->fetch_class(); // Controller
+
 		$draw           = $_REQUEST['draw'];
 		$length         = $_REQUEST['length'];
 		$start          = $_REQUEST['start'];
@@ -54,22 +55,23 @@ class Tahun_ajaran extends Admin_Controller  {
 
 		if($data){
 			foreach ($data as $key => $value) {
-				$btn = '';
-				$btn .= '<div class="d-inline-block " >
-                            <button class="btn p-0" data-bs-toggle="dropdown" type="button" data-bs-offset="0,3">
-                                <span class="btn btn-icon btn-icon-only btn-foreground-alternate shadow dropdown"
-                                data-bs-delay="0" data-bs-placement="top" data-bs-toggle="tooltip"
-                                title="Action" >
-                                    <i data-acorn-icon="gear"></i>
-                                </span>
-                            </button>
-                            <div class="dropdown-menu shadow dropdown-menu-end">
-                                <a href="'.base_url('master/mata_kuliah/edit/'.$value['kd_ta']).'" class="dropdown-item">
-                                    <i data-acorn-icon="edit-square"></i> Edit</a>
-                                <a href="'.base_url('master/mata_kuliah/delete/'.$value['kd_ta']).'" class="dropdown-item">
-                                    <i data-acorn-icon="bin"></i> Delete</a>
-                            </div>
-                        </div>';
+				$id		= $value['kd_ta'];
+				$btn 	= '';
+				$btn 	.= '<div class="btn-group">
+							<button type="button" class="btn btn-sm btn btn-light dropdown-toggle mb-1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Opsi
+							</button>
+							<div class="dropdown-menu">
+								<a href="'.base_url('master/'.$cn.'/edit/'.$id).'" class="dropdown-item">
+									<i data-acorn-icon="edit-square"></i> Edit</a>';
+
+								$btn .= ' <a class="dropdown-item" onclick="';
+								$btn .= "remove('".$id."')";
+								$btn .= '" data-bs-toggle="modal" data-bs-target="#removeModal" >
+										<i data-acorn-icon="bin"></i> Delete</a>
+
+							</div>
+						</div>';
 
 				if($value['aktif'] == 1){
 					$aktif = '<span class="btn btn-primary btn-sm">Aktif</span>';
@@ -90,6 +92,84 @@ class Tahun_ajaran extends Admin_Controller  {
 			$output['data'] = [];
 		}
 		echo json_encode($output);
+	}
+
+	public function tambah()
+	{
+
+		$this->form_validation->set_rules('ta' ,'Kode ' , 'required');
+
+        if ($this->form_validation->run() == TRUE) {
+
+			$create_form = $this->Model_tahun_ajaran->saveTambah();
+
+			if($create_form) {
+				$this->session->set_flashdata('success', ' Berhasil Disimpan !!');
+				redirect('master/tahun_ajaran', 'refresh');
+			} else {
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('master/tahun_ajaran/tambah', 'refresh');
+			}
+
+		}else{
+			$this->starter();
+			$this->render_template('tahun_ajaran/tambah',$this->data);
+		}
+
+	}
+
+	public function edit($id)
+	{
+		$this->form_validation->set_rules('kd_ta' ,'Kode ' , 'required');
+
+        if ($this->form_validation->run() == TRUE) {
+
+			$edit_form = $this->Model_tahun_ajaran->saveEdit();
+
+			if($edit_form) {
+				$this->session->set_flashdata('success', 'Kode  : "'.$_POST['kd_ta'].'" <br> Berhasil Di Update !!');
+				redirect('master/tahun_ajaran', 'refresh');
+			} else {
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('master/tahun_ajaran/edit/'.$id, 'refresh');
+			}
+
+		}else{
+			$this->starter();
+			$this->data['ta'] = $this->Model_global->getTahunAjaran($id);
+
+			if($this->data['ta']['kd_ta']){
+				$this->render_template('tahun_ajaran/edit',$this->data);
+			}else{
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('master/tahun_ajaran/edit/'.$id, 'refresh');
+			}
+		}
+	}
+
+
+	public function delete()
+	{
+		$id = $_POST['id'];
+
+		$response = array();
+		if($id) {
+			$delete = $this->Model_tahun_ajaran->saveDelete($id);
+
+			if($delete == true) {
+				$response['success'] 	= true;
+				$response['messages'] 	= " <strong>Kode '".$id."'</strong> Berhasil Di Remove";
+			} else {
+				$response['success'] 	= false;
+				$response['messages'] 	= " <strong>Kode '".$id."'</strong> Gagal Di Remove";
+			}
+		}
+		else {
+			$response['success'] 	= false;
+			$response['messages'] 	= "Refersh the page again!!";
+		}
+
+		echo json_encode($response);
 	}
 
 }

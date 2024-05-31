@@ -67,4 +67,49 @@ class Model_global extends CI_Model {
         }
     }
 
+    function getTahunAjaran($kd_ta = NULL)
+    {
+        $this->db->select('*');
+		$this->db->from('mst_ta');
+
+        if($kd_ta){
+            $this->db->where('kd_ta', $kd_ta);
+            $query=$this->db->get();
+            return $query->row_array();
+        }else{
+            $query=$this->db->get();
+            return $query->result_array();
+        }
+    }
+
+    function getJenma($kd_jenma = NULL)
+    {
+        $this->db->select('*');
+		$this->db->from('mst_jenma');
+
+        if($kd_jenma){
+            $this->db->where('kd_jenma', $kd_jenma);
+            $query=$this->db->get();
+            return $query->row_array();
+        }else{
+            $query=$this->db->get();
+            return $query->result_array();
+        }
+    }
+
+    function getBiaya($kd_biaya = NULL)
+    {
+        $this->db->select('*');
+		$this->db->from('mst_biaya');
+
+        if($kd_biaya){
+            $this->db->where('kd_biaya', $kd_biaya);
+            $query=$this->db->get();
+            return $query->row_array();
+        }else{
+            $query=$this->db->get();
+            return $query->result_array();
+        }
+    }
+
 }

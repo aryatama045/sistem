@@ -13,7 +13,7 @@
 <script src="<?= base_url('assets/') ?>js/vendor/jquery.validate/additional-methods.min.js"></script>
 <script src="<?= base_url('assets/') ?>js/vendor/bootstrap-submenu.js"></script>
 <script src="<?= base_url('assets/') ?>js/datatables.min.js"></script>
-
+<script src="<?= base_url('assets/') ?>js/vendor/bootstrap-notify.min.js"></script>
 <!-- Vendor Scripts End -->
 
 <!-- Template Base Scripts Start -->
@@ -23,6 +23,7 @@
 <script src="<?= base_url('assets/') ?>js/base/settings.js"></script>
 <script src="<?= base_url('assets/') ?>js/pages/customerDetails.js"></script>
 <script src="<?= base_url('assets/') ?>js/pages/profile.standard.js"></script>
+<script src="<?= base_url('assets/') ?>js/plugins/notifies.js"></script>
 <!-- Template Base Scripts End -->
 
 <!-- Page Specific Scripts Start -->

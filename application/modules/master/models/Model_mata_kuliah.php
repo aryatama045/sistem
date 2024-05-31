@@ -2,9 +2,11 @@
 
 class Model_mata_kuliah extends CI_Model
 {
+	public $table;
 	function __construct()
 	{
 		parent::__construct();
+		$this->table = 'mst_matkul';
 	}
 
 	// ---- Get Data Start
@@ -12,7 +14,7 @@ class Model_mata_kuliah extends CI_Model
 	{
 
 		$this->db->select('*');
-        $this->db->from('mst_matkul');
+        $this->db->from($this->table);
 		$this->db->join('mst_prodi', 'mst_matkul.kd_prog = mst_prodi.kd_prog', 'left');
         $this->db->order_by('smt', 'ASC');
         $this->db->order_by('nama_matkul', 'ASC');
@@ -33,25 +35,32 @@ class Model_mata_kuliah extends CI_Model
 		}
 
 	}
-
-	// Get Data END
+	// ---- Get Data END
 
 	// ---- Action Start
-	function saveTambahMatkul()
+	function saveTambah()
 	{
 		$data = $_POST;
-		$insert = $this->db->insert('mst_matkul', $data);
+		$insert = $this->db->insert($this->table, $data);
 
 		return ($insert)?TRUE:FALSE;
 	}
 
-	function saveEditMatkul()
+	function saveEdit()
 	{
 		$data = $_POST;
 		$this->db->where(['kode_matkul' => $data['kode_matkul']]);
-		$update = $this->db->update('mst_matkul', $data);
+		$update = $this->db->update($this->table, $data);
 
 		return ($update)?TRUE:FALSE;
+	}
+
+	function saveDelete($id)
+	{
+		$this->db->where(['kode_matkul' => $id]);
+		$delete = $this->db->delete($this->table);
+
+		return ($delete)?TRUE:FALSE;
 	}
 	// ---- Action END
 

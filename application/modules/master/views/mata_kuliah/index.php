@@ -46,7 +46,6 @@
 		</div>
 		<!-- Title and Top Buttons End -->
 
-
 		<!-- Controls Start -->
 		<div class="row">
 			<!-- Search Start -->
@@ -103,6 +102,31 @@
 	</div>
 </div>
 
+<!-- remove Matkul modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="removeModal">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Modal title</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+
+			<form role="form" action="<?= base_url($mod.'/'.$func.'/delete') ?>" method="post" id="removeForm">
+				<div id="id" class="modal-body">
+					<p>Yakin <span></span> ?</p>
+				</div>
+
+				<div id="messages_modal_remove"></div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" id='btn-delete'> Remove</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
 <script type="text/javascript">
 	window.base_url = '<?php echo base_url() ?>';
 	window.linkstore = '<?php echo $func.'/store' ?>';
@@ -111,3 +135,4 @@
 <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
 
 <?php echo $this->load->assets(to_strip(lowercase($pagetitle)), 'index', 'js');  ?>
+

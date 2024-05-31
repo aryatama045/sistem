@@ -83,6 +83,8 @@
                             <option value="<?= $matkul['smt'] ?>">-- Semester <?= $matkul['smt'] ?> --</option>
                             <option value="1"> Semester 1</option>
                             <option value="2"> Semester 2</option>
+                            <option value="3"> Semester 3</option>
+                            <option value="4"> Semester 4</option>
                         </select>
                     </div>
                     <div class="col-md-4">

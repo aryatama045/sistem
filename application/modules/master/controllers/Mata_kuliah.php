@@ -32,6 +32,8 @@ class Mata_kuliah extends Admin_Controller  {
 
 	public function store()
 	{
+		$cn 	= $this->router->fetch_class(); // Controller
+
 		$draw           = $_REQUEST['draw'];
 		$length         = $_REQUEST['length'];
 		$start          = $_REQUEST['start'];
@@ -55,18 +57,23 @@ class Mata_kuliah extends Admin_Controller  {
 
 		if($data){
 			foreach ($data as $key => $value) {
-				$btn = '';
-				$btn .= '<div class="btn-group">
+
+				$id		= $value['kode_matkul'];
+
+				$btn 	= '';
+				$btn 	.= '<div class="btn-group">
 							<button type="button" class="btn btn-sm btn btn-light dropdown-toggle mb-1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Opsi
 							</button>
 							<div class="dropdown-menu">
-								<a href="'.base_url('master/mata_kuliah/edit/'.$value['kode_matkul']).'" class="dropdown-item">
-									<i data-acorn-icon="edit-square"></i> Edit</a>
+								<a href="'.base_url('master/'.$cn.'/edit/'.$id).'" class="dropdown-item">
+									<i data-acorn-icon="edit-square"></i> Edit</a>';
 
-								<div class="dropdown-divider"></div>
-								<a href="'.base_url('master/mata_kuliah/delete/'.$value['kode_matkul']).'" class="dropdown-item">
-									<i data-acorn-icon="bin"></i> Delete</a>
+								$btn .= ' <a class="dropdown-item" onclick="';
+								$btn .= "remove('".$id."')";
+								$btn .= '" data-bs-toggle="modal" data-bs-target="#removeModal" >
+										<i data-acorn-icon="bin"></i> Delete</a>
+
 							</div>
 						</div>';
 
@@ -79,7 +86,7 @@ class Mata_kuliah extends Admin_Controller  {
                 $matkul = '<strong>'.capital(lowercase($value['nama_matkul'])).'</strong>';
 
 				$output['data'][$key] = array(
-					$value['kode_matkul'],
+					$id,
 					$value['nama_prog'],
                     $matkul,
 					$value['sks'],
@@ -103,7 +110,7 @@ class Mata_kuliah extends Admin_Controller  {
 
         if ($this->form_validation->run() == TRUE) {
 
-			$create_form = $this->Model_mata_kuliah->saveTambahMatkul();
+			$create_form = $this->Model_mata_kuliah->saveTambah();
 
 			if($create_form) {
 				$this->session->set_flashdata('success', 'Mata Kuliah Berhasil Disimpan !!');
@@ -126,7 +133,7 @@ class Mata_kuliah extends Admin_Controller  {
 
         if ($this->form_validation->run() == TRUE) {
 
-			$edit_form = $this->Model_mata_kuliah->saveEditMatkul();
+			$edit_form = $this->Model_mata_kuliah->saveEdit();
 
 			if($edit_form) {
 				$this->session->set_flashdata('success', 'Kode Mata Kuliah : "'.$_POST['kode_matkul'].'" <br> Berhasil Di Update !!');
@@ -150,9 +157,28 @@ class Mata_kuliah extends Admin_Controller  {
 	}
 
 
-	public function delete($id)
+	public function delete()
 	{
-		tesx($id);
+		$id = $_POST['id'];
+
+		$response = array();
+		if($id) {
+			$delete = $this->Model_mata_kuliah->saveDelete($id);
+
+			if($delete == true) {
+				$response['success'] 	= true;
+				$response['messages'] 	= " <strong>Kode '".$id."'</strong> Berhasil Di Remove";
+			} else {
+				$response['success'] 	= false;
+				$response['messages'] 	= " <strong>Kode '".$id."'</strong> Gagal Di Remove";
+			}
+		}
+		else {
+			$response['success'] 	= false;
+			$response['messages'] 	= "Refersh the page again!!";
+		}
+
+		echo json_encode($response);
 	}
 
 }
