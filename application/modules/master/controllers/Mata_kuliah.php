@@ -12,13 +12,14 @@ class Mata_kuliah extends Admin_Controller  {
 		$this->data['pagetitle'] = capital($cn);
 		$this->data['function'] = capital($f);
 
+		$this->load->model('Model_global');
 		$this->load->model('Model_mata_kuliah');
 
 	}
 
 	public function starter()
 	{
-
+		$this->data['prodi'] = $this->Model_global->getKodeProgram();
 	}
 
 
@@ -27,6 +28,7 @@ class Mata_kuliah extends Admin_Controller  {
 		$this->starter();
 		$this->render_template('mata_kuliah/index',$this->data);
 	}
+
 
 	public function store()
 	{
@@ -54,20 +56,32 @@ class Mata_kuliah extends Admin_Controller  {
 		if($data){
 			foreach ($data as $key => $value) {
 				$btn = '';
-				$btn .= '<a href="'.base_url('master/prodi/detail/').'"
-						class="btn btn-info btn-sm btn-shadow">
-                        <i class="iconsminds-magnifi-glass" ></i> Detail</a>';
+				$btn .= '<div class="btn-group">
+							<button type="button" class="btn btn-sm btn btn-light dropdown-toggle mb-1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Opsi
+							</button>
+							<div class="dropdown-menu">
+								<a href="'.base_url('master/mata_kuliah/edit/'.$value['kode_matkul']).'" class="dropdown-item">
+									<i data-acorn-icon="edit-square"></i> Edit</a>
+
+								<div class="dropdown-divider"></div>
+								<a href="'.base_url('master/mata_kuliah/delete/'.$value['kode_matkul']).'" class="dropdown-item">
+									<i data-acorn-icon="bin"></i> Delete</a>
+							</div>
+						</div>';
 
                 if($value['aktif'] == 1){
-                    $aktif = '<span class="btn btn-primary btn-sm">Aktif</span>';
+                    $aktif = '<div class="btn-group"><span class=" btn-outline-info btn-sm">Aktif</span></div>';
                 }else{
-                    $aktif = '<span class="btn btn-default btn-sm">Nonktif</span>';
+                    $aktif = '<div class="btn-group"><span class=" btn-outline-danger btn-sm">Nonktif</span></div>';
                 }
 
+                $matkul = '<strong>'.capital(lowercase($value['nama_matkul'])).'</strong>';
+
 				$output['data'][$key] = array(
-					$value['kd_prog'],
 					$value['kode_matkul'],
-                    $value['nama_matkul'],
+					$value['nama_prog'],
+                    $matkul,
 					$value['sks'],
                     $value['smt'],
                     $aktif,
@@ -79,6 +93,66 @@ class Mata_kuliah extends Admin_Controller  {
 			$output['data'] = [];
 		}
 		echo json_encode($output);
+	}
+
+
+	public function tambah()
+	{
+
+		$this->form_validation->set_rules('kode_matkul' ,'Kode Mata Kuliah' , 'required');
+
+        if ($this->form_validation->run() == TRUE) {
+
+			$create_form = $this->Model_mata_kuliah->saveTambahMatkul();
+
+			if($create_form) {
+				$this->session->set_flashdata('success', 'Mata Kuliah Berhasil Disimpan !!');
+				redirect('master/mata_kuliah', 'refresh');
+			} else {
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('master/mata_kuliah/tambah', 'refresh');
+			}
+
+		}else{
+			$this->starter();
+			$this->render_template('mata_kuliah/tambah',$this->data);
+		}
+
+	}
+
+	public function edit($id)
+	{
+		$this->form_validation->set_rules('kode_matkul' ,'Kode Mata Kuliah' , 'required');
+
+        if ($this->form_validation->run() == TRUE) {
+
+			$edit_form = $this->Model_mata_kuliah->saveEditMatkul();
+
+			if($edit_form) {
+				$this->session->set_flashdata('success', 'Kode Mata Kuliah : "'.$_POST['kode_matkul'].'" <br> Berhasil Di Update !!');
+				redirect('master/mata_kuliah', 'refresh');
+			} else {
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('master/mata_kuliah/edit/'.$id, 'refresh');
+			}
+
+		}else{
+			$this->starter();
+			$this->data['matkul'] = $this->Model_global->getMataKuliah($id);
+
+			if($this->data['matkul']['kode_matkul']){
+				$this->render_template('mata_kuliah/edit',$this->data);
+			}else{
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('master/mata_kuliah/edit/'.$id, 'refresh');
+			}
+		}
+	}
+
+
+	public function delete($id)
+	{
+		tesx($id);
 	}
 
 }

@@ -38,27 +38,38 @@ class Tahun_ajaran extends Admin_Controller  {
 		$order 			= $_REQUEST['order'][0]['dir'];
 
         $output['data']	= array();
-		$tahun_ajaran   = $this->input->post('tahun_ajaran');
-        $semester    	= $this->input->post('semester');
+		$search_name   	= $this->input->post('search_name');
 
-		$data           = $this->Model_tahun_ajaran->getDataStore('result',$tahun_ajaran,$length,$start,$column,$order);
-		$data_jum       = $this->Model_tahun_ajaran->getDataStore('numrows',$tahun_ajaran);
+		$data           = $this->Model_tahun_ajaran->getDataStore('result',$search_name,$length,$start,$column,$order);
+		$data_jum       = $this->Model_tahun_ajaran->getDataStore('numrows',$search_name);
 
 		$output=array();
 		$output['draw'] = $draw;
 		$output['recordsTotal'] = $output['recordsFiltered'] = $data_jum;
 
-		if($tahun_ajaran !=""  ){
-			$data_jum = $this->Model_tahun_ajaran->getDataStore('numrows',$tahun_ajaran);
+		if($search_name !=""  ){
+			$data_jum = $this->Model_tahun_ajaran->getDataStore('numrows',$search_name);
 			$output['recordsTotal']=$output['recordsFiltered']=$data_jum;
 		}
 
 		if($data){
 			foreach ($data as $key => $value) {
 				$btn = '';
-				$btn .= '<a href="'.base_url('master/tahun_ajaran/detail/').'"
-						class="btn btn-info btn-sm btn-shadow">
-						<i class="iconsminds-magnifi-glass" ></i> Detail</a>';
+				$btn .= '<div class="d-inline-block " >
+                            <button class="btn p-0" data-bs-toggle="dropdown" type="button" data-bs-offset="0,3">
+                                <span class="btn btn-icon btn-icon-only btn-foreground-alternate shadow dropdown"
+                                data-bs-delay="0" data-bs-placement="top" data-bs-toggle="tooltip"
+                                title="Action" >
+                                    <i data-acorn-icon="gear"></i>
+                                </span>
+                            </button>
+                            <div class="dropdown-menu shadow dropdown-menu-end">
+                                <a href="'.base_url('master/mata_kuliah/edit/'.$value['kd_ta']).'" class="dropdown-item">
+                                    <i data-acorn-icon="edit-square"></i> Edit</a>
+                                <a href="'.base_url('master/mata_kuliah/delete/'.$value['kd_ta']).'" class="dropdown-item">
+                                    <i data-acorn-icon="bin"></i> Delete</a>
+                            </div>
+                        </div>';
 
 				if($value['aktif'] == 1){
 					$aktif = '<span class="btn btn-primary btn-sm">Aktif</span>';

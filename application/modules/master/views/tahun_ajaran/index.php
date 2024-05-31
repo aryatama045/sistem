@@ -80,7 +80,7 @@
 			<!-- Search Start -->
 			<div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
 				<div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
-					<input class="form-control" placeholder="Search" type="text" name="tahun_ajaran" id="tahun_ajaran" />
+					<input class="form-control" placeholder="Search" type="text" name="search_name" id="search_name" />
 					<span class="search-magnifier-icon">
 						<i data-acorn-icon="search"></i>
 					</span>
@@ -176,7 +176,8 @@
 		<!-- Table Start -->
 		<div class="card">
 			<div class="card-body">
-				<table id="tableTa" class="table table-bordered data-table data-table-pagination responsive nowrap stripe w-100" >
+				<?php $table_data = to_strip(lowercase($pagetitle));  ?>
+				<table id="<?= $table_data ?>" class="table table-bordered data-table data-table-pagination responsive nowrap stripe w-100" >
 					<thead >
 						<tr>
 							<th class="text-muted text-bold text-uppercase">KD. TA</th>
@@ -229,8 +230,11 @@
 
 <script type="text/javascript">
 	window.base_url = '<?php echo base_url() ?>';
-	<?php $mod = lowercase($modul); $func = to_strip($pagetitle);  ?>
-	window.link = '<?php echo $mod.'/'.$func ?>';
+	<?php $mod = to_strip(lowercase($modul)); $func = to_strip(lowercase($pagetitle));  ?>
+	window.linkstore = '<?php echo $func.'/store' ?>';
+    window.tableData = '<?= $table_data ?>'
 </script>
 <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-<?php echo $this->load->assets('tahun_ajaran', 'index', 'js');  ?>
+
+<?php echo $this->load->assets(to_strip(lowercase($pagetitle)), 'index', 'js');  ?>
+

@@ -15,7 +15,7 @@
 <!-- Upload Berkas Content Start -->
 <div class="card">
     <div class="card-body">
-        <h2> Upload Berkas </h2>
+        <h2><strong>Upload Berkas</strong> </h2>
         <p>Lengkapi biodata diri Anda dengan benar</p>
         <hr class="mb-2">
 

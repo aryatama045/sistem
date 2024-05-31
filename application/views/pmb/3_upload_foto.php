@@ -15,7 +15,7 @@
 <!-- Upload Foto Content Start -->
 <div class="card">
     <div class="card-body">
-        <h2> Upload Foto </h2>
+        <h2><strong>Upload Foto</strong></h2>
         <p>Lengkapi biodata diri Anda dengan benar</p>
         <hr class="mb-2">
 

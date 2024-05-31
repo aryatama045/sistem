@@ -3,7 +3,7 @@
 <div class="card mb-5">
     <div class="card-body">
         <!-- Greeting -->
-        <h2> Selamat Datang, <?= capital($this->session->userdata('name')); ?></h2>
+        <h2><strong>Selamat Datang, <?= capital($pmb['nama']); ?></strong> </h2>
         <p>Lanjutkan proses pendaftaran dengan mengisi data diri anda secara lengkap dan melakukan upload berkas.</p>
 
         <hr class="mb-2">

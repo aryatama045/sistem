@@ -21,9 +21,9 @@ $(document).ready(function() {
             },
         },
         'order': [0, 'ASC'],
-        'columnDefs': [{
-            bSortable: false
-        }, ]
+        "columnDefs":[
+            {"orderData": 3, "targets": 2},
+            {"visible": false, "targets":3}]
     });
 
     $("#"+tableData+"_filter").css("display", "none");

@@ -1,10 +1,10 @@
-var tableTa;
-var tahun_ajaran;
+var tables;
+var search_name;
 
 $(document).ready(function() {
 
     //# initialize the datatable
-    tableTa = $('#tableTa').DataTable({
+    tables = $('#'+tableData).DataTable({
         'processing': true,
         'serverSide': true,
         'serverMethod': 'post',
@@ -14,10 +14,10 @@ $(document).ready(function() {
         'destroy': true,
         'responsive': false,
         'ajax': {
-            'url': base_url + 'master/tahun_ajaran/store',
+            'url': linkstore,
             'type': 'POST',
             'data': function(data) {
-                data.tahun_ajaran = $('#tahun_ajaran').val();
+                data.search_name = $('#search_name').val();
             },
         },
         'order': [0, 'ASC'],
@@ -26,12 +26,12 @@ $(document).ready(function() {
         }, ]
     });
 
-    $("#tableTa_filter").css("display", "none");
-    // $("#tableTa_length").css("display", "none");
+    $("#"+tableData+"_filter").css("display", "none");
+    // $("#tables_length").css("display", "none");
 
-    tableTa.columns.adjust().draw();
+    tables.columns.adjust().draw();
 
-    $('#tahun_ajaran').on('keyup', function(event) { // for text boxes
-        tableTa.ajax.reload(); //just reload table
+    $('#search_name').on('keyup', function(event) { // for text boxes
+        tables.ajax.reload(); //just reload table
     });
 });

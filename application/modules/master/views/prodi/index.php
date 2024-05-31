@@ -176,7 +176,7 @@
 		<!-- Table Start -->
 		<div class="card">
 			<div class="card-body">
-                <?php $table_data = to_strip($pagetitle);  ?>
+				<?php $table_data = to_strip(lowercase($pagetitle));  ?>
 				<table id="<?= $table_data ?>" class="table table-bordered data-table data-table-pagination responsive nowrap stripe w-100" >
 					<thead >
 						<tr>
@@ -195,12 +195,13 @@
 	</div>
 </div>
 
+
 <script type="text/javascript">
 	window.base_url = '<?php echo base_url() ?>';
-	<?php $mod = lowercase($modul); $func = to_strip($pagetitle);  ?>
+	<?php $mod = to_strip(lowercase($modul)); $func = to_strip(lowercase($pagetitle));  ?>
 	window.linkstore = '<?php echo $func.'/store' ?>';
     window.tableData = '<?= $table_data ?>'
 </script>
 <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
 
-<?php echo $this->load->assets($func, 'index', 'js');  ?>
+<?php echo $this->load->assets(to_strip(lowercase($pagetitle)), 'index', 'js');  ?>

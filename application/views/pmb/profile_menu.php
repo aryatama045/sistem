@@ -42,11 +42,11 @@
                     <i data-acorn-icon="form" class="me-2" data-acorn-size="17"></i>
                     <span class="align-middle">Upload Berkas</span>
                 </a>
-                <a class="nav-link <?php if($status=='5'){ echo 'active';} ?> px-0" data-bs-toggle="tab" href="#pembayaranTab" role="tab">
+                <a class="nav-link <?php if($status=='5'){ echo 'active';} ?> px-0" data-bs-toggle="tab" href="#pembayaranTagihanTab" role="tab">
                     <i data-acorn-icon="credit-card" class="me-2" data-acorn-size="17"></i>
                     <span class="align-middle">Pembayaran Tagihan</span>
                 </a>
-                <a class="nav-link <?php if($status=='6'){ echo 'active';} ?> px-0" data-bs-toggle="tab" href="#aboutTab" role="tab">
+                <a class="nav-link <?php if($status=='6'){ echo 'active';} ?> px-0" data-bs-toggle="tab" href="#finalisasiDataTab" role="tab">
                     <i data-acorn-icon="shield-check" class="me-2" data-acorn-size="17"></i>
                     <span class="align-middle">Finalisasi Data</span>
                 </a>

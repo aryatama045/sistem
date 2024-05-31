@@ -52,9 +52,20 @@
         </div>
         <!-- Upload Berkas Tab End -->
 
+        <!-- Pembayaran Tagihan Tab Start -->
+        <div class="tab-pane fade <?php if($status=='5'){ echo 'show active';} ?>" id="pembayaranTagihanTab" role="tabpanel">
+            <?php $this->load->view('pmb/5_pembayaran_tagihan'); ?>
+        </div>
+        <!-- Pembayaran Tagihan Tab End -->
+
+        <!-- Finalisasi Data Tab Start -->
+        <div class="tab-pane fade <?php if($status=='6'){ echo 'show active';} ?>" id="finalisasiDataTab" role="tabpanel">
+            <?php $this->load->view('pmb/6_finalisasi_data'); ?>
+        </div>
+        <!-- Finalisasi Data Tab End -->
+
         <!-- About Tab Start -->
         <div class="tab-pane fade" id="aboutTab" role="tabpanel">
-          <h2 class="small-title">About</h2>
           <div class="card">
             <div class="card-body">
               <div class="mb-5">

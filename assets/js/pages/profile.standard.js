@@ -15,8 +15,6 @@ class ProfileStandard {
     if (typeof Chart !== 'undefined') {
       this._initActivityBubbleChart();
       this._initEvents();
-    } else {
-      console.error('[CS] Chart is undefined.');
     }
   }
 

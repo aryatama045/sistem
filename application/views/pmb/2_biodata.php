@@ -2,7 +2,7 @@
 <!-- Biodata Content Start -->
 <div class="card">
     <div class="card-body">
-        <h2> Biodata Diri</h2>
+        <h2><strong> Biodata Diri </strong></h2>
         <p>Lengkapi biodata diri Anda dengan benar</p>
         <hr class="mb-2">
 

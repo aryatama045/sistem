@@ -7,16 +7,16 @@ class Model_tahun_ajaran extends CI_Model
 		parent::__construct();
 	}
 
-	public function getDataStore($result, $tahun_ajaran = "", $length = "", $start = "", $column = "", $order = "")
+	public function getDataStore($result, $search_name = "", $length = "", $start = "", $column = "", $order = "")
 	{
 
 		$this->db->select('*');
         $this->db->from('mst_ta');
         $this->db->order_by('ta', 'DESC');
 
-        if($tahun_ajaran !="")
-			$this->db->like('kd_ta',$tahun_ajaran);
-			$this->db->or_like('ta',$tahun_ajaran);
+        if($search_name !="")
+			$this->db->like('kd_ta',$search_name);
+			$this->db->or_like('ta',$search_name);
 
 		if($result == 'result'){
 			$this->db->limit($length,$start);
