@@ -13,7 +13,7 @@ class Dosen extends Admin_Controller  {
 		$this->data['modul'] 		= 'Users'; // name modul
 
 		//  Load Model
-		$this->load->model('Model_mahasiswa');
+		$this->load->model('Model_dosen');
 
 	}
 
@@ -31,52 +31,83 @@ class Dosen extends Admin_Controller  {
 
 	public function detail($id)
 	{
-		$this->starter();
-		$this->render_template('dosen/detail',$this->data);
+		$this->data['dosen'] = $this->Model_global->getMhsNim($id);
+
+		if($this->data['dosen']['nim']){
+			$this->starter();
+			$this->data['dosen'] = $this->Model_dosen->detail($id);
+
+			$this->render_template('dosen/detail',$this->data);
+		}else{
+			$this->session->set_flashdata('error', 'Nim Tidak Terdaftar, Silahkan Cek kembali !!');
+			redirect('users/dosen', 'refresh');
+		}
+
 	}
 
-    public function getDataStore()
+    public function store()
 	{
+		$cn 			= $this->router->fetch_class(); // Controller
 
 		$draw           = $_REQUEST['draw'];
 		$length         = $_REQUEST['length'];
 		$start          = $_REQUEST['start'];
 		$column 		= $_REQUEST['order'][0]['column'];
 		$order 			= $_REQUEST['order'][0]['dir'];
-		// $search_nama   	= $_REQUEST['columns'][0]['search']["value"];
-
-		// tesx($search_nama);
+		// $search_nama = $_REQUEST['columns'][0]['search']["value"];
 
         $output['data']	= array();
-		$search_no      = $this->input->post('nim');
-        $search_nama    = $this->input->post('nama_mhs');
+        $search_name    = $this->input->post('search_name');
 
-		$data           = $this->Model_mahasiswa->getDataStore('result',$search_no,$search_nama,$length,$start,$column,$order);
-		$data_jum       = $this->Model_mahasiswa->getDataStore('numrows',$search_no,$search_nama);
+		$data           = $this->Model_dosen->getDataStore('result',$search_name,$length,$start,$column,$order);
+		$data_jum       = $this->Model_dosen->getDataStore('numrows',$search_name);
 
 		$output=array();
 		$output['draw'] = $draw;
 		$output['recordsTotal'] = $output['recordsFiltered'] = $data_jum;
 
-		if($search_no !="" || $search_nama !="" ){
-			$data_jum = $this->Model_mahasiswa->getDataStore('numrows',$search_no,$search_nama);
+		if($search_name !="" ){
+			$data_jum = $this->Model_dosen->getDataStore('numrows',$search_name);
 			$output['recordsTotal']=$output['recordsFiltered']=$data_jum;
 		}
 
-        // tesx($data_jum);
-
 		if($data){
 			foreach ($data as $key => $value) {
-				$btn = '';
-				$btn .= '<a href="'.base_url('users/mahasiswa/detail/'.$value['nim']).'"
-						class="btn btn-primary btn-sm btn-shadow">
-                        <i class="iconsminds-magnifi-glass" ></i> Detail</a>';
+
+				$id		= $value['nip'];
+				$btn 	= '';
+				$btn 	.= '<div class="btn-group">
+								<button type="button" class="btn btn-sm btn btn-light dropdown-toggle mb-1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Opsi
+								</button>
+								<div class="dropdown-menu">
+									<a href="'.base_url('users/'.$cn.'/detail/'.$id).'" class="dropdown-item">
+										<i data-acorn-icon="search"></i> Detail</a>
+
+									<a href="'.base_url('users/'.$cn.'/edit/'.$id).'" class="dropdown-item">
+										<i data-acorn-icon="edit-square"></i> Edit</a>';
+
+									$btn .= ' <a class="dropdown-item" onclick="';
+									$btn .= "remove('".$id."')";
+									$btn .= '" data-bs-toggle="modal" data-bs-target="#removeModal" >
+											<i data-acorn-icon="bin"></i> Delete</a>
+
+								</div>
+							</div>';
+
+				if($value['status'] == 1){
+					$aktif = '<div class="btn-group"><span class=" btn-outline-info btn-sm">Aktif</span></div>';
+				}else{
+					$aktif = '<div class="btn-group"><span class=" btn-outline-danger btn-sm">Nonktif</span></div>';
+				}
+
+				$nama_dosen = $value['gelar_depan'].' '.capital(uppercase($value['nama'])) .' '.$value['gelar_blk'];
 				$output['data'][$key] = array(
-					$value['nim'],
-					capital(uppercase($value['nama_mhs'])),
-					$value['kd_prog'],
-                    $value['kd_ta'],
-                    nominal($value['kd_biaya']),
+					$value['nip'],
+					$value['nidn'],
+					$nama_dosen,
+					capital(uppercase($value['jabatan'])),
+                    $aktif,
 					$btn,
 				);
 			}
@@ -87,6 +118,83 @@ class Dosen extends Admin_Controller  {
 		echo json_encode($output);
 	}
 
+
+	public function tambah()
+	{
+
+		$this->form_validation->set_rules('nip' ,'Nip ' , 'required');
+
+        if ($this->form_validation->run() == TRUE) {
+
+			$create_form = $this->Model_dosen->saveTambah();
+
+			if($create_form) {
+				$this->session->set_flashdata('success', ' Berhasil Disimpan !!');
+				redirect('users/dosen', 'refresh');
+			} else {
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('users/dosen/tambah', 'refresh');
+			}
+
+		}else{
+			$this->starter();
+			$this->render_template('dosen/tambah',$this->data);
+		}
+
+	}
+
+	public function edit($id)
+	{
+		$this->form_validation->set_rules('nip' ,'Nip ' , 'required');
+        if ($this->form_validation->run() == TRUE) {
+
+			$edit_form = $this->Model_dosen->saveEdit();
+
+			if($edit_form) {
+				$this->session->set_flashdata('success', 'Nip  : "'.$_POST['nip'].'" <br> Berhasil Di Update !!');
+				redirect('users/dosen', 'refresh');
+			} else {
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('users/dosen/edit/'.$id, 'refresh');
+			}
+
+		}else{
+			$this->starter();
+			$this->data['dosen'] = $this->Model_global->getDosenNip($id);
+
+			if($this->data['dosen']['nip']){
+				$this->render_template('dosen/edit',$this->data);
+			}else{
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('users/dosen/edit/'.$id, 'refresh');
+			}
+		}
+	}
+
+
+	public function delete()
+	{
+		$id = $_POST['id'];
+
+		$response = array();
+		if($id) {
+			$delete = $this->Model_dosen->saveDelete($id);
+
+			if($delete == true) {
+				$response['success'] 	= true;
+				$response['messages'] 	= " <strong>Kode '".$id."'</strong> Berhasil Di Remove";
+			} else {
+				$response['success'] 	= false;
+				$response['messages'] 	= " <strong>Kode '".$id."'</strong> Gagal Di Remove";
+			}
+		}
+		else {
+			$response['success'] 	= false;
+			$response['messages'] 	= "Refresh the page again!!";
+		}
+
+		echo json_encode($response);
+	}
 
 }
 

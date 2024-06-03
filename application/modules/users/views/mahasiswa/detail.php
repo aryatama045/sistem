@@ -48,7 +48,6 @@
 <div class="row gx-4 gy-5">
   <!-- Person Start -->
   <div class="col-12 col-xl-4 col-xxl-3">
-    <h2 class="small-title">Info</h2>
     <div class="card">
       <div class="card-body mb-n5">
 
@@ -157,14 +156,6 @@
   <!-- Person End -->
 
   <div class="col-12 col-xl-8 col-xxl-9">
-    <!-- Recent Orders Start -->
-    <div class="d-flex justify-content-between">
-      <h2 class="small-title">Recent Orders</h2>
-      <button class="btn btn-icon btn-icon-end btn-xs btn-background-alternate p-0 text-small" type="button">
-        <span class="align-bottom">View All</span>
-        <i data-acorn-icon="chevron-right" class="align-middle" data-acorn-size="12"></i>
-      </button>
-    </div>
     <div class="mb-5">
       <div class="card mb-2">
         <div class="row g-0 sh-16 sh-md-8">
@@ -200,7 +191,6 @@
         </div>
       </div>
     </div>
-    <!-- Recent Orders End -->
 
     <!-- Activity Start -->
     <h2 class="small-title">History</h2>

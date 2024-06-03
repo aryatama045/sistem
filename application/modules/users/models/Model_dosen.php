@@ -1,13 +1,13 @@
 <?php
 
-class Model_mahasiswa extends CI_Model
+class Model_dosen extends CI_Model
 {
 	public $table;
 
 	function __construct()
 	{
 		parent::__construct();
-		$this->table = 'mst_mhs';
+		$this->table = 'mst_dosen';
 	}
 
 
@@ -16,11 +16,12 @@ class Model_mahasiswa extends CI_Model
 
 		$this->db->select('*');
         $this->db->from($this->table);
-        $this->db->order_by('nim', 'ASC');
+        $this->db->order_by('nip', 'ASC');
 
         if($search_name !="")
-			$this->db->like('nama_mhs',$search_name);
-			$this->db->or_like('nim',$search_name);
+			$this->db->like('nip',$search_name);
+			$this->db->or_like('nidn',$search_name);
+            $this->db->or_like('nama',$search_name);
 
 		if($result == 'result'){
 			$this->db->limit($length,$start);
@@ -38,7 +39,7 @@ class Model_mahasiswa extends CI_Model
 	{
 		$this->db->select('*');
         $this->db->from($this->table);
-		$this->db->where('nim',$id);
+		$this->db->where('nip',$id);
 		$query	= $this->db->get();
 		// die(nl2br($this->db->last_query()));
 		return $query->row_array();
@@ -57,7 +58,7 @@ class Model_mahasiswa extends CI_Model
 	function saveEdit()
 	{
 		$data = $_POST;
-		$this->db->where(['nim' => $data['nim']]);
+		$this->db->where(['nip' => $data['nip']]);
 		$update = $this->db->update($this->table, $data);
 
 		return ($update)?TRUE:FALSE;
@@ -65,7 +66,7 @@ class Model_mahasiswa extends CI_Model
 
 	function saveDelete($id)
 	{
-		$this->db->where(['nim' => $id]);
+		$this->db->where(['nip' => $id]);
 		$delete = $this->db->delete($this->table);
 
 		return ($delete)?TRUE:FALSE;

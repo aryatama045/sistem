@@ -1,92 +1,84 @@
-var tableMahasiswa;
-var nim;
-var nama_mhs;
+var tables;
+var search_name;
 
 $(document).ready(function() {
 
-    $('#nm_divisi').change(function() {
-        var id = $('[name=nm_divisi]').val();
-        // alert(id);
-        $.ajax({
-            url: base_url + 'leaves/absensi_status/get_data_departement',
-            method: "POST",
-            data: { id: id },
-            async: true,
-            dataType: 'json',
-            success: function(data) {
-                var html = '';
-                var i;
-                html += '<option value="">--PILIH DEPARTMENT--</option>';
-                for (i = 0; i < data.length; i++) {
-                    // alert(data[i].dept_id);
-                    html += '<option value=' + data[i].dept_id + '>' + data[i].nama_dept + '</option>';
-                }
-                $('#nm_departement').html(html);
-            }
-        });
-        tableMahasiswa.ajax.reload();
-        return false;
-    });
-
-
-    $('#nm_departement').change(function() {
-        var id = $('[name=nm_departement]').val();
-        var divisi_id = $('[name=nm_divisi]').val();
-        // alert(divisi_id);
-        $.ajax({
-            url: base_url + 'leaves/absensi_status/get_data_store',
-            method: "POST",
-            data: { id: id, divisi_id: divisi_id },
-            async: true,
-            dataType: 'json',
-            success: function(data) {
-                var html = '';
-                var i;
-                html += '<option value="">--PILIH STORE--</option>';
-                for (i = 0; i < data.length; i++) {
-                    // alert(data[i].dept_id);
-                    html += '<option value=' + data[i].kd_store + '>' + data[i].nama_store + '</option>';
-                }
-                $('#nm_store').html(html);
-            }
-        });
-        tableMahasiswa.ajax.reload();
-        return false;
-    });
-
     //# initialize the datatable
-    tableMahasiswa = $('#tableMahasiswa').DataTable({
+    tables = $('#'+tableData).DataTable({
         'processing': true,
         'serverSide': true,
         'serverMethod': 'post',
         'scrollX': true,
         'paging' : true,
+        'autoWidth': false,
+        'destroy': true,
+        'responsive': false,
         'ajax': {
-            'url': base_url + 'users/mahasiswa/getDataStore',
+            'url': linkstore,
             'type': 'POST',
             'data': function(data) {
-                data.nim = $('#nim').val();
-                data.nama_mhs = $('#nama_mhs').val();
+                data.search_name = $('#search_name').val();
             },
         },
         'order': [0, 'ASC'],
-        'columnDefs': [{
-            bSortable: false
-        }, ]
+        "columnDefs":[
+            {"orderData": 1, "targets": 2}]
     });
 
-    $("#tableMahasiswa_filter").css("display", "none");
-    // $("#tableMahasiswa_length").css("display", "none");
+    $("#"+tableData+"_filter").css("display", "none");
+    // $("#tables_length").css("display", "none");
 
-    tableMahasiswa.columns.adjust().draw();
+    tables.columns.adjust().draw();
 
-    $('#nim').on('keyup', function(event) { // for text boxes
-        tableMahasiswa.ajax.reload(); //just reload table
+    $('#search_name').on('keyup', function(event) { // for text boxes
+        tables.ajax.reload(); //just reload table
     });
-
-    $('#nama_mhs').on('keyup', function(event) { // for text boxes
-        tableMahasiswa.ajax.reload(); //just reload table
-    });
-
-
 });
+
+function remove(id)
+{
+    $("#btn-delete").removeAttr('class');
+    $("#btn-delete").text('Remove');
+    $("#btn-delete").addClass('btn btn-danger');
+    $("#removeModal h5").text('Remove Mata Kuliah');
+    $("#messages_modal_remove").html('');
+    $("#id span").html('Remove '+' <strong> '+id+'</strong>');
+    if(id){
+        $("#removeForm").on('submit', function() {
+            var form = $(this);
+            // remove the text-danger
+            $(".text-danger").remove();
+
+            if(id !== null){
+                $.ajax({
+                    url: form.attr('action'),
+                    type: form.attr('method'),
+                    data: { id:id },
+                    dataType: 'json',
+                    success:function(response) {
+
+                        tables.ajax.reload(null, false);
+
+                        if(response.success === true) {
+                            $("#messages").html('<div class="alert alert-success alert-dismissible fade show" role="alert">'+
+                                '<strong>'+response.messages+ '</strong>' +
+                                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+
+                            // hide the modal
+                            $("#removeModal").modal('hide');
+
+                        } else {
+
+                            $("#messages_modal_remove").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">'+
+                                '<strong> <span class="glyphicon glyphicon-exclamation-sign"></span>  '+response.messages+ '</strong>' +
+                                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>' +
+                            '</div>');
+                        }
+                    }
+                });
+            }
+            id = null;
+            return false;
+        });
+    }
+}

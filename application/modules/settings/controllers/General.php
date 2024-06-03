@@ -13,7 +13,7 @@ class General extends Admin_Controller  {
 		$this->data['function'] = capital($f);
 
 		//  Load Model
-		// $this->load->model('Model_general');
+		$this->load->model('Model_general');
 
 	}
 

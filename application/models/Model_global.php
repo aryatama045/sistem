@@ -37,6 +37,15 @@ class Model_global extends CI_Model {
 		return $query->row_array();
     }
 
+    function getDosenNip($nip)
+    {
+        $this->db->select('*');
+		$this->db->from('mst_dosen');
+        $this->db->where('nip', $nip);
+		$query=$this->db->get();
+		return $query->row_array();
+    }
+
     function getKodeProgram($kode_prog = NULL)
     {
         $this->db->select('*');

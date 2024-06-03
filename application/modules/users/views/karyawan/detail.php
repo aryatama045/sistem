@@ -1,37 +1,67 @@
-
-
-<div class="row">
-    <div class="col-12">
-        <h1> Detail Karyawan</h1>
-        <div class="top-right-button-container">
-            <div class="btn-group">
-                <a class="btn btn-outline-primary btn-md" href="<?= base_url('user/karyawan') ?>" >
-                    Kembali
+<!-- Title and Top Buttons Start -->
+<div class="page-title-container">
+    <div class="row">
+        <!-- Title Start -->
+        <div class="col-auto mb-3 mb-md-0 me-auto">
+            <div class="w-auto sw-md-30">
+                <a href="<?= base_url(lowercase($modul).'/'.lowercase($pagetitle)); ?>" class="muted-link pb-1 d-inline-block ">
+                    <span class="text-small align-middle"> <?= $pagetitle ?></span>
                 </a>
+                <h1 class="mb-0 pb-0 display-4" id="title"><?= $pagetitle ?> Detail</h1>
+
+                <?php $this->load->view('templates/breadcrumb'); ?>
             </div>
         </div>
-        <br>
+        <!-- Title End -->
+
+        <!-- Top Buttons Start -->
+        <div class="col-12 col-md-5 d-flex align-items-end justify-content-end">
+            <button type="button" class="btn btn-outline-primary btn-icon btn-icon-start ms-0 ms-sm-1 w-100 w-md-auto">
+                <i data-acorn-icon="save"></i>
+                <span>Update</span>
+            </button>
+
+            <!-- Dropdown Button Start -->
+                <div class="ms-1">
+                    <button type="button" class="btn btn-outline-primary btn-icon "
+                        data-bs-offset="0,3" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" data-submenu>
+                        <i data-acorn-icon="arrow-bottom"></i>
+                        Option
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <button class="dropdown-item" type="button">Edit</button>
+                        <button class="dropdown-item" type="button">View Purchases</button>
+                        <button class="dropdown-item" type="button">Check Ip</button>
+                    </div>
+                </div>
+            <!-- Dropdown Button End -->
+        </div>
+        <!-- Top Buttons End -->
     </div>
 </div>
+<!-- Title and Top Buttons End -->
+
 
 <div class="row mb-4">
     <div class="col-12">
         <ul class="nav nav-tabs separator-tabs ml-0 mb-5" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="first-tab" data-toggle="tab" href="#first" role="tab"
+                <a class="nav-link active" id="first-tab" data-bs-toggle="tab" href="#first" role="tab"
                     aria-controls="first" aria-selected="true">PROFILE</a>
             </li>
 
-            <!-- <li class="nav-item">
-                <a class="nav-link " id="second-tab" data-toggle="tab" href="#second" role="tab"
+            <li class="nav-item">
+                <a class="nav-link " id="second-tab" data-bs-toggle="tab" href="#second" role="tab"
                     aria-controls="second" aria-selected="false">FOLLOWERS</a>
-            </li> -->
+            </li>
         </ul>
+
         <div class="tab-content">
             <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
                 <div class="row">
                     <div class="col-12 col-lg-5 col-xl-4 col-left">
-                        <div class="card mb-4" style=" position: -webkit-sticky;position: sticky;top: 6rem;">
+                        <div class="card mb-4" style="position:-webkit-sticky; position: sticky; top: 6rem;">
                             <div class="card-body">
                                 <div class="d-flex flex-row mb-3">
                                     <a class="d-block position-relative" href="#">
@@ -39,15 +69,14 @@
                                             $filejpg = FCPATH.'upload/poto_karyawan/'.$biodata['nip'].'.jpg';
                                             $filepng = FCPATH.'upload/poto_karyawan/'.$biodata['nip'].'.png';
 
-
                                             if(is_file($filejpg) )  { ?>
                                             <img src="<?= base_url('upload/poto_karyawan/'.$biodata['nip'].'.jpg') ?>" class="img-thumbnail border-0  mb-4 list-thumbnail mx-auto">
 
-                                        <?php } elseif(is_file($filepng) ) { ?>
-                                            <img src="<?= base_url('upload/poto_karyawan/'.$biodata['nip'].'.png') ?>" class="img-thumbnail border-0  mb-4 list-thumbnail mx-auto">
+                                            <?php } elseif(is_file($filepng) ) { ?>
+                                                <img src="<?= base_url('upload/poto_karyawan/'.$biodata['nip'].'.png') ?>" class="img-thumbnail border-0  mb-4 list-thumbnail mx-auto">
 
-                                        <?php } else { ?>
-                                            <img src="https://place-hold.it/100x100/666/fff.png?text=Not%20Found" class="img-thumbnail border-0  mb-4 list-thumbnail mx-auto">
+                                            <?php } else { ?>
+                                                <img src="https://place-hold.it/100x100/666/fff.png?text=Not%20Found" class="img-thumbnail border-0  mb-4 list-thumbnail mx-auto">
 
 
                                         <?php } ?>
@@ -57,13 +86,13 @@
                                             <?= $biodata['nip'] ?> <br> <?= $biodata['nama_lengkap'] ?></p>
                                     </div>
                                 </div>
-                                <p class="text-muted mb-1"> Dept</p>
+                                <p class="mb-1"> Dept</p>
                                 <p class="mb-1"> <?= $biodata['nama_dept'] ?></p>
 
-                                <p class="text-muted mb-1"> Divisi</p>
+                                <p class="mb-1"> Divisi</p>
                                 <p class="mb-3"> <?= $biodata['kode_divisi'] ?></p>
 
-                                <p class="text-muted mb-1"> Store</p>
+                                <p class="mb-1"> Store</p>
                                 <p class="mb-3"> <?= $biodata['kd_store'] ?></p>
 
                                 <table hidden class="table table-borderless">
@@ -92,7 +121,7 @@
                                 </table>
 
 
-                                <p class="text-muted text-small mb-2">Social Media</p>
+                                <p class="text-small mb-2">Social Media</p>
                                 <div class="social-icons">
                                     <ul class="list-unstyled list-inline">
                                         <li class="list-inline-item">
@@ -116,31 +145,31 @@
 
                                     <!-- Detail -->
                                     <li class="nav-item font-weight-bold">
-                                        <a class="nav-link active" id="firsts-tab" data-toggle="tab" href="#firsts" role="tab"
+                                        <a class="nav-link active" id="firsts-tab" data-bs-toggle="tab" href="#firsts" role="tab"
                                             aria-controls="firsts" aria-selected="true">Details</a>
                                     </li>
 
                                     <!-- pengalaman -->
                                     <li class="nav-item font-weight-bold">
-                                        <a class="nav-link" id="pengalaman-tab" data-toggle="tab" href="#pengalaman" role="tab"
+                                        <a class="nav-link" id="pengalaman-tab" data-bs-toggle="tab" href="#pengalaman" role="tab"
                                             aria-controls="pengalaman" aria-selected="false"> Pengalaman</a>
                                     </li>
 
                                     <!-- dokumen -->
                                     <li class="nav-item font-weight-bold">
-                                        <a class="nav-link" id="dokumen-tab" data-toggle="tab" href="#dokumen" role="tab"
+                                        <a class="nav-link" id="dokumen-tab" data-bs-toggle="tab" href="#dokumen" role="tab"
                                             aria-controls="dokumen" aria-selected="false"> Dokumen</a>
                                     </li>
 
                                     <!-- penilaian -->
                                     <li class="nav-item font-weight-bold">
-                                        <a class="nav-link" id="penilaian-tab" data-toggle="tab" href="#penilaian" role="tab"
+                                        <a class="nav-link" id="penilaian-tab" data-bs-toggle="tab" href="#penilaian" role="tab"
                                             aria-controls="penilaian" aria-selected="false"> Penilaian</a>
                                     </li>
 
                                     <!-- saldo -->
                                     <li class="nav-item font-weight-bold">
-                                        <a class="nav-link" id="saldo-tab" data-toggle="tab" href="#saldo" role="tab"
+                                        <a class="nav-link" id="saldo-tab" data-bs-toggle="tab" href="#saldo" role="tab"
                                             aria-controls="saldo" aria-selected="false"> Saldo Cuti</a>
                                     </li>
 
@@ -158,35 +187,35 @@
                                                 <table class="table table-borderless">
                                                     <tbody>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Nama Lengkap</p></th>
+                                                            <th><p class="text-small">Nama Lengkap</p></th>
                                                             <td><p class="font-weight-bold text-small"><?= $biodata['nama_lengkap'] ?></p></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Tempat Tanggal Lahir</p></th>
+                                                            <th><p class="text-small">Tempat Tanggal Lahir</p></th>
                                                             <td><?= $biodata['tempat_lahir'] ?> , <?= date('d-m-Y', strtotime($biodata['tgl_lahir'])) ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Status</p></th>
+                                                            <th><p class="text-small">Status</p></th>
                                                             <td><?= $biodata['status_menikah'] ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Gender</p></th>
+                                                            <th><p class="text-small">Gender</p></th>
                                                             <td><?= $biodata['gender'] ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Etnis</p></th>
+                                                            <th><p class="text-small">Etnis</p></th>
                                                             <td><?= $biodata['etnis'] ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Alamat</p></th>
+                                                            <th><p class="text-small">Alamat</p></th>
                                                             <td><?= $biodata['alamat_npwp'] ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Email</p></th>
+                                                            <th><p class="text-small">Email</p></th>
                                                             <td><?= $biodata['email'] ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Kontak</p></th>
+                                                            <th><p class="text-small">Kontak</p></th>
                                                             <td><ul class="list-unstyled">
                                                                     <li>HP : <?= $biodata['no_hp'] ?></li>
                                                                     <li>TELP : <?= $biodata['telp'] ?></li>
@@ -271,20 +300,20 @@
                                                 <table class="table table-borderless">
                                                     <tbody>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Nomor</p></th>
+                                                            <th><p class="text-small">Nomor</p></th>
                                                             <td><p class="font-weight-bold text-small">
                                                                 <?php if(!empty($biodata['no_bpjs']) || $biodata['no_bpjs'] != "" || $biodata['no_bpjs'] != NULL) { echo $biodata['no_bpjs']; } else { echo " - ";} ?></p></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Tanggal</p></th>
+                                                            <th><p class="text-small">Tanggal</p></th>
                                                             <td><?php if(!empty($biodata['no_bpjs']) || $biodata['no_bpjs'] != "" || $biodata['no_bpjs'] != NULL) { echo $biodata['tgl_peserta_bpjs']; } else { echo " - ";} ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Presentase</p></th>
+                                                            <th><p class="text-small">Presentase</p></th>
                                                             <td><?php if(!empty($biodata['no_bpjs']) || $biodata['no_bpjs'] != "" || $biodata['no_bpjs'] != NULL) { echo $biodata['presentase_bpjs']; } else { echo " - ";} ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Nilai</p></th>
+                                                            <th><p class="text-small">Nilai</p></th>
                                                             <td><?php if(!empty($biodata['no_bpjs']) || $biodata['no_bpjs'] != "" || $biodata['no_bpjs'] != NULL) { echo $biodata['nilai_bpjs']; } else { echo " - ";} ?></td>
                                                         </tr>
                                                     </tbody>
@@ -296,23 +325,23 @@
                                                 <table class="table table-borderless">
                                                     <tbody>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Nomor</p></th>
+                                                            <th><p class="text-small">Nomor</p></th>
                                                             <td><p class="font-weight-bold text-small">
                                                                 <?php if(!empty($biodata['no_npwp']) || $biodata['no_npwp'] != "" || $biodata['no_npwp'] != NULL) 
                                                                 { echo $biodata['no_npwp']; } else { echo " - ";} ?></p></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Tanggal</p></th>
+                                                            <th><p class="text-small">Tanggal</p></th>
                                                             <td><?php if(!empty($biodata['no_npwp']) || $biodata['no_npwp'] != "" || $biodata['no_npwp'] != NULL) 
                                                                 { echo $biodata['tgl_npwp']; } else { echo " - ";} ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Kota</p></th>
+                                                            <th><p class="text-small">Kota</p></th>
                                                             <td><?php if(!empty($biodata['no_npwp']) || $biodata['no_npwp'] != "" || $biodata['no_npwp'] != NULL) 
                                                                 { echo $biodata['kota_npwp']; } else { echo " - ";} ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Alamat</p></th>
+                                                            <th><p class="text-small">Alamat</p></th>
                                                             <td><p><?= $biodata['alamat_npwp'] ?>
                                                             <?php if(!empty($biodata['no_npwp']) || $biodata['no_npwp'] != "" || $biodata['no_npwp'] != NULL) 
                                                             { echo $biodata['alamat_npwp']; } else { echo " - ";} ?></p></td>
@@ -329,13 +358,13 @@
                                                 <table class="table table-borderless">
                                                     <tbody>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Nomor </p></th>
+                                                            <th><p class="text-small">Nomor </p></th>
                                                             <td><p class="font-weight-bold text-small">
                                                                 <?php if(!empty($biodata['no_jamsostek']) || $biodata['no_jamsostek'] != "" || $biodata['no_jamsostek'] != NULL) 
                                                                 { echo $biodata['no_jamsostek']; } else { echo " - ";} ?></p></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Tanggal</p></th>
+                                                            <th><p class="text-small">Tanggal</p></th>
                                                             <td><?php if(!empty($biodata['no_jamsostek']) || $biodata['no_jamsostek'] != "" || $biodata['no_jamsostek'] != NULL) 
                                                                 { echo $biodata['tgl_jamsostek']; } else { echo " - ";} ?></td>
                                                         </tr>
@@ -348,13 +377,13 @@
                                                 <table class="table table-borderless">
                                                     <tbody>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Nomor </p></th>
+                                                            <th><p class="text-small">Nomor </p></th>
                                                             <td><p class="font-weight-bold text-small">
                                                                 <?php if(!empty($biodata['no_asuransi']) || $biodata['no_asuransi'] != "" || $biodata['no_asuransi'] != NULL) 
                                                                 { echo $biodata['no_asuransi']; } else { echo " - ";} ?></p></td>
                                                         </tr>
                                                         <tr>
-                                                            <th><p class="text-muted text-small">Tanggal</p></th>
+                                                            <th><p class="text-small">Tanggal</p></th>
                                                             <td><?php if(!empty($biodata['no_asuransi']) || $biodata['no_asuransi'] != "" || $biodata['no_asuransi'] != NULL) 
                                                                 { echo $biodata['tgl_asuransi']; } else { echo " - ";} ?>
                                                                 </td>
@@ -636,7 +665,7 @@
                                         <a href="#">
                                             <p class="list-item-heading mb-1 truncate">Latarsha Gama</p>
                                         </a>
-                                        <p class="mb-2 text-muted text-small">Head Developer</p>
+                                        <p class="mb-2 text-small">Head Developer</p>
                                         <button type="button"
                                             class="btn btn-xs btn-outline-primary ">View</button>
                                     </div>
@@ -658,7 +687,7 @@
                                         <a href="#">
                                             <p class="list-item-heading mb-1 truncate">Kathryn Mengel</p>
                                         </a>
-                                        <p class="mb-2 text-muted text-small">Art Director</p>
+                                        <p class="mb-2 text-small">Art Director</p>
                                         <button type="button"
                                             class="btn btn-xs btn-outline-primary ">View</button>
                                     </div>
@@ -670,6 +699,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

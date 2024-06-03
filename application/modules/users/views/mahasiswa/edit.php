@@ -10,10 +10,8 @@
 		<!-- Title and Top Buttons Start -->
 		<div class="page-title-container">
 			<div class="row">
-
 				<!-- Title Start -->
 				<div class="col-12 col-md-7">
-
 					<h1 class="mb-0 pb-0 display-4" id="title"><?= $pagetitle ?></h1>
 
 					<?php $this->load->view('templates/breadcrumb'); ?>
@@ -40,23 +38,23 @@
         <!-- Content Start -->
 		<div class="card">
 			<div class="card-body">
-                <h3 class="pb-0">Form  <?= $function ?> - <?= $pagetitle ?></h3>
+                <h3 class="pb-0">Form <?= $function ?> - <?= $pagetitle ?></h3>
                 <hr class="mb-2">
 
-                <form class="row g-3" action="<?= base_url($mod.'/'.$func.'/tambah'); ?>" method="POST">
-                <div class="col-12 col-md-4" >
+                <form class="row g-3" action="<?= base_url($mod.'/'.$func.'/edit/'.$prodi['kd_prog']); ?>" method="POST">
+                    <div class="col-12 col-md-4" hidden>
                         <label class="form-label text-black-50"><strong>Kode Prog<span style="color:red">*</span></strong></label>
-                        <input type="text" class="form-control" required name="kd_prog" placeholder="Input Kode Prodi"/>
+                        <input type="text" class="form-control" required name="kd_prog" value="<?= $prodi['kd_prog'] ?>"/>
                     </div>
                     <div class="col-12 col-md-8">
                         <label class="form-label text-black-50"><strong>Nama Prodi<span style="color:red">*</span></strong></label>
-                        <input type="text" class="form-control" required name="nama_prog" placeholder="Input Nama Prodi" />
+                        <input type="text" class="form-control" required name="nama_prog" value="<?= $prodi['nama_prog'] ?>" />
                     </div>
 
                     <div class="col-md-4">
                         <label class="form-label text-black-50"><strong> Jenjang<span style="color:red">*</span></strong></label>
                         <select name="jenjang" required class="form-select">
-                            <option value="">-- Select Jenjang --</option>
+                            <option value="<?= $prodi['jenjang'] ?>">-- <?= $prodi['jenjang'] ?> --</option>
                             <option value="D3"> D3</option>
                             <option value="S1"> S1</option>
                         </select>

@@ -31,14 +31,23 @@ class Mahasiswa extends Admin_Controller  {
 
 	public function detail($id)
 	{
-		$this->starter();
-		$this->data['mahasiswa'] = $this->Model_mahasiswa->detail($id);
+		$this->data['mahasiswa'] = $this->Model_global->getMhsNim($id);
 
-		$this->render_template('mahasiswa/detail',$this->data);
+		if($this->data['mahasiswa']['nim']){
+			$this->starter();
+			$this->data['mahasiswa'] = $this->Model_mahasiswa->detail($id);
+
+			$this->render_template('mahasiswa/detail',$this->data);
+		}else{
+			$this->session->set_flashdata('error', 'Nim Tidak Terdaftar, Silahkan Cek kembali !!');
+			redirect('users/mahasiswa', 'refresh');
+		}
+
 	}
 
-    public function getDataStore()
+    public function store()
 	{
+		$cn 	= $this->router->fetch_class(); // Controller
 
 		$draw           = $_REQUEST['draw'];
 		$length         = $_REQUEST['length'];
@@ -47,21 +56,18 @@ class Mahasiswa extends Admin_Controller  {
 		$order 			= $_REQUEST['order'][0]['dir'];
 		// $search_nama   	= $_REQUEST['columns'][0]['search']["value"];
 
-		// tesx($search_nama);
-
         $output['data']	= array();
-		$search_no      = $this->input->post('nim');
-        $search_nama    = $this->input->post('nama_mhs');
+        $search_name    = $this->input->post('search_name');
 
-		$data           = $this->Model_mahasiswa->getDataStore('result',$search_no,$search_nama,$length,$start,$column,$order);
-		$data_jum       = $this->Model_mahasiswa->getDataStore('numrows',$search_no,$search_nama);
+		$data           = $this->Model_mahasiswa->getDataStore('result',$search_name,$length,$start,$column,$order);
+		$data_jum       = $this->Model_mahasiswa->getDataStore('numrows',$search_name);
 
 		$output=array();
 		$output['draw'] = $draw;
 		$output['recordsTotal'] = $output['recordsFiltered'] = $data_jum;
 
-		if($search_no !="" || $search_nama !="" ){
-			$data_jum = $this->Model_mahasiswa->getDataStore('numrows',$search_no,$search_nama);
+		if($search_name !="" ){
+			$data_jum = $this->Model_mahasiswa->getDataStore('numrows',$search_name);
 			$output['recordsTotal']=$output['recordsFiltered']=$data_jum;
 		}
 
@@ -69,14 +75,31 @@ class Mahasiswa extends Admin_Controller  {
 
 		if($data){
 			foreach ($data as $key => $value) {
-				$btn = '';
-				$btn .= '<a href="'.base_url('users/mahasiswa/detail/'.$value['nim']).'"
-						class="btn btn-primary btn-sm btn-shadow">
-                        <i class="iconsminds-magnifi-glass" ></i> Detail</a>';
+
+				$id		= $value['nim'];
+				$btn 	= '';
+				$btn 	.= '<div class="btn-group">
+								<button type="button" class="btn btn-sm btn btn-light dropdown-toggle mb-1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Opsi
+								</button>
+								<div class="dropdown-menu">
+									<a href="'.base_url('users/'.$cn.'/detail/'.$id).'" class="dropdown-item">
+										<i data-acorn-icon="search"></i> Detail</a>
+
+									<a href="'.base_url('users/'.$cn.'/edit/'.$id).'" class="dropdown-item">
+										<i data-acorn-icon="edit-square"></i> Edit</a>';
+
+									$btn .= ' <a class="dropdown-item" onclick="';
+									$btn .= "remove('".$id."')";
+									$btn .= '" data-bs-toggle="modal" data-bs-target="#removeModal" >
+											<i data-acorn-icon="bin"></i> Delete</a>
+
+								</div>
+							</div>';
 				$output['data'][$key] = array(
 					$value['nim'],
 					capital(uppercase($value['nama_mhs'])),
-					$value['kd_prog'],
+					$value['nim'],
                     $value['kd_ta'],
                     nominal($value['kd_biaya']),
 					$btn,
@@ -87,6 +110,84 @@ class Mahasiswa extends Admin_Controller  {
 			$output['data'] = [];
 		}
 		echo json_encode($output);
+	}
+
+
+	public function tambah()
+	{
+
+		$this->form_validation->set_rules('nim' ,'Nim ' , 'required');
+
+        if ($this->form_validation->run() == TRUE) {
+
+			$create_form = $this->Model_mahasiswa->saveTambah();
+
+			if($create_form) {
+				$this->session->set_flashdata('success', ' Berhasil Disimpan !!');
+				redirect('users/mahasiswa', 'refresh');
+			} else {
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('users/mahasiswa/tambah', 'refresh');
+			}
+
+		}else{
+			$this->starter();
+			$this->render_template('mahasiswa/tambah',$this->data);
+		}
+
+	}
+
+	public function edit($id)
+	{
+		$this->form_validation->set_rules('nim' ,'Nim ' , 'required');
+        if ($this->form_validation->run() == TRUE) {
+
+			$edit_form = $this->Model_mahasiswa->saveEdit();
+
+			if($edit_form) {
+				$this->session->set_flashdata('success', 'Nim  : "'.$_POST['nim'].'" <br> Berhasil Di Update !!');
+				redirect('users/mahasiswa', 'refresh');
+			} else {
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('users/mahasiswa/edit/'.$id, 'refresh');
+			}
+
+		}else{
+			$this->starter();
+			$this->data['mahasiswa'] = $this->Model_global->getMhsNim($id);
+
+			if($this->data['mahasiswa']['nim']){
+				$this->render_template('mahasiswa/edit',$this->data);
+			}else{
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('users/mahasiswa/edit/'.$id, 'refresh');
+			}
+		}
+	}
+
+
+	public function delete()
+	{
+		$id = $_POST['id'];
+
+		$response = array();
+		if($id) {
+			$delete = $this->Model_mahasiswa->saveDelete($id);
+
+			if($delete == true) {
+				$response['success'] 	= true;
+				$response['messages'] 	= " <strong>Kode '".$id."'</strong> Berhasil Di Remove";
+			} else {
+				$response['success'] 	= false;
+				$response['messages'] 	= " <strong>Kode '".$id."'</strong> Gagal Di Remove";
+			}
+		}
+		else {
+			$response['success'] 	= false;
+			$response['messages'] 	= "Refresh the page again!!";
+		}
+
+		echo json_encode($response);
 	}
 
 
