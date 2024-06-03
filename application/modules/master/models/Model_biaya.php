@@ -15,12 +15,16 @@ class Model_biaya extends CI_Model
 
 		$this->db->select('*');
         $this->db->from($this->table);
+		$this->db->join('mst_jenma', 'mst_biaya.kd_jenma = mst_jenma.kd_jenma', 'left');
+		$this->db->join('mst_ta', 'mst_biaya.kd_ta = mst_ta.kd_ta', 'left');
 
         $this->db->order_by('kd_biaya', 'ASC');
 
         if($search_name !="")
 			$this->db->like('nilai',$search_name);
 			$this->db->or_like('kd_biaya',$search_name);
+			$this->db->or_like('jenis_mhs',$search_name);
+			$this->db->or_like('ta',$search_name);
 
 		if($result == 'result'){
 			$this->db->limit($length,$start);

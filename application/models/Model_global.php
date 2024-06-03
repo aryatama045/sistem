@@ -110,9 +110,26 @@ class Model_global extends CI_Model {
     {
         $this->db->select('*');
 		$this->db->from('mst_biaya');
+        $this->db->join('mst_jenma', 'mst_biaya.kd_jenma = mst_jenma.kd_jenma', 'left');
+		$this->db->join('mst_ta', 'mst_biaya.kd_ta = mst_ta.kd_ta', 'left');
 
         if($kd_biaya){
             $this->db->where('kd_biaya', $kd_biaya);
+            $query=$this->db->get();
+            return $query->row_array();
+        }else{
+            $query=$this->db->get();
+            return $query->result_array();
+        }
+    }
+
+    function getJenisBiaya($kd_jenis = NULL)
+    {
+        $this->db->select('*');
+		$this->db->from('mst_jenis_biaya');
+
+        if($kd_jenis){
+            $this->db->where('kd_jenis', $kd_jenis);
             $query=$this->db->get();
             return $query->row_array();
         }else{

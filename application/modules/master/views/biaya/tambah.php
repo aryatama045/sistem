@@ -14,20 +14,7 @@
 				<div class="col-12 col-md-7">
 					<h1 class="mb-0 pb-0 display-4" id="title"><?= $pagetitle ?></h1>
 
-					<nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
-						<ul class="breadcrumb pt-0">
-							<li class="breadcrumb-item"><a href="<?php base_url(); ?>">Home</a></li>
-							<li class="breadcrumb-item"><?= $modul ?></li>
-
-							<?php if(!is_null($pagetitle)){ ?>
-								<li class="breadcrumb-item"><?= $pagetitle ?></li>
-							<?php } ?>
-
-							<?php if(!is_null($function)){ ?>
-								<li class="breadcrumb-item"><?= $function ?></li>
-							<?php } ?>
-						</ul>
-					</nav>
+					<?php $this->load->view('templates/breadcrumb'); ?>
 
 				</div>
 				<!-- Title End -->
@@ -55,16 +42,12 @@
                 <hr class="mb-2">
 
                 <form class="row g-3" action="<?= base_url($mod.'/'.$func.'/tambah'); ?>" method="POST">
-                <div class="col-12 col-md-4">
-                        <label class="form-label text-black-50"><strong>Kode Biaya<span style="color:red">*</span></strong></label>
-                        <input type="text" class="form-control" required name="kd_biaya" placeholder="Input Kode Biaya" />
-                    </div>
-                    <div class="col-12 col-md-8">
+                    <div class="col-12 col-md-6">
                         <label class="form-label text-black-50"><strong>Nilai Biaya<span style="color:red">*</span></strong></label>
                         <input type="text" class="form-control" required name="nilai" placeholder="Input Nilai Biaya" />
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label class="form-label text-black-50"><strong> Jenis Mahasiswa<span style="color:red">*</span></strong></label>
                         <select name="kd_jenma" required class="form-select">
                             <option value="">-- Select Jenis Mahasiswa --</option>

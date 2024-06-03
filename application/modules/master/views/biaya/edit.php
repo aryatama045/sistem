@@ -14,20 +14,7 @@
 				<div class="col-12 col-md-7">
 					<h1 class="mb-0 pb-0 display-4" id="title"><?= $pagetitle ?></h1>
 
-					<nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
-						<ul class="breadcrumb pt-0">
-							<li class="breadcrumb-item"><a href="<?php base_url(); ?>">Home</a></li>
-							<li class="breadcrumb-item"><?= $modul ?></li>
-
-							<?php if(!is_null($pagetitle)){ ?>
-								<li class="breadcrumb-item"><?= $pagetitle ?></li>
-							<?php } ?>
-
-							<?php if(!is_null($function)){ ?>
-								<li class="breadcrumb-item"><?= $function ?></li>
-							<?php } ?>
-						</ul>
-					</nav>
+					<?php $this->load->view('templates/breadcrumb'); ?>
 
 				</div>
 				<!-- Title End -->
@@ -67,7 +54,7 @@
                     <div class="col-md-4">
                         <label class="form-label text-black-50"><strong> Jenis Mahasiswa<span style="color:red">*</span></strong></label>
                         <select name="kd_jenma" required class="form-select">
-                            <option value="">-- Select Jenis Mahasiswa --</option>
+                            <option value="<?= $biaya['kd_jenma'] ?>">-- <?= $biaya['jenis_mhs'] ?> --</option>
                             <?php foreach($jenma as $key => $val){ ?>
                                 <option value="<?= $val['kd_jenma'] ?>">(<?= $val['kd_jenma'] ?>) <?= $val['jenis_mhs'] ?></option>
                             <?php } ?>
@@ -77,7 +64,7 @@
                     <div class="col-md-4">
                         <label class="form-label text-black-50"><strong> Tahun Ajaran<span style="color:red">*</span></strong></label>
                         <select name="kd_ta" required class="form-select">
-                            <option value="">-- Select Tahun Ajaran --</option>
+                            <option value="<?= $biaya['kd_ta'] ?>">-- <?= $biaya['ta'] ?> --</option>
                             <?php foreach($ta as $key => $val){ ?>
                                 <option value="<?= $val['kd_ta'] ?>">(<?= $val['kd_ta'] ?>) <?= $val['ta'] ?></option>
                             <?php } ?>

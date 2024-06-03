@@ -69,6 +69,8 @@
 						<tr>
 							<th class="text-bold text-uppercase">Kd Biaya</th>
 							<th class="text-bold text-uppercase">Biaya</th>
+							<th class="text-bold text-uppercase">Jenis</th>
+							<th class="text-bold text-uppercase">Tahun Ajaran</th>
 							<th class="text-bold text-uppercase">Action</th>
 						</tr>
 					</thead>

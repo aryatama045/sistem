@@ -14,20 +14,7 @@
 				<div class="col-12 col-md-7">
 					<h1 class="mb-0 pb-0 display-4" id="title"><?= $pagetitle ?></h1>
 
-					<nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
-						<ul class="breadcrumb pt-0">
-							<li class="breadcrumb-item"><a href="<?php base_url(); ?>">Home</a></li>
-							<li class="breadcrumb-item"><?= $modul ?></li>
-
-							<?php if(!is_null($pagetitle)){ ?>
-								<li class="breadcrumb-item"><?= $pagetitle ?></li>
-							<?php } ?>
-
-							<?php if(!is_null($function)){ ?>
-								<li class="breadcrumb-item"><?= $function ?></li>
-							<?php } ?>
-						</ul>
-					</nav>
+					<?php $this->load->view('templates/breadcrumb'); ?>
 
 				</div>
 				<!-- Title End -->

@@ -1,48 +1,84 @@
-var tableJenisBiaya;
-var kd_jenis;
-var nama_biaya;
+var tables;
+var search_name;
 
 $(document).ready(function() {
 
-    $('.collapse').on('shown.bs.collapse', function (e) {
-        $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
-    });
-
-
-
     //# initialize the datatable
-    tableJenisBiaya = $('#tableJenisBiaya').DataTable({
+    tables = $('#'+tableData).DataTable({
         'processing': true,
         'serverSide': true,
         'serverMethod': 'post',
         'scrollX': true,
         'paging' : true,
+        'autoWidth': false,
+        'destroy': true,
+        'responsive': false,
         'ajax': {
-            'url': base_url + 'master/jenis_biaya/getDataStore',
+            'url': linkstore,
             'type': 'POST',
             'data': function(data) {
-                data.kd_jenis = $('#kd_jenis').val();
-                data.nama_biaya = $('#nama_biaya').val();
+                data.search_name = $('#search_name').val();
             },
         },
         'order': [0, 'ASC'],
-        'columnDefs': [{
-            bSortable: false
-        }, ]
+        "columnDefs":[
+            {"orderData": 1, "targets": 2}]
     });
 
-    $("#tableJenisBiaya_filter").css("display", "none");
-    $("#tableJenisBiaya_length").css("display", "none");
+    $("#"+tableData+"_filter").css("display", "none");
+    // $("#tables_length").css("display", "none");
 
-    tableJenisBiaya.columns.adjust().draw();
+    tables.columns.adjust().draw();
 
-    $('#kd_jenis').on('keyup', function(event) { // for text boxes
-        tableJenisBiaya.ajax.reload(); //just reload table
+    $('#search_name').on('keyup', function(event) { // for text boxes
+        tables.ajax.reload(); //just reload table
     });
-
-    $('#nama_biaya').on('keyup', function(event) { // for text boxes
-        tableJenisBiaya.ajax.reload(); //just reload table
-    });
-
-
 });
+
+function remove(id)
+{
+    $("#btn-delete").removeAttr('class');
+    $("#btn-delete").text('Remove');
+    $("#btn-delete").addClass('btn btn-danger');
+    $("#removeModal h5").text('Remove Mata Kuliah');
+    $("#messages_modal_remove").html('');
+    $("#id span").html('Remove '+' <strong> '+id+'</strong>');
+    if(id){
+        $("#removeForm").on('submit', function() {
+            var form = $(this);
+            // remove the text-danger
+            $(".text-danger").remove();
+
+            if(id !== null){
+                $.ajax({
+                    url: form.attr('action'),
+                    type: form.attr('method'),
+                    data: { id:id },
+                    dataType: 'json',
+                    success:function(response) {
+
+                        tables.ajax.reload(null, false);
+
+                        if(response.success === true) {
+                            $("#messages").html('<div class="alert alert-success alert-dismissible fade show" role="alert">'+
+                                '<strong>'+response.messages+ '</strong>' +
+                                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+
+                            // hide the modal
+                            $("#removeModal").modal('hide');
+
+                        } else {
+
+                            $("#messages_modal_remove").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">'+
+                                '<strong> <span class="glyphicon glyphicon-exclamation-sign"></span>  '+response.messages+ '</strong>' +
+                                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>' +
+                            '</div>');
+                        }
+                    }
+                });
+            }
+            id = null;
+            return false;
+        });
+    }
+}

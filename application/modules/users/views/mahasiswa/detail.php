@@ -156,44 +156,8 @@
   <!-- Person End -->
 
   <div class="col-12 col-xl-8 col-xxl-9">
-    <div class="mb-5">
-      <div class="card mb-2">
-        <div class="row g-0 sh-16 sh-md-8">
-          <div class="col">
-            <div class="card-body pt-0 pb-0 h-100">
-              <div class="row g-0 h-100 ">
-                <div class="col-6 col-md-3 d-flex flex-column justify-content-center mb-2 mb-md-0 h-md-100">
-                  <div class="text-muted text-small d-md-none">Id</div>
-                  <a href="Orders.Detail.html" class="text-truncate h-100 d-flex align-items-center">1239</a>
-                </div>
-                <div class="col-6 col-md-4 d-flex flex-column justify-content-center mb-2 mb-md-0">
-                  <div class="text-muted text-small d-md-none">Price</div>
-                  <div class="text-alternate">
-                    <span>
-                      <span class="text-small">$</span>
-                      321.75
-                    </span>
-                  </div>
-                </div>
-                <div class="col-6 col-md-2 d-flex flex-column justify-content-center mb-2 mb-md-0">
-                  <div class="text-muted text-small d-md-none">Date</div>
-                  <div class="text-alternate">13.09.2020</div>
-                </div>
-                <div class="col-6 col-md-3 d-flex flex-column justify-content-center mb-2 mb-md-0 align-items-md-end">
-                  <div class="text-muted text-small d-md-none">Status</div>
-                  <div class="text-alternate">
-                    <span class="badge rounded-pill bg-outline-secondary">PENDING</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Activity Start -->
-    <h2 class="small-title">History</h2>
     <div class="card mb-5">
       <div class="card-body">
         <div class="row g-0">
@@ -318,22 +282,6 @@
     </div>
     <!-- Activity End -->
 
-    <!-- Additional Info Start -->
-    <h2 class="small-title">Additional Info</h2>
-    <div class="card mb-5">
-      <div class="card-body">
-        <form>
-          <div class="mb-3">
-            <label class="form-label">Tags</label>
-            <input name="tagsBasic" value="Rates, Sales Shopper, Newsletter" />
-          </div>
-          <div class="mb-0">
-            <label class="form-label">Notes</label>
-            <textarea rows="4" class="form-control">Very cool person! Rates the items a lot.</textarea>
-          </div>
-        </form>
-      </div>
-    </div>
-    <!-- Additional Info End -->
+
   </div>
 </div>

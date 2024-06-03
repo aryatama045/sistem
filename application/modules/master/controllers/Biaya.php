@@ -70,6 +70,8 @@ class Biaya extends Admin_Controller  {
 				$output['data'][$key] = array(
 					$value['kd_biaya'],
 					nominal($value['nilai']),
+					$value['jenis_mhs'],
+					$value['ta'],
 					$btn,
 				);
 			}
@@ -83,7 +85,7 @@ class Biaya extends Admin_Controller  {
 	public function tambah()
 	{
 
-		$this->form_validation->set_rules('kd_biaya' ,'Kode ' , 'required');
+		$this->form_validation->set_rules('nilai' ,'Nilai ' , 'required');
 
         if ($this->form_validation->run() == TRUE) {
 
@@ -124,7 +126,7 @@ class Biaya extends Admin_Controller  {
 
 		}else{
 			$this->starter();
-			$this->data['biaya'] 		= $this->Model_global->getBiaya($id);
+			$this->data['biaya'] 		= $this->Model_biaya->getDataStore('result',$id,'','',$column,$order);
 			$this->data['ta'] 			= $this->Model_global->getTahunAjaran();
 			$this->data['jenma'] 		= $this->Model_global->getJenma();
 
