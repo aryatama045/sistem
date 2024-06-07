@@ -35,7 +35,14 @@ class Mahasiswa extends Admin_Controller  {
 
 		if($this->data['mahasiswa']['nim']){
 			$this->starter();
-			$this->data['mahasiswa'] = $this->Model_mahasiswa->detail($id);
+			// $this->data['data_mhs2'] 	 = $this->Model_mahasiswa->detail($id);
+
+			$this->data['mhs_user'] 	 = $this->Model_mahasiswa->getMhsUserlogin($id);
+
+
+			$this->data['data_mhs']  = $this->Model_pmb->getDataPendaftaran($this->data['mhs_user']['no_pmb']);
+			// tesx($this->data['data_mhs']);
+			$this->data['dok_pmb']    	 = $this->Model_pmb->getDokPendaftaran($this->data['mhs_user']['no_pmb']);
 
 			$this->render_template('mahasiswa/detail',$this->data);
 		}else{
@@ -99,8 +106,8 @@ class Mahasiswa extends Admin_Controller  {
 				$output['data'][$key] = array(
 					$value['nim'],
 					capital(uppercase($value['nama_mhs'])),
-					$value['nim'],
-                    $value['kd_ta'],
+					capital(uppercase($value['nama_prog'])),
+                    $value['ta'],
                     nominal($value['kd_biaya']),
 					$btn,
 				);
@@ -132,6 +139,11 @@ class Mahasiswa extends Admin_Controller  {
 
 		}else{
 			$this->starter();
+			$this->data['prodi']        = $this->Model_global->getKodeProgram();
+            $this->data['tahun_ajaran'] = $this->Model_global->getTahunAjaran();
+            $this->data['biaya']        = $this->Model_global->getBiaya();
+
+			// tesx($this->data['tahun_ajaran']);
 			$this->render_template('mahasiswa/tambah',$this->data);
 		}
 

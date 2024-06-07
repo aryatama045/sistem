@@ -21,10 +21,21 @@
 <script src="<?= base_url('assets/') ?>js/base/globals.js"></script>
 <script src="<?= base_url('assets/') ?>js/base/nav.js"></script>
 <script src="<?= base_url('assets/') ?>js/base/settings.js"></script>
+<!-- Template Base Scripts End -->
+
 <script src="<?= base_url('assets/') ?>js/pages/customerDetails.js"></script>
 <script src="<?= base_url('assets/') ?>js/pages/profile.standard.js"></script>
 <script src="<?= base_url('assets/') ?>js/plugins/notifies.js"></script>
-<!-- Template Base Scripts End -->
+
+
+
+<script src="<?= base_url('assets/') ?>js/vendor/select2.full.min.js"></script>
+
+<script src="<?= base_url('assets/') ?>js/vendor/datepicker/bootstrap-datepicker.min.js"></script>
+
+<script src="<?= base_url('assets/') ?>js/vendor/datepicker/locales/bootstrap-datepicker.es.min.js"></script>
+
+<script src="<?= base_url('assets/') ?>js/vendor/fancybox.umd.js"></script>
 
 <!-- Page Specific Scripts Start -->
 <script src="<?= base_url('assets/') ?>js/common.js"></script>
@@ -34,4 +45,67 @@
 <?php $url = $this->uri->segment(1); if($url != 'dashboard'){  ?>
 <script src="<?= base_url('assets/') ?>js/base/search.js"></script>
 <?php } ?>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(function() {
+            $('#selectTanggal').datepicker({
+                autoclose: true,
+            });
+        });
+        $(function() {
+            $('#selectTanggalAwal').datepicker({
+                autoclose: true,
+            });
+        });
+        $(function() {
+            $('#selectTanggalAkhir').datepicker({
+                autoclose: true,
+            });
+        });
+    });
+</script>
+
+
+<script>
+    Fancybox.bind('[data-fancybox="gallery"]', {
+
+    Toolbar: {
+        display: {
+        left: ["infobar"],
+        middle: [
+            "zoomIn",
+            "zoomOut",
+            "toggle1to1",
+            "rotateCCW",
+            "rotateCW",
+            "flipX",
+            "flipY",
+        ],
+        right: ["slideshow", "thumbs", "close"],
+        },
+    },
+    });
+
+    Fancybox.bind('[data-fancybox="foto-profil"]', {
+
+        Toolbar: {
+            display: {
+            left: ["infobar"],
+            middle: [
+                "zoomIn",
+                "zoomOut",
+                "toggle1to1",
+                "rotateCCW",
+                "rotateCW",
+                "flipX",
+                "flipY",
+            ],
+            right: ["slideshow", "thumbs", "close"],
+            },
+        },
+    });
+</script>
+
+
 

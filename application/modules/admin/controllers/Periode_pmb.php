@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Jadwal_seleksi extends Admin_Controller  {
+class Periode_pmb extends Admin_Controller  {
 
 	public function __construct()
 	{

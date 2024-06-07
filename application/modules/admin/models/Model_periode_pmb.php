@@ -1,28 +1,28 @@
 <?php
 
-class Model_mahasiswa extends CI_Model
+class Model_periode_pmb extends CI_Model
 {
 	public $table;
 
 	function __construct()
 	{
 		parent::__construct();
-		$this->table = 'mst_mhs';
+		$this->table = 'mst_gel_daftar';
 	}
-
 
 	public function getDataStore($result, $search_name = "", $length = "", $start = "", $column = "", $order = "")
 	{
 
 		$this->db->select('*');
         $this->db->from($this->table);
-		$this->db->join('mst_prodi', 'mst_mhs.kd_prog = mst_prodi.kd_prog', 'left');
-		$this->db->join('mst_ta', 'mst_mhs.kd_ta = mst_ta.kd_ta', 'left');
-        $this->db->order_by('nim', 'ASC');
+        $this->db->join('mst_ta', 'mst_gel_daftar.kd_ta = mst_ta.kd_ta', 'left');
+        $this->db->order_by('ta', 'DESC');
 
         if($search_name !="")
-			$this->db->like('nama_mhs',$search_name);
-			$this->db->or_like('nim',$search_name);
+			$this->db->like('kode',$search_name);
+			$this->db->or_like('ta',$search_name);
+            $this->db->or_like('tgl_awal',$search_name);
+            $this->db->or_like('tgl_akhir',$search_name);
 
 		if($result == 'result'){
 			$this->db->limit($length,$start);
@@ -34,27 +34,6 @@ class Model_mahasiswa extends CI_Model
 			return $query->num_rows();
 		}
 
-	}
-
-	public function detail($id)
-	{
-		$this->db->select('*');
-        $this->db->from($this->table);
-		$this->db->where('nim',$id);
-		$query	= $this->db->get();
-		// die(nl2br($this->db->last_query()));
-		return $query->row_array();
-
-	}
-
-	function getMhsUserlogin($id)
-	{
-		$this->db->select('*');
-        $this->db->from('users');
-		$this->db->where('nim',$id);
-		$query	= $this->db->get();
-		// die(nl2br($this->db->last_query()));
-		return $query->row_array();
 	}
 
 	// ---- Action Start
@@ -69,7 +48,7 @@ class Model_mahasiswa extends CI_Model
 	function saveEdit()
 	{
 		$data = $_POST;
-		$this->db->where(['nim' => $data['nim']]);
+		$this->db->where(['kode' => $data['kode']]);
 		$update = $this->db->update($this->table, $data);
 
 		return ($update)?TRUE:FALSE;
@@ -77,7 +56,7 @@ class Model_mahasiswa extends CI_Model
 
 	function saveDelete($id)
 	{
-		$this->db->where(['nim' => $id]);
+		$this->db->where(['kode' => $id]);
 		$delete = $this->db->delete($this->table);
 
 		return ($delete)?TRUE:FALSE;

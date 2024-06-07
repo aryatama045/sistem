@@ -44,25 +44,99 @@
                 <hr class="mb-2">
 
                 <form class="row g-3" action="<?= base_url($mod.'/'.$func.'/tambah'); ?>" method="POST">
-                <div class="col-12 col-md-4" >
-                        <label class="form-label text-black-50"><strong>Kode Prog<span style="color:red">*</span></strong></label>
-                        <input type="text" class="form-control" required name="kd_prog" placeholder="Input Kode Prodi"/>
+                    <div class="col-12 col-md-6" >
+                        <label class="form-label text-black"><strong>Nomor Induk Mahasiswa (NIM) <span style="color:red">*</span></strong></label>
+                        <input type="text" class="form-control" required name="nim" placeholder="Input Nomor Induk Mahasiswa"/>
                     </div>
-                    <div class="col-12 col-md-8">
-                        <label class="form-label text-black-50"><strong>Nama Prodi<span style="color:red">*</span></strong></label>
-                        <input type="text" class="form-control" required name="nama_prog" placeholder="Input Nama Prodi" />
+                    <div class="col-12 col-md-6" >
+                        <label class="form-label text-black"><strong>Nomor Induk Kependudukan (NIK) <span style="color:red">*</span></strong></label>
+                        <input type="text" class="form-control" required name="nik" placeholder="Input Nomor Induk Kependudukan"/>
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <label class="form-label text-black"><strong>Nama Mahasiswa<span style="color:red">*</span></strong></label>
+                        <input type="text" class="form-control" required name="nama_mhs" placeholder="Input Nama Mahasiswa" />
                     </div>
 
-                    <div class="col-md-4">
-                        <label class="form-label text-black-50"><strong> Jenjang<span style="color:red">*</span></strong></label>
-                        <select name="jenjang" required class="form-select">
-                            <option value="">-- Select Jenjang --</option>
-                            <option value="D3"> D3</option>
-                            <option value="S1"> S1</option>
+                    <div class="col-12 col-md-6" >
+                        <label class="form-label text-black"><strong>Tempat Lahir <span style="color:red">*</span></strong></label>
+                        <input type="text" class="form-control" required name="tempat_lahir" placeholder="Input Tempat Lahir"/>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label class="form-label text-black"><strong>Jenis Kelamin<span style="color:red">*</span></strong></label>
+                        <select class="form-control" name="jenis_kelamin" required>
+                            <option value=""> -- Select Jenis Kelamin --</option>
+                            <option value="L"> LAKI-LAKI</option>
+                            <option value="P"> PEREMPUAN</option>
                         </select>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-12 col-md-6" >
+                        <label class="form-label text-black"><strong>Tanggal Lahir <span style="color:red">*</span></strong></label>
+                        <input class="form-control" name="tgl_lahir" required id="selectTanggal" />
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label class="form-label text-black"><strong>Agama<span style="color:red">*</span></strong></label>
+                        <select class="form-control" name="agama" required>
+                            <option value="" >-- Select Agama --</option>
+                            <option value="islam">Islam</option>
+                            <option value="kristen">Kristen</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-12 mb-5">
+                        <label class="form-label text-black"><strong> Alamat</strong></label>
+                        <textarea name="alamat" row="3" class="form-control" placeholder="Input Alamat"></textarea>
+                    </div>
+
+                    <h4 class="pb-0"> Data Akademik</h4>
+                    <hr class="mb-1">
+
+                    <div class="col-12 col-md-3 ">
+                        <label class="form-label text-black"><strong> Program Studi<span style="color:red">*</span></strong></label>
+                        <select name="kd_prog" required class="form-select">
+                            <option value="">-- Select Program Studi --</option>
+                            <?php foreach($prodi as $val) { ?>
+                                <option value="<?= $val['kd_prog'] ?>"> <?= $val['nama_prog'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3 ">
+                        <label class="form-label text-black"><strong> Semester<span style="color:red">*</span></strong></label>
+                        <select name="smt" required class="form-select">
+                            <option value="">-- Select Semester --</option>
+                            <option value="1"> Semester 1</option>
+                            <option value="2"> Semester 2</option>
+                            <option value="3"> Semester 3</option>
+                            <option value="4"> Semester 4</option>
+                            <option value="5"> Semester 5</option>
+                            <option value="6"> Semester 6</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3 ">
+                        <label class="form-label text-black"><strong> Tahun Ajaran<span style="color:red">*</span></strong></label>
+                        <select name="kd_ta" required class="form-select">
+                            <option value="">-- Select Tahun Ajaran --</option>
+                            <?php foreach($tahun_ajaran AS $key => $val) { ?>
+                                <option value="<?= $val['kd_ta'] ?>"> <?= $val['ta'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3 ">
+                        <label class="form-label text-black"><strong> Kd Biaya<span style="color:red">*</span></strong></label>
+                        <select name="kd_ta" required class="form-select">
+                            <option value="">-- Select Tahun Ajaran --</option>
+                            <option value="1"> Semester 1</option>
+                            <option value="2"> Semester 2</option>
+                        </select>
+                    </div>
+
+                    <hr>
+                    <div class="col-12 mt-5">
                         <button type="submit" class="btn btn-primary"><i data-acorn-icon="save"></i> Simpan</button>
                     </div>
 
@@ -75,3 +149,4 @@
         <!-- Content End -->
     </div>
 </div>
+

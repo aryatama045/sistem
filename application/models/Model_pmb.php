@@ -70,6 +70,15 @@ class Model_pmb extends CI_Model
 		return $query->row_array();
 	}
 
+	public function getDokPendaftaran($no_pendaftaran)
+	{
+		$this->db->select('*');
+		$this->db->from('trn_pmb_dok a');
+        $this->db->where('a.no_pendaftaran', $no_pendaftaran);
+		$query=$this->db->get();
+		return $query->result_array();
+	}
+
 	public function getProdi($id = null){
 		$this->db->select('*');
 		$this->db->from('mst_prodi');
@@ -115,7 +124,6 @@ class Model_pmb extends CI_Model
 	}
 
 
-
 	//------- Save Data
 	public function saveCama($dataCama)
     {
@@ -142,9 +150,30 @@ class Model_pmb extends CI_Model
 
 	public function saveUploadBerkas($data_berkas)
 	{
-		$insert = $this->db->insert('trn_pmb_dok', $data_berkas);
+		$cek_berkas = $this->cek_berkas($data_berkas);
+
+		if(!$cek_berkas){
+            $insert = $this->db->insert('trn_pmb_dok', $data_berkas);
+        } else{
+			$this->db->where('no_pendaftaran',$data_berkas['no_pendaftaran']);
+			$this->db->like('nama_dok', $data_berkas['nama_dok']);
+			$insert = $this->db->update('trn_pmb_dok', $data_berkas);
+		}
+
 
 		return ($insert)?true:false;
+	}
+
+
+	// Cek Data
+	function cek_berkas($data)
+	{
+		$this->db->select('*');
+		$this->db->from('trn_pmb_dok');
+		$this->db->where('no_pendaftaran',$data['no_pendaftaran']);
+		$this->db->like('nama_dok', $data['nama_dok']);
+		$query=$this->db->get();
+		return $query->row_array();
 	}
 
 

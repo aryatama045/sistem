@@ -44,6 +44,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php if(!$get_dok_pmb){ ?>
                         <tr>
                             <th scope="row">1</th>
                             <td>IJAZAH<span style="color:red;">*</span></td>
@@ -123,6 +124,31 @@
                                 </div>
                             </td>
                         </tr>
+
+                        <?php }else{ ?>
+
+                            <?php $no=0; foreach($get_dok_pmb as $key => $val)  { $no++; ?>
+
+                            <tr <?= ($val['validasi'])?'class="table-active"': ''; ?> >
+                                <th scope="row"> <?= $no ?></th>
+                                <td><?= $val['nama_dok']; ?> <?= ($val['validasi'])?'': '<span style="color:red;">*</span>'; ?> </td>
+                                <td> Sudah Upload </td>
+                                <td><?= ($val['validasi'])?'1': '0'; ?></td>
+                                <td><?= $val['ket_validasi']; ?></td>
+                                <td>
+                                    <div class="form-input mb-5">
+                                        <input type="text" name="no_pendaftaran" value="<?= $val['no_pendaftaran']; ?>" hidden>
+                                        <input type="text" name="dok[]" value="<?= $val['nama_dok']; ?>" hidden>
+                                        <?= ($val['validasi'])?'':
+                                        '<input type="file" class="form-control" name="berkas[]"  style="width:250px;" multiple required>'?>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <?php } ?>
+
+                        <?php } ?>
+
                     </tbody>
                 </table>
             </section>
@@ -136,6 +162,8 @@
                     <li>Maksimal ukuran setiap file adalah 5mb</li>
                     <li><span style="color:red;">*</span> (Require/Wajib)</li>
                 </ul>
+                <br>
+                <p> <b>Note :</b> Selama Data Belum Valid, Masih Bisa Di Re-Upload kembali data yang bermasalah</p>
             </div>
 
             <!-- Button Update -->

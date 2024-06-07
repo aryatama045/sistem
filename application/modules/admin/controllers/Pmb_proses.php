@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Jadwal_seleksi extends Admin_Controller  {
+class Pmb_proses extends Admin_Controller  {
 
 	public function __construct()
 	{
@@ -12,20 +12,18 @@ class Jadwal_seleksi extends Admin_Controller  {
 		$this->data['pagetitle'] = capital($cn);
 		$this->data['function'] = capital($f);
 
-		$this->load->model('Model_periode_pmb');
+		$this->load->model('Model_pmb_proses');
 
 	}
 
 	public function starter()
-	{
-
-	}
+	{}
 
 
 	public function index()
 	{
 		$this->starter();
-		$this->render_template('periode_pmb/index',$this->data);
+		$this->render_template('pmb_proses/index',$this->data);
 	}
 
 	public function store()
@@ -41,44 +39,31 @@ class Jadwal_seleksi extends Admin_Controller  {
         $output['data']	= array();
 		$search_name   = $this->input->post('search_name');
 
-		$data           = $this->Model_periode_pmb->getDataStore('result',$search_name,$length,$start,$column,$order);
-		$data_jum       = $this->Model_periode_pmb->getDataStore('numrows',$search_name);
+		$data           = $this->Model_pmb_proses->getDataStore('result',$search_name,$length,$start,$column,$order);
+		$data_jum       = $this->Model_pmb_proses->getDataStore('numrows',$search_name);
 
 		$output=array();
 		$output['draw'] = $draw;
 		$output['recordsTotal'] = $output['recordsFiltered'] = $data_jum;
 
 		if($search_name !=""  ){
-			$data_jum = $this->Model_periode_pmb->getDataStore('numrows',$search_name);
+			$data_jum = $this->Model_pmb_proses->getDataStore('numrows',$search_name);
 			$output['recordsTotal']=$output['recordsFiltered']=$data_jum;
 		}
 
 		if($data){
 			foreach ($data as $key => $value) {
-				$id		= $value['kode'];
+				$id		= $value['no_pendaftaran'];
 
 				$btn 	= '';
-				$btn 	.= '<div class="btn-group">
-							<button type="button" class="btn btn-sm btn btn-light dropdown-toggle mb-1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Opsi
-							</button>
-							<div class="dropdown-menu">
-								<a href="'.base_url('admin/'.$cn.'/edit/'.$id).'" class="dropdown-item">
-									<i data-acorn-icon="edit-square"></i> Edit</a>';
+				$btn 	.= '<a href='.base_url('admin/'.$cn.'/detail/'.$id).' class="btn btn-sm btn-primary"> Proses Nim</a>';
 
-								$btn .= ' <a class="dropdown-item" onclick="';
-								$btn .= "remove('".$id."')";
-								$btn .= '" data-bs-toggle="modal" data-bs-target="#removeModal" >
-										<i data-acorn-icon="bin"></i> Delete</a>
-
-							</div>
-						</div>';
 
 				$output['data'][$key] = array(
-					$value['gel'],
-					$value['ta'],
-                    $value['tgl_awal'],
-                    $value['tgl_akhir'],
+					$value['no_pendaftaran'],
+					$value['nik'],
+                    $value['nama'],
+                    $value['email'],
 					$btn,
 				);
 			}
@@ -96,20 +81,20 @@ class Jadwal_seleksi extends Admin_Controller  {
 
         if ($this->form_validation->run() == TRUE) {
 
-			$create_form = $this->Model_periode_pmb->saveTambah();
+			$create_form = $this->Model_pmb_proses->saveTambah();
 
 			if($create_form) {
 				$this->session->set_flashdata('success', ' Berhasil Disimpan !!');
-				redirect('admin/periode_pmb', 'refresh');
+				redirect('admin/pmb', 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('admin/periode_pmb/tambah', 'refresh');
+				redirect('admin/pmb/tambah', 'refresh');
 			}
 
 		}else{
 			$this->starter();
             $this->data['ta']           = $this->Model_global->getTahunAjaran();
-			$this->render_template('periode_pmb/tambah',$this->data);
+			$this->render_template('pmb/tambah',$this->data);
 		}
 
 	}
@@ -120,28 +105,28 @@ class Jadwal_seleksi extends Admin_Controller  {
 
         if ($this->form_validation->run() == TRUE) {
 
-			$edit_form = $this->Model_periode_pmb->saveEdit();
+			$edit_form = $this->Model_pmb_proses->saveEdit();
 
 			if($edit_form) {
-				$this->session->set_flashdata('success', 'Kode  : "'.$_POST['kode'].'" <br> Berhasil Di Update !!');
-				redirect('admin/periode_pmb', 'refresh');
+				$this->session->set_flashdata('success', 'Kode  : "'.$_POST['no_pendaftaran'].'" <br> Berhasil Di Update !!');
+				redirect('admin/pmb', 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('admin/periode_pmb/edit/'.$id, 'refresh');
+				redirect('admin/pmb/edit/'.$id, 'refresh');
 			}
 
 		}else{
 			$this->starter();
             $this->data['ta']           = $this->Model_global->getTahunAjaran();
-            $this->data['periode_pmb']  = $this->Model_global->getPeriodeDaftar($id);
+            $this->data['pmb']  = $this->Model_global->getPeriodeDaftar($id);
 
             // tesx($this->data['ta']);
 
-			if($this->data['periode_pmb']['kode']){
-				$this->render_template('periode_pmb/edit',$this->data);
+			if($this->data['pmb']['no_pendaftaran']){
+				$this->render_template('pmb/edit',$this->data);
 			}else{
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('admin/periode_pmb/edit/'.$id, 'refresh');
+				redirect('admin/pmb/edit/'.$id, 'refresh');
 			}
 		}
 	}
@@ -153,7 +138,7 @@ class Jadwal_seleksi extends Admin_Controller  {
 
 		$response = array();
 		if($id) {
-			$delete = $this->Model_periode_pmb->saveDelete($id);
+			$delete = $this->Model_pmb_proses->saveDelete($id);
 
 			if($delete == true) {
 				$response['success'] 	= true;

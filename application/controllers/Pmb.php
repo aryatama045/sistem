@@ -11,10 +11,11 @@ class Pmb extends Admin_Controller
 
 	public function form()
 	{
-		$this->data['pagetitle'] = 'PMB';
+		$this->data['pagetitle'] 	= 'PMB';
 		$this->data['gel_daftar'] 	= $this->Model_pmb->getGelDaftar();
 		$this->data['jenma'] 		= $this->Model_pmb->getJenma();
 		$this->data['prodi'] 		= $this->Model_pmb->getProdi();
+		$this->data['cek_gel'] 		= $this->Model_global->cek_gel_daftar();
 
 	}
 
@@ -28,7 +29,6 @@ class Pmb extends Admin_Controller
     public function index()
     {
 		$pmb = $this->session->userdata('pmb_proses');
-		// tesx($pmb);
 
 		if (empty($pmb)){
 			$this->form();
@@ -98,6 +98,10 @@ class Pmb extends Admin_Controller
 		if (!empty($pmb)){
 			$this->form();
 			$this->data['no_pendaftaran'] = $getdatauser['no_pmb'];
+			$this->data['get_data_pmb']   = $this->Model_pmb->getDataPendaftaran($getdatauser['no_pmb']);
+			$this->data['get_dok_pmb']    = $this->Model_pmb->getDokPendaftaran($getdatauser['no_pmb']);
+			$this->data['status']         = $this->data['get_data_pmb']['status_terkini'];
+
 			$this->render_template_pmb('pmb/dashboard', $this->data);
 		}else{
 			// normal flow
@@ -212,6 +216,13 @@ class Pmb extends Admin_Controller
 			$this->Model_pmb->saveUploadBerkas($data_berkas);
 		}
 
+		$update_status = array(
+			'status_terkini' => '5'
+		);
+		$where = array('no_pendaftaran' => $_POST['no_pendaftaran']);
+		$this->db->where($where);
+		$update = $this->db->update('trn_pmb',$update_status);
+
 
 		if($count_berkas>0) {
 			$this->session->set_flashdata('success', 'Upload Berkas Berhasil Disimpan!!');
@@ -282,7 +293,7 @@ class Pmb extends Admin_Controller
 				$config['upload_path'] 		= $uploadPath;
 				$config['allowed_types'] 	= 'pdf|jpg|jpeg|png|gif';
 				$config['overwrite']     	= true;
-				//$config['max_size']             = 1024; // 1MB
+				$config['max_size']         = 5024; // 1MB
 				//$config['max_width'] = '1024';
 				//$config['max_height'] = '768';
 

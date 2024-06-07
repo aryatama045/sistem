@@ -66,6 +66,7 @@ class Model_global extends CI_Model {
         $this->db->select('*');
 		$this->db->from('mst_matkul');
         $this->db->join('mst_prodi', 'mst_matkul.kd_prog = mst_prodi.kd_prog', 'left');
+        $this->db->order_by('nama_matkul', 'ASC');
         if($kode_matkul){
             $this->db->where('kode_matkul', $kode_matkul);
             $query=$this->db->get();
@@ -80,6 +81,7 @@ class Model_global extends CI_Model {
     {
         $this->db->select('*');
 		$this->db->from('mst_ta');
+        $this->db->order_by('ta', 'DESC');
 
         if($kd_ta){
             $this->db->where('kd_ta', $kd_ta);
@@ -136,6 +138,51 @@ class Model_global extends CI_Model {
             $query=$this->db->get();
             return $query->result_array();
         }
+    }
+
+    function getPeriodeDaftar($kode = NULL)
+    {
+        $this->db->select('*');
+		$this->db->from('mst_gel_daftar');
+        $this->db->join('mst_ta', 'mst_gel_daftar.kd_ta = mst_ta.kd_ta', 'left');
+
+        if($kode){
+            $this->db->where('kode', $kode);
+            $query=$this->db->get();
+            return $query->row_array();
+        }else{
+            $query=$this->db->get();
+            return $query->result_array();
+        }
+    }
+
+    function getJabatan($id = NULL)
+    {
+        $this->db->select('*');
+		$this->db->from('mst_jabatan');
+
+        if($id){
+            $this->db->where('id', $id);
+            $query=$this->db->get();
+            return $query->row_array();
+        }else{
+            $query=$this->db->get();
+            return $query->result_array();
+        }
+    }
+
+    function cek_gel_daftar()
+    {
+        $dates = date('Y-m-d');
+        $sql = "SELECT * FROM ( SELECT *
+                            FROM mst_gel_daftar
+                            WHERE '$dates' >= DATE(tgl_awal) AND '$dates' <= DATE(tgl_akhir)
+                            ORDER BY tgl_akhir ASC
+                        )a
+                WHERE (tgl_awal <='$dates' AND tgl_akhir >='$dates') ORDER BY tgl_awal ASC";
+        $query=$this->db->query($sql);
+        return $query->row_array();
+
     }
 
 }
