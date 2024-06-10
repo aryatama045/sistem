@@ -72,6 +72,44 @@ class Pmb_validasi extends Admin_Controller  {
 		echo json_encode($output);
 	}
 
+	public function berkas_validasi($id)
+	{
+
+		$validasi = $this->input->post('nama_dok');
+
+		if($validasi){
+
+			$log_data_berkas = array();
+			for($x=0; $x < count($validasi);  $x++){
+
+				$data_berkas = array(
+					'nama_dok' 		=> $this->input->post('nama_dok')[$x],
+					'ket_validasi' 	=> $this->input->post('ket_validasi')[$x],
+					'validasi' 		=> '1',
+					'pic_validasi' 	=> $this->session->userdata('userID'),
+					'tgl_validasi' 	=> date('Y-m-d'),
+				);
+				array_push($log_data_berkas, $data_berkas);
+			}
+
+			$save = $this->Model_pmb_validasi->saveValidasi($id, $log_data_berkas);
+
+			if($save){
+				$this->session->set_flashdata('success', 'PMB Validasi, No. Pendaftaran : '.$id.' Berhasil di simpan !!');
+				redirect('admin/pmb_validasi', 'refresh');
+			}else{
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('admin/pmb_validasi/detail/'.$id, 'refresh');
+			}
+
+		}else{
+			$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+			redirect('admin/pmb_validasi/detail/'.$id, 'refresh');
+		}
+
+
+	}
+
 	public function tambah()
 	{
 
@@ -127,37 +165,6 @@ class Pmb_validasi extends Admin_Controller  {
 			}
 		}
 	}
-
-	public function berkas_validasi($id)
-	{
-
-		$validasi = $this->input->post('nama_dok');
-
-		if($validasi){
-
-			$log_data_berkas = array();
-			for($x=0; $x < count($validasi);  $x++){
-
-				$data_berkas = array(
-					'nama_dok' 		=> $this->input->post('nama_dok')[$x],
-					'ket_validasi' 	=> $this->input->post('ket_validasi')[$x],
-					'validasi' 		=> '1',
-					'pic_validasi' 	=> $this->session->userdata('username'),
-					'tgl_validasi' 	=> date('Y-m-d'),
-				);
-				array_push($log_data_berkas, $data_berkas);
-			}
-
-			tesx($id,$log_data_berkas);
-
-		}else{
-
-			tesx('Tidak ada berkas check');
-		}
-
-
-	}
-
 
 	public function delete()
 	{

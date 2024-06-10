@@ -29,6 +29,7 @@
         </li>
     </ul>
 
+    <?php $this->load->view('templates/notif') ?>
 
     <div class="tab-content">
         <div class="tab-pane " id="first" role="tabpanel" aria-labelledby="first-tab">

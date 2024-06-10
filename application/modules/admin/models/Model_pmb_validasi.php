@@ -14,7 +14,7 @@ class Model_pmb_validasi extends CI_Model
 		$this->db->select('*');
         $this->db->from('trn_pmb');
 		$this->db->where('pic_validasi', NULL);
-        $this->db->where('status_terkini', '5');
+        $this->db->where('status_terkini', '4');
         $this->db->order_by('no_pendaftaran', 'ASC');
 
         if($search_name !="" || $search_name != NULL){
@@ -37,6 +37,27 @@ class Model_pmb_validasi extends CI_Model
 	}
 
 	// ---- Action Start
+	function saveValidasi($id, $data)
+	{
+
+		$count = count($data);
+		if($count == '6'){
+			$data_h = array(
+				'pic_validasi' => $this->session->userdata('userID'),
+				'tgl_validasi' => date('Y-m-d h:i:s'),
+				'status_terkini' => '6',
+			);
+			$this->db->where(['no_pendaftaran' => $id]);
+			$this->db->update('trn_pmb', $data_h);
+		}
+
+		foreach ($data as $key => $value) {
+			$this->db->where(['no_pendaftaran' => $id]);
+			$this->db->update('trn_pmb_dok', $value);
+		}
+		return ($id)?TRUE:FALSE;
+	}
+
 	function saveTambah()
 	{
 		$data = $_POST;
