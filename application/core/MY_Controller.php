@@ -72,8 +72,8 @@ class Admin_Controller extends MY_Controller
 		$this->data['semester']		= $ta['smt'];
 
 		$getdatauser 	= $this->Model_pmb->getDataUsername($username);
-		$getdataPmb		= $this->Model_pmb->getDataPendaftaran($getdatauser['no_pmb']);
-		$this->data['no_pendaftaran']	 	= $getdatauser['no_pmb'];
+		$getdataPmb		= $this->Model_pmb->getDataPendaftaran($getdatauser['no_pmb'] ?? '');
+		$this->data['no_pendaftaran']	 	= $getdatauser['no_pmb'] ?? '';
 		$this->data['pmb']	 				= $getdataPmb;
 
 		$this->load->view('templates/header_pmb',$this->data);

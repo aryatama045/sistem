@@ -21,6 +21,55 @@
                             Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
                         </p>
                     </div>
+                    <div class="mb-5">
+                        <p class="text-small text-muted mb-2">INTERESTS</p>
+                        <p>
+                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
+                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
+                        </p>
+                    </div>
+                    <div class="mb-5">
+                        <p class="text-small text-muted mb-2">INTERESTS</p>
+                        <p>
+                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
+                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
+                        </p>
+                    </div>
+                    <div class="mb-5">
+                        <p class="text-small text-muted mb-2">INTERESTS</p>
+                        <p>
+                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
+                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
+                        </p>
+                    </div>
+                    <div class="mb-5">
+                        <p class="text-small text-muted mb-2">INTERESTS</p>
+                        <p>
+                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
+                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
+                        </p>
+                    </div>
+                    <div class="mb-5">
+                        <p class="text-small text-muted mb-2">INTERESTS</p>
+                        <p>
+                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
+                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
+                        </p>
+                    </div>
+                    <div class="mb-5">
+                        <p class="text-small text-muted mb-2">INTERESTS</p>
+                        <p>
+                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
+                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
+                        </p>
+                    </div>
+                    <div class="mb-5">
+                        <p class="text-small text-muted mb-2">INTERESTS</p>
+                        <p>
+                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
+                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
+                        </p>
+                    </div>
                     <div>
                         <p class="text-small text-muted mb-2">CONTACT</p>
                         <a href="#" class="d-block body-link mb-1">
@@ -38,7 +87,7 @@
 
 
         <div class="col-12 col-md-4">
-            <div class="card">
+            <div class="card" style="position:-webkit-sticky; position:sticky; top: 5rem;">
                 <div class="card-body mb-n5">
                     <div class="mb-3">
                         <div class="mb-2">

@@ -31,22 +31,21 @@ class Mahasiswa extends Admin_Controller  {
 
 	public function detail($id)
 	{
-		$this->data['mahasiswa'] = $this->Model_global->getMhsNim($id);
+		$this->starter();
 
-		if($this->data['mahasiswa']['nim']){
-			$this->starter();
-			// $this->data['data_mhs2'] 	 = $this->Model_mahasiswa->detail($id);
+		$this->data['data_mhs'] = $this->Model_mahasiswa->detail($id);
 
-			$this->data['mhs_user'] 	 = $this->Model_mahasiswa->getMhsUserlogin($id);
+		if($this->data['data_mhs']['nim']){
 
+			$this->data['mhs_user'] 	= $this->Model_mahasiswa->getMhsUserlogin($id);
 
-			$this->data['data_mhs']  = $this->Model_pmb->getDataPendaftaran($this->data['mhs_user']['no_pmb']);
-			// tesx($this->data['data_mhs']);
-			$this->data['dok_pmb']    	 = $this->Model_pmb->getDokPendaftaran($this->data['mhs_user']['no_pmb']);
+			$this->data['data_pmb'] 	= $this->Model_pmb->getDataPendaftaran($this->data['mhs_user']['no_pmb']);
+
+			$this->data['dok_pmb']    	= $this->Model_pmb->getDokPendaftaran($this->data['mhs_user']['no_pmb']);
 
 			$this->render_template('mahasiswa/detail',$this->data);
 		}else{
-			$this->session->set_flashdata('error', 'Nim Tidak Terdaftar, Silahkan Cek kembali !!');
+			$this->session->set_flashdata('error', 'Tidak Terdaftar, Silahkan Cek kembali !!');
 			redirect('users/mahasiswa', 'refresh');
 		}
 
@@ -61,7 +60,6 @@ class Mahasiswa extends Admin_Controller  {
 		$start          = $_REQUEST['start'];
 		$column 		= $_REQUEST['order'][0]['column'];
 		$order 			= $_REQUEST['order'][0]['dir'];
-		// $search_nama   	= $_REQUEST['columns'][0]['search']["value"];
 
         $output['data']	= array();
         $search_name    = $this->input->post('search_name');
@@ -77,8 +75,6 @@ class Mahasiswa extends Admin_Controller  {
 			$data_jum = $this->Model_mahasiswa->getDataStore('numrows',$search_name);
 			$output['recordsTotal']=$output['recordsFiltered']=$data_jum;
 		}
-
-        // tesx($data_jum);
 
 		if($data){
 			foreach ($data as $key => $value) {

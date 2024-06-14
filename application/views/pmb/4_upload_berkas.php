@@ -48,7 +48,7 @@
                         <tr>
                             <th scope="row">1</th>
                             <td>IJAZAH<span style="color:red;">*</span></td>
-                            <td>Ijazah SMK/SMA/MA/Sederajat <br> Atau dapat melampirkan surat <br> keterangan Lulus(SKL)</td>
+                            <td></td>
                             <td>Belum Validasi</td>
                             <td></td>
                             <td>

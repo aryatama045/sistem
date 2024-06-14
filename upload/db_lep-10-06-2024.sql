@@ -16,6 +16,25 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_lep` /*!40100 DEFAULT CHARACTER SET 
 
 USE `db_lep`;
 
+/*Table structure for table `mst_agama` */
+
+DROP TABLE IF EXISTS `mst_agama`;
+
+CREATE TABLE `mst_agama` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+/*Data for the table `mst_agama` */
+
+insert  into `mst_agama`(`id`,`nama`) values 
+(1,'Islam'),
+(2,'Kristen'),
+(3,'Budha'),
+(4,'Hindu'),
+(5,'Konghuchu');
+
 /*Table structure for table `mst_biaya` */
 
 DROP TABLE IF EXISTS `mst_biaya`;
@@ -88,7 +107,7 @@ CREATE TABLE `mst_gel_daftar` (
   `tgl_awal` datetime DEFAULT NULL,
   `tgl_akhir` datetime DEFAULT NULL,
   PRIMARY KEY (`kode`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mst_gel_daftar` */
 
@@ -97,8 +116,7 @@ insert  into `mst_gel_daftar`(`kode`,`kd_ta`,`gel`,`tgl_awal`,`tgl_akhir`) value
 (2,15,1,'2023-12-01 00:00:00','2024-02-12 00:00:00'),
 (3,15,2,'2024-02-26 00:00:00','2024-04-15 00:00:00'),
 (4,15,3,'2024-05-01 00:00:00','2024-06-03 00:00:00'),
-(5,16,1,'2024-06-04 00:00:00','2024-08-05 00:00:00'),
-(6,17,1,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+(5,16,1,'2024-06-04 00:00:00','2024-08-05 00:00:00');
 
 /*Table structure for table `mst_jabatan` */
 
@@ -130,7 +148,7 @@ CREATE TABLE `mst_jenis_biaya` (
   `kd_jenis` int(11) NOT NULL AUTO_INCREMENT,
   `nama_biaya` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`kd_jenis`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mst_jenis_biaya` */
 
@@ -629,7 +647,8 @@ insert  into `permission_roles`(`role_id`,`permission_id`) values
 (1,29),
 (1,30),
 (1,31),
-(1,32);
+(1,32),
+(1,33);
 
 /*Table structure for table `permissions` */
 
@@ -650,24 +669,24 @@ CREATE TABLE `permissions` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 /*Data for the table `permissions` */
 
 insert  into `permissions`(`id`,`name`,`display_name`,`description`,`status`,`parent_id`,`link`,`icon`,`sequence`,`created_at`,`updated_at`,`deleted_at`) values 
 (1,'dashboard','Dashboard','Dashboard\r\n',1,0,'dashboard','home',1,NULL,NULL,NULL),
 (2,'master','Master','HEAD-MASTER\r\n',1,0,'master','books',3,NULL,NULL,NULL),
-(3,'master-tahun_ajaran','Tahun Ajaran','SUB-MASTER',1,2,'master/tahun_ajaran',NULL,3,NULL,NULL,NULL),
-(4,'master-prodi','Prodi','SUB-MASTER',1,2,'master/prodi',NULL,1,NULL,NULL,NULL),
+(3,'master-tahun_ajaran','Tahun Ajaran','SUB-MASTER',1,2,'master/tahun_ajaran',NULL,7,NULL,NULL,NULL),
+(4,'master-prodi','Prodi','SUB-MASTER',1,2,'master/prodi',NULL,6,NULL,NULL,NULL),
 (5,'users','Manage Users','HEAD-USERS',1,0,'users','user',2,NULL,NULL,NULL),
 (6,'users-mahasiswa','Mahasiswa','SUB-USERS',1,5,'users/mahasiswa',NULL,NULL,NULL,NULL,NULL),
 (7,'users-dosen','Dosen','SUB-USERS',1,5,'users/dosen',NULL,NULL,NULL,NULL,NULL),
 (8,'settings','Setting',NULL,1,0,'settings','tool',7,NULL,NULL,NULL),
 (9,'settings-general','General',NULL,1,8,'settings/general',NULL,1,NULL,NULL,NULL),
 (10,'settings-role','Role Permission',NULL,1,8,'settings/role',NULL,2,NULL,NULL,NULL),
-(11,'master-mata_kuliah','Mata Kuliah',NULL,1,2,'master/mata_kuliah','books',2,NULL,NULL,NULL),
-(12,'master-biaya','Biaya',NULL,1,2,'master/biaya',NULL,4,NULL,NULL,NULL),
-(14,'master-jenis_biaya','Jenis Biaya',NULL,1,2,'master/jenis_biaya',NULL,5,NULL,NULL,NULL),
+(11,'master-mata_kuliah','Mata Kuliah',NULL,1,2,'master/mata_kuliah','books',5,NULL,NULL,NULL),
+(12,'master-biaya','Biaya',NULL,1,2,'master/biaya',NULL,2,NULL,NULL,NULL),
+(14,'master-jenis_biaya','Jenis Biaya',NULL,1,2,'master/jenis_biaya',NULL,4,NULL,NULL,NULL),
 (15,'pmb-dashboard_pmb','Dashboard PMB',NULL,1,NULL,'pmb/dashboard_pmb',NULL,NULL,NULL,NULL,NULL),
 (16,'pmb-biodata','Biodata',NULL,1,NULL,'pmb-biodata',NULL,NULL,NULL,NULL,NULL),
 (17,'admin','PMB',NULL,1,0,'admin','quiz',4,NULL,NULL,NULL),
@@ -682,9 +701,10 @@ insert  into `permissions`(`id`,`name`,`display_name`,`description`,`status`,`pa
 (27,'khs/uas','UAS',NULL,1,25,'khs/uas',NULL,2,NULL,NULL,NULL),
 (28,'khs/absensi','Absensi',NULL,1,25,'khs/absensi',NULL,3,NULL,NULL,NULL),
 (29,'admin-jadwal_seleksi','Jadwal Seleksi',NULL,1,17,'admin/jadwal_seleksi',NULL,4,NULL,NULL,NULL),
-(30,'master-jabatan','Jabatan',NULL,1,2,'master/jabatan',NULL,6,NULL,NULL,NULL),
+(30,'master-jabatan','Jabatan',NULL,1,2,'master/jabatan',NULL,3,NULL,NULL,NULL),
 (31,'admin-periode_pmb','Periode PMB',NULL,1,17,'admin/periode_pmb',NULL,1,NULL,NULL,NULL),
-(32,'admin-pmb_validasi','PMB Validasi',NULL,1,17,'admin/pmb_validasi',NULL,2,NULL,NULL,NULL);
+(32,'admin-pmb_validasi','PMB Validasi',NULL,1,17,'admin/pmb_validasi',NULL,2,NULL,NULL,NULL),
+(33,'master-agama','Agama',NULL,1,2,'master/agama',NULL,1,NULL,NULL,NULL);
 
 /*Table structure for table `roles` */
 
@@ -822,7 +842,7 @@ insert  into `trn_pmb`(`no_pendaftaran`,`nik`,`nama`,`email`,`no_hp`,`telepon`,`
 ('PMB-24050006','02934890','Roror','aryatama045@gmail.com','098120983102',NULL,NULL,NULL,'2023',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,2,1,1,NULL,'2024-05-20 15:20:04',NULL,NULL,NULL,1),
 ('PMB-24050007','0912391239','kang handri','handri.it@optiktunggal.com','081234566778',NULL,NULL,NULL,'2024',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,1,1,1,NULL,'2024-05-21 09:10:14',NULL,NULL,NULL,NULL),
 ('PMB-24050008','123','asd','asd@asd.ghj','234',NULL,NULL,NULL,'2021',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,0,0,1,NULL,'2024-05-22 08:58:37',NULL,NULL,NULL,NULL),
-('PMB-24050009','555666','aryatama','rizky.it@optiktunggal.com','0812121212',NULL,NULL,NULL,'2020',NULL,'1995-07-19 11:33:44','islam','P','',NULL,NULL,'Jl. Hoschokroaminoto Larangan Indah',NULL,NULL,NULL,NULL,NULL,4,1,1,5,'PMB-24050009-banner1.png','2024-05-28 11:07:39',NULL,NULL,NULL,NULL);
+('PMB-24050009','555666','aryatama','rizky.it@optiktunggal.com','0812121212',NULL,NULL,NULL,'2020',NULL,'1995-07-19 11:33:44','islam','L','',NULL,NULL,'Jl. Hoschokroaminoto Larangan Indah',NULL,NULL,NULL,NULL,NULL,4,1,1,5,'PMB-24050009-banner1.png','2024-05-28 11:07:39','1','2024-06-10 02:40:12',NULL,NULL);
 
 /*Table structure for table `trn_pmb_dok` */
 
@@ -839,17 +859,17 @@ CREATE TABLE `trn_pmb_dok` (
   `pic_validasi` int(11) DEFAULT NULL,
   `tgl_validasi` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `trn_pmb_dok` */
 
 insert  into `trn_pmb_dok`(`id`,`no_pendaftaran`,`nama_dok`,`dokumen`,`tgl_input`,`validasi`,`ket_validasi`,`pic_validasi`,`tgl_validasi`) values 
-(1,'PMB-24050009','Ijazah','PMB-24050009-0-11.JPG','2005-06-24 11:12:43',0,'Belum Validasi',NULL,NULL),
-(2,'PMB-24050009','Ktp','PMB-24050009-1-22.JPG','2005-06-24 11:12:43',0,'Belum Validasi',NULL,NULL),
-(3,'PMB-24050009','Pas Photo 3X4','PMB-24050009-2-class-routine.pdf','2005-06-24 11:12:43',0,'Belum Validasi',NULL,NULL),
-(4,'PMB-24050009','Kartu Keluarga','PMB-24050009-3-1708569719800.jpg','2005-06-24 11:12:43',0,'Belum Validasi',NULL,NULL),
-(5,'PMB-24050009','Surat Keterangan Tidak Buta Warna','PMB-24050009-4-eagan-hsu-N4OoQha7X4Q-unsplash.jpg','2005-06-24 11:12:43',0,'Belum Validasi',NULL,NULL),
-(6,'PMB-24050009','Scan Rapor SMA/SMK','PMB-24050009-5-about-us1.png','2005-06-24 11:12:43',1,'Sudah Valid',NULL,NULL);
+(7,'PMB-24050009','Ijazah','PMB-24050009-0-11.JPG','2010-06-24 02:28:10',1,'Sudah',1,'2024-06-10 00:00:00'),
+(8,'PMB-24050009','Ktp','PMB-24050009-1-22.JPG','2010-06-24 02:28:11',1,'Sudah',1,'2024-06-10 00:00:00'),
+(9,'PMB-24050009','Pas Photo 3X4','PMB-24050009-2-about-us1.png','2010-06-24 02:28:11',1,'Sudah',1,'2024-06-10 00:00:00'),
+(10,'PMB-24050009','Kartu Keluarga','PMB-24050009-3-wasa-crispbread-AOgRd7Ah8-U-unsplash (1).jpg','2010-06-24 02:28:11',1,'Sudah',1,'2024-06-10 00:00:00'),
+(11,'PMB-24050009','Ijazah','PMB-24050009-4-wisata-di-kota-tangerang-foto-pemkot-tangerang-4y3qr-zste.jpg','2010-06-24 02:28:11',1,'Sudah',1,'2024-06-10 00:00:00'),
+(12,'PMB-24050009','Ijazah','PMB-24050009-5-about-us1.png','2010-06-24 02:28:11',1,'Sudah',1,'2024-06-10 00:00:00');
 
 /*Table structure for table `users` */
 

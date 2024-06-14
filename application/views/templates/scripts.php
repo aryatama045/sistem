@@ -50,16 +50,19 @@
     $(document).ready(function() {
         $(function() {
             $('#selectTanggal').datepicker({
+                format: 'yyyy-mm-dd',
                 autoclose: true,
             });
         });
         $(function() {
             $('#selectTanggalAwal').datepicker({
+                format: 'yyyy-mm-dd',
                 autoclose: true,
             });
         });
         $(function() {
             $('#selectTanggalAkhir').datepicker({
+                format: 'yyyy-mm-dd',
                 autoclose: true,
             });
         });

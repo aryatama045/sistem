@@ -19,7 +19,9 @@ class Dosen extends Admin_Controller  {
 
 	public function starter()
 	{
-
+		$this->data['agama'] = $this->Model_global->getAgama();
+		$this->data['jabatan'] = $this->Model_global->getJabatan();
+		$this->data['kota'] = $this->Model_global->getKota();
 	}
 
 
@@ -27,22 +29,6 @@ class Dosen extends Admin_Controller  {
 	{
 		$this->starter();
 		$this->render_template('dosen/index',$this->data);
-	}
-
-	public function detail($id)
-	{
-		$this->data['dosen'] = $this->Model_global->getMhsNim($id);
-
-		if($this->data['dosen']['nim']){
-			$this->starter();
-			$this->data['dosen'] = $this->Model_dosen->detail($id);
-
-			$this->render_template('dosen/detail',$this->data);
-		}else{
-			$this->session->set_flashdata('error', 'Nim Tidak Terdaftar, Silahkan Cek kembali !!');
-			redirect('users/dosen', 'refresh');
-		}
-
 	}
 
     public function store()
@@ -54,7 +40,6 @@ class Dosen extends Admin_Controller  {
 		$start          = $_REQUEST['start'];
 		$column 		= $_REQUEST['order'][0]['column'];
 		$order 			= $_REQUEST['order'][0]['dir'];
-		// $search_nama = $_REQUEST['columns'][0]['search']["value"];
 
         $output['data']	= array();
         $search_name    = $this->input->post('search_name');
@@ -95,19 +80,19 @@ class Dosen extends Admin_Controller  {
 								</div>
 							</div>';
 
-				if($value['status'] == 1){
+				if($value['aktif'] == 1){
 					$aktif = '<div class="btn-group"><span class=" btn-outline-info btn-sm">Aktif</span></div>';
 				}else{
 					$aktif = '<div class="btn-group"><span class=" btn-outline-danger btn-sm">Nonktif</span></div>';
 				}
 
-				$nama_dosen = $value['gelar_depan'].' '.capital(uppercase($value['nama'])) .' '.$value['gelar_blk'];
+				$nama_dosen = $value['gelar_depan'].' '.capital(strtolower($value['nama'])) .', '.$value['gelar_blk'];
 				$output['data'][$key] = array(
 					$value['nip'],
 					$value['nidn'],
 					$nama_dosen,
-					capital(uppercase($value['jabatan'])),
-                    $aktif,
+					capital(uppercase($value['nm_jabatan'])),
+                    $value['status'],
 					$btn,
 				);
 			}
@@ -118,6 +103,21 @@ class Dosen extends Admin_Controller  {
 		echo json_encode($output);
 	}
 
+	public function detail($id)
+	{
+		$this->data['dosen'] = $this->Model_dosen->detail($id);
+
+		if($this->data['dosen']['nip']){
+			$this->starter();
+			$this->data['dosen'] = $this->Model_dosen->detail($id);
+
+			$this->render_template('dosen/detail',$this->data);
+		}else{
+			$this->session->set_flashdata('error', 'Tidak Terdaftar, Silahkan Cek kembali !!');
+			redirect('users/dosen', 'refresh');
+		}
+
+	}
 
 	public function tambah()
 	{
@@ -145,10 +145,11 @@ class Dosen extends Admin_Controller  {
 
 	public function edit($id)
 	{
+
 		$this->form_validation->set_rules('nip' ,'Nip ' , 'required');
         if ($this->form_validation->run() == TRUE) {
 
-			$edit_form = $this->Model_dosen->saveEdit();
+			$edit_form = $this->Model_dosen->saveEdit($id);
 
 			if($edit_form) {
 				$this->session->set_flashdata('success', 'Nip  : "'.$_POST['nip'].'" <br> Berhasil Di Update !!');
@@ -160,13 +161,16 @@ class Dosen extends Admin_Controller  {
 
 		}else{
 			$this->starter();
-			$this->data['dosen'] = $this->Model_global->getDosenNip($id);
+			$this->data['dosen'] = $this->Model_dosen->detail($id);
 
 			if($this->data['dosen']['nip']){
+				$this->starter();
+				$this->data['dosen'] = $this->Model_dosen->detail($id);
+
 				$this->render_template('dosen/edit',$this->data);
 			}else{
-				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('users/dosen/edit/'.$id, 'refresh');
+				$this->session->set_flashdata('error', 'NIP Tidak Terdaftar, Silahkan Cek kembali !!');
+				redirect('users/dosen', 'refresh');
 			}
 		}
 	}

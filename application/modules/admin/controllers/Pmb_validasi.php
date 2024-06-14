@@ -72,16 +72,18 @@ class Pmb_validasi extends Admin_Controller  {
 		echo json_encode($output);
 	}
 
-	public function berkas_validasi($id)
+	public function berkas_validasi($no_pmb)
 	{
 
-		$validasi = $this->input->post('nama_dok');
+		$validasi = $this->input->post('id');
+
+		$get_dok  = $this->Model_pmb->getDokPendaftaran($no_pmb);
 
 		if($validasi){
 
-			$log_data_berkas = array();
-			for($x=0; $x < count($validasi);  $x++){
-
+			$count 				= count($validasi);
+			for($x=0; $x < $count;  $x++){
+				$id_dok = $this->input->post('id')[$x];
 				$data_berkas = array(
 					'nama_dok' 		=> $this->input->post('nama_dok')[$x],
 					'ket_validasi' 	=> $this->input->post('ket_validasi')[$x],
@@ -89,25 +91,60 @@ class Pmb_validasi extends Admin_Controller  {
 					'pic_validasi' 	=> $this->session->userdata('userID'),
 					'tgl_validasi' 	=> date('Y-m-d'),
 				);
-				array_push($log_data_berkas, $data_berkas);
+				$this->Model_pmb_validasi->saveBerkasValidasi($no_pmb, $id_dok, $data_berkas);
 			}
 
-			$save = $this->Model_pmb_validasi->saveValidasi($id, $log_data_berkas);
+			if($count == '6'){
+				$save = $this->Model_pmb_validasi->saveValidasi($no_pmb);
+			}else{
+				$save = TRUE;
+			}
 
 			if($save){
-				$this->session->set_flashdata('success', 'PMB Validasi, No. Pendaftaran : '.$id.' Berhasil di simpan !!');
+				$this->session->set_flashdata('success', 'PMB Validasi, No. Pendaftaran : '.$no_pmb.' Berhasil di simpan !!');
 				redirect('admin/pmb_validasi', 'refresh');
 			}else{
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('admin/pmb_validasi/detail/'.$id, 'refresh');
+				redirect('admin/pmb_validasi/detail/'.$no_pmb, 'refresh');
 			}
 
 		}else{
 			$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-			redirect('admin/pmb_validasi/detail/'.$id, 'refresh');
+			redirect('admin/pmb_validasi/detail/'.$no_pmb, 'refresh');
 		}
 
 
+	}
+
+	public function detail($id)
+	{
+		$this->form_validation->set_rules('gel' ,'Periode ' , 'required');
+
+        if ($this->form_validation->run() == TRUE) {
+
+			$edit_form = $this->Model_pmb_validasi->saveProses();
+
+			if($edit_form) {
+				$this->session->set_flashdata('success', 'Kode  : "'.$_POST['no_pendaftaran'].'" <br> Berhasil Di Update !!');
+				redirect('admin/pmb_validasi', 'refresh');
+			} else {
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('admin/pmb_validasi/edit/'.$id, 'refresh');
+			}
+
+		}else{
+			$this->starter();
+            $this->data['ta']            = $this->Model_global->getTahunAjaran();
+            $this->data['pmb_validasi']  = $this->Model_pmb->getDataPendaftaran($id);
+			$this->data['dok_pmb']    	 = $this->Model_pmb->getDokPendaftaran($id);
+
+			if($this->data['pmb_validasi']['no_pendaftaran']){
+				$this->render_template('pmb_validasi/detail',$this->data);
+			}else{
+				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
+				redirect('admin/pmb_validasi/detail/'.$id, 'refresh');
+			}
+		}
 	}
 
 	public function tambah()
@@ -133,37 +170,6 @@ class Pmb_validasi extends Admin_Controller  {
 			$this->render_template('pmb_validasi/tambah',$this->data);
 		}
 
-	}
-
-	public function detail($id)
-	{
-		$this->form_validation->set_rules('gel' ,'Periode ' , 'required');
-
-        if ($this->form_validation->run() == TRUE) {
-
-			$edit_form = $this->Model_pmb_validasi->saveEdit();
-
-			if($edit_form) {
-				$this->session->set_flashdata('success', 'Kode  : "'.$_POST['no_pendaftaran'].'" <br> Berhasil Di Update !!');
-				redirect('admin/pmb_validasi', 'refresh');
-			} else {
-				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('admin/pmb_validasi/edit/'.$id, 'refresh');
-			}
-
-		}else{
-			$this->starter();
-            $this->data['ta']            = $this->Model_global->getTahunAjaran();
-            $this->data['pmb_validasi']  = $this->Model_pmb->getDataPendaftaran($id);
-			$this->data['dok_pmb']    	 = $this->Model_pmb->getDokPendaftaran($id);
-
-			if($this->data['pmb_validasi']['no_pendaftaran']){
-				$this->render_template('pmb_validasi/detail',$this->data);
-			}else{
-				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('admin/pmb_validasi/detail/'.$id, 'refresh');
-			}
-		}
 	}
 
 	public function delete()

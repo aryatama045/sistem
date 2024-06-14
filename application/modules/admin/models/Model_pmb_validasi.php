@@ -37,25 +37,25 @@ class Model_pmb_validasi extends CI_Model
 	}
 
 	// ---- Action Start
-	function saveValidasi($id, $data)
+	function saveValidasi($id)
 	{
 
-		$count = count($data);
-		if($count == '6'){
-			$data_h = array(
-				'pic_validasi' => $this->session->userdata('userID'),
-				'tgl_validasi' => date('Y-m-d h:i:s'),
-				'status_terkini' => '6',
-			);
-			$this->db->where(['no_pendaftaran' => $id]);
-			$this->db->update('trn_pmb', $data_h);
-		}
-
-		foreach ($data as $key => $value) {
-			$this->db->where(['no_pendaftaran' => $id]);
-			$this->db->update('trn_pmb_dok', $value);
-		}
+		$data_h = array(
+			'pic_validasi' => $this->session->userdata('userID'),
+			'tgl_validasi' => date('Y-m-d h:i:s'),
+			'status_terkini' => '5',
+		);
+		$this->db->where(['no_pendaftaran' => $id]);
+		$this->db->update('trn_pmb', $data_h);
 		return ($id)?TRUE:FALSE;
+	}
+
+	function saveBerkasValidasi($no_pmb, $id_dok, $data)
+	{
+
+		$this->db->where(['no_pendaftaran' => $no_pmb, 'id' => $id_dok]);
+		$this->db->update('trn_pmb_dok', $data);
+		return ($no_pmb)?TRUE:FALSE;
 	}
 
 	function saveTambah()

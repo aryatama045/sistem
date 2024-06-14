@@ -48,7 +48,7 @@
 
 <div class="row gx-4 gy-2">
     <ul class="nav nav-tabs separator-tabs ml-0 mb-5" role="tablist">
-      <li class="nav-item">
+    <li class="nav-item">
             <a class="nav-link active" id="first-tab" data-bs-toggle="tab" href="#first" role="tab"
                 aria-controls="first" aria-selected="true">PROFILE</a>
         </li>
@@ -62,94 +62,88 @@
 
     <div class="tab-content">
 
-      <div class="tab-pane  show active" id="first" role="tabpanel" aria-labelledby="first-tab">
-          <div class="row">
-              <div class="col-12 col-xl-4 col-xxl-3">
-                  <div class="card" style="position:-webkit-sticky; position: sticky; top: 3rem;">
+        <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+            <div class="row">
+                <div class="col-12 col-xl-4 col-xxl-3">
+                    <div class="card" style="position:-webkit-sticky; position: sticky; top: 3rem;">
 
-                      <div class="card-body mb-n5">
+                        <div class="card-body mb-n5">
 
-                          <div class="d-flex align-items-center flex-column">
-                              <div class="mb-2 d-flex align-items-center flex-column">
-                                  <?php if(!empty($data_mhs['foto_profil'])){ ?>
-                                      <a data-fancybox="foto-profil" data-src="<?= base_url('upload/berkas/'.$data_mhs['no_pendaftaran'].'/foto/'.$data_mhs['foto_profil']) ?>" >
-                                          <img src="<?= base_url('upload/berkas/'.$data_mhs['no_pendaftaran'].'/foto/'.$data_mhs['foto_profil']) ?>" class="img-fluid rounded-xl mb-2" alt="thumb" />
-                                      </a>
-                                  <?php } else { ?>
-                                      <a data-fancybox="foto-profil" data-src="<?= base_url('assets/') ?>img/profile/profile.webp" >
-                                          <img src="<?= base_url('assets/') ?>img/profile/profile.webp" class="img-fluid rounded-xl mb-2" alt="thumb" />
-                                      </a>
-                                  <?php } ?>
+                            <div class="d-flex align-items-center flex-column">
+                                <div class="mb-2 d-flex align-items-center flex-column">
+                                    <?php if(!empty($data_mhs['foto_profil'])){ ?>
+                                            <a data-fancybox="foto-profil" data-src="<?= base_url('upload/berkas/'.$data_mhs['no_pendaftaran'].'/foto/'.$data_mhs['foto_profil']) ?>" >
+                                                <img src="<?= base_url('upload/berkas/'.$data_mhs['no_pendaftaran'].'/foto/'.$data_mhs['foto_profil']) ?>" class="img-fluid rounded-xl mb-2" alt="thumb" />
+                                            </a>
+                                    <?php } else { ?>
+                                            <a data-fancybox="foto-profil" data-src="<?= base_url('assets/') ?>img/profile/profile.webp" >
+                                                <img src="<?= base_url('assets/') ?>img/profile/profile.webp" class="img-fluid rounded-xl mb-2" alt="thumb" />
+                                            </a>
+                                    <?php } ?>
 
-                                  <div class="h5 text-black text-center mb-1"><b><?= $data_mhs['no_pendaftaran'] ?></b></div>
-                                  <div class="h4 text-black text-center mb-1"><?= capital($data_mhs['nama']) ?></div>
+                                    <div class="h5 text-black text-center mb-1"><b><?= $data_mhs['no_pendaftaran'] ?></b></div>
+                                    <div class="h4 text-black text-center mb-1"><?= capital($data_mhs['nama']) ?></div>
 
-                              </div>
-                          </div>
+                                </div>
+                            </div>
 
-                          <div class="mb-2">
-                              <div>
-                                  <div class="row g-0 mb-1">
-                                      <div class="col-auto">
-                                          <div class="sw-3 me-1">
-                                              <i data-acorn-icon="phone" class="text-primary" data-acorn-size="17"></i>
-                                          </div>
-                                      </div>
-                                      <div class="col text-medium text-black"><b> <?= $data_mhs['no_hp'] ?> </b></div>
-                                  </div>
-                                  <div class="row g-0 mb-1">
-                                      <div class="col-auto">
-                                          <div class="sw-3 me-1">
-                                              <i data-acorn-icon="email" class="text-primary" data-acorn-size="17"></i>
-                                          </div>
-                                      </div>
-                                      <div class="col text-black"><b><?= $data_mhs['email'] ?></b></div>
-                                  </div>
+                            <div class="mb-2">
+                                <div>
+                                    <div class="row g-0 mb-1">
+                                        <div class="col-auto">
+                                            <div class="sw-3 me-1">
+                                                <i data-acorn-icon="phone" class="text-primary" data-acorn-size="17"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col text-medium text-black"><b> <?= $data_mhs['no_hp'] ?> </b></div>
+                                    </div>
+                                    <div class="row g-0 mb-1">
+                                        <div class="col-auto">
+                                            <div class="sw-3 me-1">
+                                                <i data-acorn-icon="email" class="text-primary" data-acorn-size="17"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col text-black"><b><?= $data_mhs['email'] ?></b></div>
+                                    </div>
 
-                                  <div class="row g-0 mb-1">
-                                      <div class="col-auto">
-                                          <div class="sw-3 me-1">
-                                              <i data-acorn-icon="pin" class="text-primary" data-acorn-size="17"></i>
-                                          </div>
-                                      </div>
-                                      <div class="col text-black"><?= $data_mhs['alamat'] ?></div>
-                                  </div>
-                              </div>
-                          </div>
+                                    <div class="row g-0 mb-1">
+                                        <div class="col-auto">
+                                            <div class="sw-3 me-1">
+                                                <i data-acorn-icon="pin" class="text-primary" data-acorn-size="17"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col text-black"><?= $data_mhs['alamat'] ?></div>
+                                    </div>
+                                </div>
+                            </div>
 
-                      </div>
-                  </div>
-              </div>
+                        </div>
+                    </div>
+                </div>
 
-              <div class="col-12 col-xl-8 col-xxl-9">
-                  <!-- Activity Start -->
-                  <div class="card mb-5">
-                      <div class="card-body">
-
-                          <?php $this->load->view('1biodata') ?>
-
-                      </div>
-                  </div>
-                  <!-- Activity End -->
-              </div>
-          </div>
-      </div>
-
-      <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
-          <div class="row">
-              <div class="col-12 col-md-12">
-                  <div class="card d-flex flex-row mb-4">
-                      <div class="card-body">
-                          <?php $this->load->view('2berkas') ?>
-                      </div>
-                  </div>
-              </div>
+                <div class="col-12 col-xl-8 col-xxl-9">
+                        <!-- Activity Start -->
+                        <div class="card mb-5">
+                                <div class="card-body">
+                                        <?php $this->load->view('1biodata') ?>
+                                </div>
+                        </div>
+                        <!-- Activity End -->
+                </div>
+            </div>
+        </div>
 
 
-          </div>
-      </div>
-
+        <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="card d-flex flex-row mb-4">
+                        <div class="card-body">
+                            <?php $this->load->view('2berkas') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
 </div>

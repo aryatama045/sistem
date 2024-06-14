@@ -14,14 +14,20 @@ class Model_dosen extends CI_Model
 	public function getDataStore($result, $search_name = "", $length = "", $start = "", $column = "", $order = "")
 	{
 
-		$this->db->select('*');
+		$this->db->select("mst_dosen.*, mst_jabatan.nama nm_jabatan,
+			CASE WHEN (status)= 'T' THEN 'TETAP'
+			WHEN (status)='P' THEN 'PKWT'
+			WHEN (status)='H' THEN 'Honorer'
+			ELSE 'Belum Ada Status' END status
+		");
         $this->db->from($this->table);
+		$this->db->join('mst_jabatan', 'mst_dosen.jabatan = mst_jabatan.id', 'left');
         $this->db->order_by('nip', 'ASC');
 
         if($search_name !="")
 			$this->db->like('nip',$search_name);
 			$this->db->or_like('nidn',$search_name);
-            $this->db->or_like('nama',$search_name);
+            $this->db->or_like('mst_dosen.nama',$search_name);
 
 		if($result == 'result'){
 			$this->db->limit($length,$start);
@@ -37,13 +43,19 @@ class Model_dosen extends CI_Model
 
 	public function detail($id)
 	{
-		$this->db->select('*');
+		$this->db->select("mst_dosen.*, mst_agama.nama nm_agama, mst_jabatan.nama nm_jabatan, mst_kota.nm_kota,
+			CASE WHEN (status)= 'T' THEN 'TETAP'
+			WHEN (status)='P' THEN 'PKWT'
+			WHEN (status)='H' THEN 'Honorer'
+			ELSE 'Belum Ada Status' END status
+		");
         $this->db->from($this->table);
+		$this->db->join('mst_agama', 'mst_dosen.agama = mst_agama.id', 'left');
+		$this->db->join('mst_jabatan', 'mst_dosen.jabatan = mst_jabatan.id', 'left');
+		$this->db->join('mst_kota', 'mst_dosen.kota = mst_kota.id', 'left');
 		$this->db->where('nip',$id);
 		$query	= $this->db->get();
-		// die(nl2br($this->db->last_query()));
 		return $query->row_array();
-
 	}
 
 	// ---- Action Start
@@ -51,7 +63,6 @@ class Model_dosen extends CI_Model
 	{
 		$data = $_POST;
 		$insert = $this->db->insert($this->table, $data);
-
 		return ($insert)?TRUE:FALSE;
 	}
 

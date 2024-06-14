@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-6">
             <label class="mb-3 top-label">
-                <p class="form-control"><?= date('d-M-Y',strtotime($data_mhs['tgl_input'])) ?></p>
+                <p class="form-control"><?= date('d-M-Y',strtotime($data_mhs['tgl_masuk'])) ?></p>
                 <span class="text-black text-medium"><b>TANGGAL DAFTAR</b></span>
             </label>
         </div>
@@ -22,7 +22,9 @@
         <div class="col-md-6">
             <label class="mb-3 top-label">
                 <p class="form-control">
-                    <?= ($data_mhs['nama'])?$data_mhs['nama']:'Belum input'; ?>
+                    <strong>
+                    <?= ($data_mhs['nama_mhs'])?capital(strtolower($data_mhs['nama_mhs'])):'Belum input'; ?>
+                    </strong>
                 </p>
                 <span class="text-black"><b>NAMA LENGKAP </b></span>
             </label>
@@ -30,7 +32,7 @@
         <div class="col-md-6">
             <label class="mb-3 top-label">
                 <p class="form-control">
-                    <?= ($data_mhs['jenis_kelamin']=='L')?'Laki-Laki':'Perempuan'; ?>
+                    <?= $data_mhs['jk'] ?>
                 </p>
                 <span class="text-black"><b>JENIS KELAMIN </b></span>
             </label>
@@ -62,7 +64,7 @@
         <div class="col-md-6">
             <label class="mb-3 top-label">
                 <p class="form-control">
-                    <?= ($data_mhs['tanggal_lahir'])?date('d-M-Y',strtotime($data_mhs['tanggal_lahir'])):'Belum input'; ?>
+                    <?= ($data_mhs['tgl_lahir'])?date('d-M-Y',strtotime($data_mhs['tgl_lahir'])):'Belum input'; ?>
                 </p>
                 <span class="text-black"><b>TANGGAL LAHIR </b></span>
             </label>
@@ -83,7 +85,7 @@
         <div class="col-md-6">
             <label class="mb-3 top-label">
                 <p class="form-control">
-                    <?= ($data_mhs['nik'])?$data_mhs['nik']:'Belum input'; ?>
+                    <b><?= ($data_mhs['nik'])?$data_mhs['nik']:'Belum input'; ?></b>
                 </p>
                 <span class="text-black"><b>Nomor Induk Kependudukan (NIK) </b></span>
             </label>

@@ -43,12 +43,12 @@
 
                 <form class="row g-3" action="<?= base_url($mod.'/'.$func.'/edit/'.$periode_pmb['kode']); ?>" method="POST">
                     <div class="col-12 col-md-6">
-                        <label class="form-label text-black-50"><strong>Periode Daftar<span style="color:red">*</span></strong></label>
+                        <label class="form-label text-black"><strong>Periode Daftar<span style="color:red">*</span></strong></label>
                         <input type="text" class="form-control" required name="gel" value="<?= $periode_pmb['gel'] ?>"/>
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label text-black-50"><strong> Tahun Ajaran<span style="color:red">*</span></strong></label>
+                        <label class="form-label text-black"><strong> Tahun Ajaran<span style="color:red">*</span></strong></label>
                         <select name="kd_ta" required class="form-select">
                             <option value="<?= $periode_pmb['kd_ta'] ?>">-- <?= $periode_pmb['ta'] ?> --</option>
                             <?php foreach($ta as $key => $val) { ?>
@@ -59,12 +59,12 @@
 
                     <div class="col-12 col-md-6" >
                         <label class="form-label text-black"><strong>Tanggal Awal <span style="color:red">*</span></strong></label>
-                        <input class="form-control" name="tgl_awal" required id="selectTanggalAwal" value="<?= date('d/m/Y', strtotime($periode_pmb['tgl_awal'])) ?>" />
+                        <input class="form-control" type="text" name="tgl_awal" required id="selectTanggalAwal" value="<?= date('Y-m-d', strtotime($periode_pmb['tgl_awal'])) ?>" />
                     </div>
 
                     <div class="col-12 col-md-6" >
                         <label class="form-label text-black"><strong>Tanggal Akhir <span style="color:red">*</span></strong></label>
-                        <input class="form-control" name="tgl_akhir" required id="selectTanggalAkhir" value="<?= date('d/m/Y', strtotime($periode_pmb['tgl_akhir'])) ?>" />
+                        <input class="form-control" type="text" name="tgl_akhir" required id="selectTanggalAkhir" value="<?= date('Y-m-d', strtotime($periode_pmb['tgl_akhir'])) ?>" />
                     </div>
 
                     <div class="col-12">

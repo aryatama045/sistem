@@ -217,7 +217,7 @@ class Pmb extends Admin_Controller
 		}
 
 		$update_status = array(
-			'status_terkini' => '5'
+			'status_terkini' => '4'
 		);
 		$where = array('no_pendaftaran' => $_POST['no_pendaftaran']);
 		$this->db->where($where);

@@ -74,87 +74,38 @@ class Pmb_proses extends Admin_Controller  {
 		echo json_encode($output);
 	}
 
-	public function tambah()
+	public function detail($id)
 	{
-
-		$this->form_validation->set_rules('gel' ,'Periode ' , 'required');
+		$this->form_validation->set_rules('no_pmb' ,'Periode ' , 'required');
 
         if ($this->form_validation->run() == TRUE) {
 
-			$create_form = $this->Model_pmb_proses->saveTambah();
-
-			if($create_form) {
-				$this->session->set_flashdata('success', ' Berhasil Disimpan !!');
-				redirect('admin/pmb', 'refresh');
-			} else {
-				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('admin/pmb/tambah', 'refresh');
-			}
-
-		}else{
-			$this->starter();
-            $this->data['ta']           = $this->Model_global->getTahunAjaran();
-			$this->render_template('pmb/tambah',$this->data);
-		}
-
-	}
-
-	public function edit($id)
-	{
-		$this->form_validation->set_rules('gel' ,'Periode ' , 'required');
-
-        if ($this->form_validation->run() == TRUE) {
-
-			$edit_form = $this->Model_pmb_proses->saveEdit();
+			$edit_form = $this->Model_pmb_proses->saveProses();
 
 			if($edit_form) {
-				$this->session->set_flashdata('success', 'Kode  : "'.$_POST['no_pendaftaran'].'" <br> Berhasil Di Update !!');
-				redirect('admin/pmb', 'refresh');
+				$this->session->set_flashdata('success', 'PMB No.  : "'.$id.'" <br> Berhasil Di Proses Nim !!');
+				redirect('admin/pmb_proses', 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('admin/pmb/edit/'.$id, 'refresh');
+				redirect('admin/pmb_proses/detail/'.$id, 'refresh');
 			}
 
 		}else{
 			$this->starter();
-            $this->data['ta']           = $this->Model_global->getTahunAjaran();
-            $this->data['pmb']  = $this->Model_global->getPeriodeDaftar($id);
+            $this->data['ta']            = $this->Model_global->getTahunAjaran();
+			$this->data['pmb_proses']    = $this->Model_pmb->getDataPendaftaran($id);
+			$this->data['dok_pmb']    	 = $this->Model_pmb->getDokPendaftaran($id);
 
-            // tesx($this->data['ta']);
-
-			if($this->data['pmb']['no_pendaftaran']){
-				$this->render_template('pmb/edit',$this->data);
+			if($this->data['pmb_proses']['no_pendaftaran']){
+				$this->render_template('pmb_proses/detail',$this->data);
 			}else{
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('admin/pmb/edit/'.$id, 'refresh');
+				redirect('admin/pmb_proses/detail/'.$id, 'refresh');
 			}
 		}
 	}
 
 
-	public function delete()
-	{
-		$id = $_POST['id'];
-
-		$response = array();
-		if($id) {
-			$delete = $this->Model_pmb_proses->saveDelete($id);
-
-			if($delete == true) {
-				$response['success'] 	= true;
-				$response['messages'] 	= " <strong>Kode '".$id."'</strong> Berhasil Di Remove";
-			} else {
-				$response['success'] 	= false;
-				$response['messages'] 	= " <strong>Kode '".$id."'</strong> Gagal Di Remove";
-			}
-		}
-		else {
-			$response['success'] 	= false;
-			$response['messages'] 	= "Refersh the page again!!";
-		}
-
-		echo json_encode($response);
-	}
 
 
 }

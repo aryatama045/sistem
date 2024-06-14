@@ -36,7 +36,7 @@ class Model_pmb_proses extends CI_Model
 	}
 
 	// ---- Action Start
-	function saveTambah()
+	function saveProses()
 	{
 		$data = $_POST;
 		$insert = $this->db->insert($this->table, $data);
@@ -44,22 +44,7 @@ class Model_pmb_proses extends CI_Model
 		return ($insert)?TRUE:FALSE;
 	}
 
-	function saveEdit()
-	{
-		$data = $_POST;
-		$this->db->where(['kode' => $data['kode']]);
-		$update = $this->db->update($this->table, $data);
 
-		return ($update)?TRUE:FALSE;
-	}
-
-	function saveDelete($id)
-	{
-		$this->db->where(['kode' => $id]);
-		$delete = $this->db->delete($this->table);
-
-		return ($delete)?TRUE:FALSE;
-	}
 	// ---- Action END
 
 

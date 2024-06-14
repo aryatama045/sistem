@@ -38,8 +38,13 @@ class Model_mahasiswa extends CI_Model
 
 	public function detail($id)
 	{
-		$this->db->select('*');
+		$this->db->select("*,
+		CASE WHEN (jk)= 'L' THEN 'Laki-Laki'
+		WHEN (jk)='P' THEN 'Perempuan'
+		ELSE 'Belum Input' END jk");
         $this->db->from($this->table);
+		$this->db->join('mst_prodi', 'mst_mhs.kd_prog = mst_prodi.kd_prog', 'left');
+		$this->db->join('mst_ta', 'mst_mhs.kd_ta = mst_ta.kd_ta', 'left');
 		$this->db->where('nim',$id);
 		$query	= $this->db->get();
 		// die(nl2br($this->db->last_query()));

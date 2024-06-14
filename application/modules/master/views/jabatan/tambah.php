@@ -38,33 +38,13 @@
         <!-- Content Start -->
 		<div class="card">
 			<div class="card-body">
-                <h3 class="pb-0">Form <?= $function ?> - <?= $pagetitle ?></h3>
+                <h3 class="pb-0">Form  <?= $function ?> - <?= $pagetitle ?></h3>
                 <hr class="mb-2">
 
                 <form class="row g-3" action="<?= base_url($mod.'/'.$func.'/tambah'); ?>" method="POST">
                     <div class="col-12 col-md-6">
-                        <label class="form-label text-black"><strong>Periode Daftar<span style="color:red">*</span></strong></label>
-                        <input type="text" class="form-control" required name="gel" placeholder="Input Periode Daftar" />
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label text-black"><strong> Tahun Ajaran<span style="color:red">*</span></strong></label>
-                        <select name="kd_ta" required class="form-select">
-                            <option value="">-- Select Tahun Ajaran --</option>
-                            <?php foreach($ta as $key => $val) { ?>
-                                <option value="<?= $val['kd_ta'] ?>">(<?= $val['kd_ta'] ?>) <?= $val['ta'] ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-
-                    <div class="col-12 col-md-6" >
-                        <label class="form-label text-black"><strong>Tanggal Awal <span style="color:red">*</span></strong></label>
-                        <input class="form-control" name="tgl_awal" required id="selectTanggalAwal" value="<?= date('Y-m-d') ?>" />
-                    </div>
-
-                    <div class="col-12 col-md-6" >
-                        <label class="form-label text-black"><strong>Tanggal Akhir <span style="color:red">*</span></strong></label>
-                        <input class="form-control" name="tgl_akhir" required id="selectTanggalAkhir" value="<?= date('Y-m-d') ?>" />
+                        <label class="form-label text-black-50"><strong>Nama Jabatan<span style="color:red">*</span></strong></label>
+                        <input type="text" class="form-control" required name="nama" placeholder="Input Nama Jabatan" />
                     </div>
 
                     <div class="col-12">

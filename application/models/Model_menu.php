@@ -77,7 +77,7 @@ function __construct() {
 
         $user_session = $this->session->userdata('roles');
 
-        $permission = $this->get_permission_roles($user_session['0']);
+        $permission = $this->get_permission_roles($user_session['0'] ?? '');
 
         $log_perm = array();
         foreach($permission as $k=>$v) {

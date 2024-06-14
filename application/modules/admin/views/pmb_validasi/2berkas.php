@@ -27,7 +27,7 @@
                     <tr <?= ($val['validasi'])?'class="table-active"': ''; ?> >
                         <th scope="row"> <?= $no ?></th>
                         <td><?= $val['nama_dok']; ?> <?= ($val['validasi'])?'': '<span style="color:red;">*</span>'; ?>
-                            <input name="id[]" value="<?= $val['id']; ?>" hidden/>
+                            <input name="nama_dok[]" value="<?= $val['nama_dok']; ?>" hidden/>
                         </td>
                         <td>
                             <?php
@@ -49,7 +49,7 @@
                         <td>
                             <div class="mb-3">
                                 <div class="form-check">
-                                    <input class="form-check-input" name="nama_dok[]" value="<?= $val['nama_dok']; ?>" type="checkbox"  <?= ($val['validasi'])?'checked': ''; ?> id="valid<?= $val['id'] ?>">
+                                    <input class="form-check-input" name="id[]" value="<?= $val['id']; ?>" type="checkbox"  <?= ($val['validasi'])?'checked ': ''; ?> id="valid<?= $val['id'] ?>">
                                     <label class="form-check-label" for="valid<?= $val['id'] ?>">Valid</label>
                                 </div>
                             </div>

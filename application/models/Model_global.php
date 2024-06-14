@@ -37,13 +37,18 @@ class Model_global extends CI_Model {
 		return $query->row_array();
     }
 
-    function getDosenNip($nip)
+    function getDosen($id = NULL)
     {
         $this->db->select('*');
 		$this->db->from('mst_dosen');
-        $this->db->where('nip', $nip);
-		$query=$this->db->get();
-		return $query->row_array();
+        if($id){
+            $this->db->where('nip', $id);
+            $query=$this->db->get();
+            return $query->row_array();
+        }else{
+            $query=$this->db->get();
+            return $query->result_array();
+        }
     }
 
     function getKodeProgram($kode_prog = NULL)
@@ -160,6 +165,38 @@ class Model_global extends CI_Model {
     {
         $this->db->select('*');
 		$this->db->from('mst_jabatan');
+        $this->db->order_by('nama', 'ASC');
+
+        if($id){
+            $this->db->where('id', $id);
+            $query=$this->db->get();
+            return $query->row_array();
+        }else{
+            $query=$this->db->get();
+            return $query->result_array();
+        }
+    }
+
+    function getAgama($id = NULL)
+    {
+        $this->db->select('*');
+		$this->db->from('mst_agama');
+        $this->db->order_by('nama', 'ASC');
+        if($id){
+            $this->db->where('id', $id);
+            $query=$this->db->get();
+            return $query->row_array();
+        }else{
+            $query=$this->db->get();
+            return $query->result_array();
+        }
+    }
+
+    function getKota($id = NULL)
+    {
+        $this->db->select('*');
+		$this->db->from('mst_kota');
+        $this->db->order_by('nm_kota', 'ASC');
 
         if($id){
             $this->db->where('id', $id);

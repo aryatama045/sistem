@@ -27,17 +27,32 @@
                         <div class="card w-100 sw-sm-50 sh-19 hover-img-scale-up">
                             <img src="<?= base_url('assets/'); ?>img/banner/cta-horizontal-short-1.webp" class="card-img h-100 scale" alt="card image" />
                             <div class="card-img-overlay d-flex flex-column justify-content-between bg-transparent">
-                            <div style="background-color: #fffffff0;padding: 1px 9px 6px 16px;border-radius: 13px;">
-                                <div class="cta-1 mb-3 mt-1 text-black w-75 w-md-100">Penerimaan Mahasiswa Baru</div>
-                                <a href="#" class="btn btn-icon btn-icon-start btn-primary stretched-link">
-                                <i data-acorn-icon="chevron-right"></i>
-                                <span>PMB</span>
-                                </a>
+                                <div style="background-color: #fffffff0;padding: 1px 9px 6px 16px;border-radius: 13px;">
+                                    <div class="cta-1 mb-3 mt-1 text-black w-75 w-md-100">Penerimaan Mahasiswa Baru</div>
+                                    <a href="#" class="btn btn-icon btn-icon-start btn-primary stretched-link">
+                                        <i data-acorn-icon="chevron-right"></i>
+                                        <span>PMB</span>
+                                    </a>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-auto mb-5">
+                        <div class="card w-100 sw-sm-50 sh-19 hover-img-scale-up">
+                            <img src="<?= base_url('assets/'); ?>img/banner/cta-horizontal-short-1.webp" class="card-img h-100 scale" alt="card image" />
+                            <div class="card-img-overlay d-flex flex-column justify-content-between bg-transparent">
+                                <div style="background-color: #fffffff0;padding: 1px 9px 6px 16px;border-radius: 13px;">
+                                    <div class="cta-1 mb-3 mt-1 text-black w-75 w-md-100">Penerimaan Mahasiswa Baru</div>
+                                    <a href="#" class="btn btn-icon btn-icon-start btn-primary stretched-link">
+                                        <i data-acorn-icon="chevron-right"></i>
+                                        <span>PMB</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="row g-2">
                     <div class="col-6 col-md-4 col-lg-2">
                         <div class="card h-100 hover-scale-up cursor-pointer">
@@ -110,88 +125,6 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-12">
-            <?= $menu ?>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <h3>#To add permission#</h3>
-            <p>Name format: method_name-controller_name.</p>
-            <p>Example: if the controller name is 'roles; and 'edit' is a method then name will be <code>'edit-roles'</code></p>
-            <code>
-            $this->Permission->add([
-                'name' => 'add-roles',
-                'display_name' => 'Create Role',
-                'status' => 1,
-            ]);
-            </code>
-
-            <h3>#To add role#</h3>
-            <code>
-                $this->Role->add([
-                'name' => 'editor',
-                'display_name' => 'editor',
-                'description' => 'Editor can edit and publish posts',
-                'status' => 1,
-                ]);
-            </code>
-
-            <h3>#To assign permissions with role#</h3>
-            <p>$permissions will be a permission id or an array of permission id</p>
-            <code>
-                $this->Role->addPermissions($role_id, $permissions);
-            </code>
-
-            <h3>#To add User#</h3>
-            <code>
-                $this->User->add([
-                'name' => 'Likhon',
-                'username' => 'likhon',
-                'password' => password_hash('admin', PASSWORD_BCRYPT),
-                'status' => 1,
-                ]);
-            </code>
-
-            <h3>#To assign roles with user#</h3>
-            <p>$roles will be a role id or an array of role id</p>
-            <code>
-                $this->User->addRoles($user_id, $roles);
-            </code>
-
-            <div class="mt-5"></div>
-
-            <h3>#To activate auth library#</h3>
-            <p>To enable authentication put these line in controller's construction method:</p>
-
-            <pre><strong>
-                $this->load->library(['auth']);
-                $this->auth->route_access();
-            </strong></pre>
-
-            <p>If you want to authenticate only some methods of a controller then use</p>
-            <p>$methods is a single or array of method name of a controller</p>
-            <samp>$this->auth->only['edit', 'delete']</samp><br>
-
-            <code>$this->auth->only($methods)</code>
-
-            <p> Or if you need to not check authentication for some methods then use:</p>
-            <code>$this->auth->except($methods)</code>
-
-            <p>Check if current user is logged in.</p>
-            <code>
-                if( check() ) {}
-            </code>
-
-            <p>Check if current user has a permission by its name.</p>
-            <code>
-                if( can($permissions) ) {}
-            </code>
-            <p>Example: <samp>if( can('edit-posts') ) {} or if( can(['edit-posts', 'publish-posts']) ) {}</samp></p>
-        </div>
-    </div>
     <!-- Stats End -->
 
     <script src="<?= base_url('assets/') ?>js/base/searchD.js"></script>
