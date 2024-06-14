@@ -49,7 +49,7 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/') ?>css/vendor/fancybox.css"/>
 
-    <script src="<?= base_url('assets/') ?>js/base/loader.js"></script>
+    <!-- <script src="<?= base_url('assets/') ?>js/base/loader.js"></script> -->
     <style>
         .dataTables_length {
             margin-bottom: 2em;
@@ -60,11 +60,65 @@
         div.dataTables_scrollHead{
             width: 100% !important;
         }
+
+
+        #page{
+            display: none;
+        }
+
+        #loading {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(192, 192, 192, 0.5);
+            background-image: url('../../../assets/Loading-Screen.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 150px 150px;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        #loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .center {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+
     </style>
 </head>
 
 
-<body>
+<body >
+
+    <div id="loader" class="center"></div>
 
     <?php $this->load->view('templates/side_menubar'); ?>
 

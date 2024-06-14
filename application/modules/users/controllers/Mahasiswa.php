@@ -136,10 +136,9 @@ class Mahasiswa extends Admin_Controller  {
 		}else{
 			$this->starter();
 			$this->data['prodi']        = $this->Model_global->getKodeProgram();
-            $this->data['tahun_ajaran'] = $this->Model_global->getTahunAjaran();
+            $this->data['ta'] 			= $this->Model_global->getTahunAjaran();
             $this->data['biaya']        = $this->Model_global->getBiaya();
-
-			// tesx($this->data['tahun_ajaran']);
+			$this->data['agama']        = $this->Model_global->getAgama();
 			$this->render_template('mahasiswa/tambah',$this->data);
 		}
 
@@ -168,7 +167,7 @@ class Mahasiswa extends Admin_Controller  {
 				$this->render_template('mahasiswa/edit',$this->data);
 			}else{
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('users/mahasiswa/edit/'.$id, 'refresh');
+				redirect('users/mahasiswa', 'refresh');
 			}
 		}
 	}

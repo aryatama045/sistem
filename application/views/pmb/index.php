@@ -53,7 +53,7 @@
                             <form action="<?= base_url('pmb/form_daftar');?>" class="" method="POST">
                                 <input class="form-control" name="kd_ta" hidden value="<?= $kd_ta ?>"/>
                                 <label class="mb-3 top-label">
-                                    <span class="text-black">SISTEM KULIAH</span>
+                                    <span class="text-black"><strong>SISTEM KULIAH</strong></span>
                                     <select class="form-control"  required id="kd_jenma"  name="kd_jenma" >
                                         <option value="" > -- Select Sistem Kuliah -- </option>
                                         <?php foreach($jenma as $val){ ?>
@@ -62,7 +62,7 @@
                                     </select>
                                 </label>
                                 <label class="mb-3 top-label">
-                                    <span class="text-black">PROGRAM STUDI</span>
+                                    <span class="text-black"><strong>PROGRAM STUDI</strong></span>
                                     <select class="form-control"  required id="kd_prog"  name="kd_prog" >
                                         <option value="" > -- Select Program Studi -- </option>
                                         <?php foreach($prodi as $val){ ?>
@@ -72,24 +72,24 @@
                                 </label>
 
                                 <label class="mb-3 top-label">
-                                    <input class="form-control" type="text" required name="nama" />
-                                    <span class="h3 title text-black">NAMA LENGKAP</span>
+                                    <input class="form-control" type="text" required name="nama" placeholder="Input Nama Lengkap"/>
+                                    <span class="text-black"><strong>NAMA LENGKAP</strong></span>
                                 </label>
                                 <label class="mb-3 top-label">
-                                    <input class="form-control" required name="nik" type="number" />
-                                    <span class="text-black">NIK</span>
+                                    <input class="form-control" required name="nik" type="number" placeholder="Input Nomor Induk Kependudukan (NIK)"/>
+                                    <span class="text-black"><strong>Nomor Induk Kependudukan (NIK)</strong></span>
                                 </label>
                                 <label class="mb-3 top-label">
-                                    <input class="form-control" required type="email" name="email" />
-                                    <span class="text-black">E-MAIL</span>
+                                    <input class="form-control" required type="email" name="email" placeholder="Input E-Mail"/>
+                                    <span class="text-black"><strong>E-MAIL</strong></span>
                                 </label>
                                 <label class="mb-3 top-label">
-                                    <input class="form-control" required name="no_hp" type="number" />
-                                    <span class="text-black">NO. HP</span>
+                                    <input class="form-control" required name="no_hp" type="number" placeholder="Input No Hp"/>
+                                    <span class="text-black"><strong>NO. HP</strong></span>
                                 </label>
                                 <label class="mb-3 top-label">
-                                    <input class="form-control" required name="tahun_lulus" type="number" />
-                                    <span class="text-black">TAHUN LULUS</span>
+                                    <input class="form-control" required name="tahun_lulus" type="number" placeholder="Input Tahun Lulus" />
+                                    <span class="text-black"><strong>TAHUN LULUS</strong></span>
                                 </label>
 
 

@@ -73,21 +73,22 @@
 
                     <div class="col-12 col-md-6" >
                         <label class="form-label text-black"><strong>Tanggal Lahir <span style="color:red">*</span></strong></label>
-                        <input class="form-control" name="tgl_lahir" required id="selectTanggal" />
+                        <input class="form-control" type="text" name="tgl_lahir" required id="selectTanggal" />
                     </div>
 
                     <div class="col-12 col-md-6">
                         <label class="form-label text-black"><strong>Agama<span style="color:red">*</span></strong></label>
                         <select class="form-control" name="agama" required>
                             <option value="" >-- Select Agama --</option>
-                            <option value="islam">Islam</option>
-                            <option value="kristen">Kristen</option>
+                            <?php foreach($agama as $key => $val) { ?>
+                                <option value="<?= $val['id'] ?>"> <?= $val['nama'] ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 
                     <div class="col-12 col-md-12 mb-5">
                         <label class="form-label text-black"><strong> Alamat</strong></label>
-                        <textarea name="alamat" row="3" class="form-control" placeholder="Input Alamat"></textarea>
+                        <textarea name="alamat"  row="3" class="form-control" placeholder="Input Alamat"></textarea>
                     </div>
 
                     <h4 class="pb-0"> Data Akademik</h4>
@@ -120,18 +121,19 @@
                         <label class="form-label text-black"><strong> Tahun Ajaran<span style="color:red">*</span></strong></label>
                         <select name="kd_ta" required class="form-select">
                             <option value="">-- Select Tahun Ajaran --</option>
-                            <?php foreach($tahun_ajaran AS $key => $val) { ?>
+                            <?php foreach($ta as $key => $val) { ?>
                                 <option value="<?= $val['kd_ta'] ?>"> <?= $val['ta'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
 
                     <div class="col-12 col-md-3 ">
-                        <label class="form-label text-black"><strong> Kd Biaya<span style="color:red">*</span></strong></label>
-                        <select name="kd_ta" required class="form-select">
-                            <option value="">-- Select Tahun Ajaran --</option>
-                            <option value="1"> Semester 1</option>
-                            <option value="2"> Semester 2</option>
+                        <label class="form-label text-black"><strong>  Biaya<span style="color:red">*</span></strong></label>
+                        <select name="kd_biaya" required class="form-select">
+                            <option value="">-- Select Biaya --</option>
+                            <?php foreach($biaya as $key => $val) { ?>
+                                <option value="<?= $val['kd_biaya'] ?>"> <?= nominal($val['nilai']) ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 
