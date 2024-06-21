@@ -73,7 +73,7 @@
 
                     <div class="col-12 col-md-6" >
                         <label class="form-label text-black"><strong>Tanggal Lahir <span style="color:red">*</span></strong></label>
-                        <input class="form-control" type="text" name="tgl_lahir" required id="selectTanggal" />
+                        <input class="form-control" type="text" name="tgl_lahir" required id="selectTanggal" placeholder="Input Tanggal Lahir"/>
                     </div>
 
                     <div class="col-12 col-md-6">

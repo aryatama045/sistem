@@ -63,8 +63,12 @@ class Model_pmb extends CI_Model
 
 	public function getDataPendaftaran($no_pendaftaran)
 	{
-		$this->db->select('*');
+		$this->db->select("a.*, b.id id_agama, b.nama nama_agama,
+		CASE WHEN (jenis_kelamin)= 'L' THEN 'Laki-Laki'
+		WHEN (jenis_kelamin)='P' THEN 'Perempuan'
+		ELSE 'Belum Input' END jk");
 		$this->db->from('trn_pmb a');
+		$this->db->join('mst_agama b', 'a.agama = b.id', 'left');
         $this->db->where('a.no_pendaftaran', $no_pendaftaran);
 		$query=$this->db->get();
 		return $query->row_array();
@@ -162,6 +166,18 @@ class Model_pmb extends CI_Model
 
 
 		return ($insert)?true:false;
+	}
+
+
+	//------- Update Data
+	function updateBiodataDiri()
+	{
+		$data = $_POST;
+		$this->db->where(['no_pendaftaran' => $data['no_pendaftaran']]);
+		$update = $this->db->update('trn_pmb', $data);
+
+		return ($update)?TRUE:FALSE;
+
 	}
 
 

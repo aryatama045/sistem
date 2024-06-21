@@ -40,7 +40,8 @@
 	</div>
 	</main>
 
-
+	</div>
+	</div>
 	<!-- Search Modal Start -->
 	<div class="modal fade modal-under-nav modal-search modal-close-out" id="searchPagesModal" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog modal-lg">

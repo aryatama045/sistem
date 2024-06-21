@@ -40,7 +40,7 @@ function remove(id)
     $("#btn-delete").removeAttr('class');
     $("#btn-delete").text('Remove');
     $("#btn-delete").addClass('btn btn-danger');
-    $("#removeModal h5").text('Remove Mata Kuliah');
+    $("#removeModal h5").text('Remove');
     $("#messages_modal_remove").html('');
     $("#id span").html('Remove '+' <strong> '+id+'</strong>');
     if(id){

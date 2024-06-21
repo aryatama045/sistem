@@ -101,6 +101,7 @@ class Pmb extends Admin_Controller
 			$this->data['get_data_pmb']   = $this->Model_pmb->getDataPendaftaran($getdatauser['no_pmb']);
 			$this->data['get_dok_pmb']    = $this->Model_pmb->getDokPendaftaran($getdatauser['no_pmb']);
 			$this->data['status']         = $this->data['get_data_pmb']['status_terkini'];
+			$this->data['get_agama']   	  = $this->Model_global->getAgama();
 
 			$this->render_template_pmb('pmb/dashboard', $this->data);
 		}else{
@@ -117,28 +118,26 @@ class Pmb extends Admin_Controller
 
 		$pmb	= $this->Model_pmb->getDataPendaftaran($no_pmb);
 
-		$data_mhs = array(
-			'nik' 				=> $_POST['nik'],
-			'nama_mhs' 			=> $_POST['nama_lengkap'],
-			'tempat_lahir' 		=> $_POST['tempat_lahir'],
-			'tgl_lahir' 		=> date('d-m-Y',strtotime($_POST['tanggal_lahir'])),
-			'agama' 			=> $_POST['agama'],
-			'jk'				=> $_POST['jenis_kelamin'],
-			'alamat' 			=> $_POST['alamat'],
-			'kd_prog'			=> $pmb['kd_prog'],
-		);
-
-		tesx($no_pmb,$data_mhs, $pmb);
-
-		$this->db->insert('mst_mhs', $data_mhs);
-
-		$save_form = $this->Model_pmb->saveBiodataDiri($data_pmb);
-		if($save_form) {
-			$this->session->set_flashdata('success', $notif);
-			redirect('pmb/index', 'refresh');
-		} else {
+		if(!$pmb) {
 			$this->session->set_flashdata('error', 'Data Gagal Disimpan!!');
 			redirect('pmb/index', 'refresh');
+		}
+
+		$data_mhs = $_POST;
+
+
+		// tesx($no_pmb,$data_mhs, $pmb);
+
+		// $this->db->insert('mst_mhs', $data_mhs);
+
+		$save_form = $this->Model_pmb->updateBiodataDiri();
+
+		if($save_form) {
+			$this->session->set_flashdata('success', 'Biodata Diri Berhasil Disimpan');
+			redirect('pmb/dashboard_pmb', 'refresh');
+		} else {
+			$this->session->set_flashdata('error', 'Data Gagal Disimpan!!');
+			redirect('pmb/dashboard_pmb', 'refresh');
 		}
 
 	}

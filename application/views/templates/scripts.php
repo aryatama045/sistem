@@ -12,8 +12,10 @@
 <script src="<?= base_url('assets/') ?>js/vendor/jquery.validate/jquery.validate.min.js"></script>
 <script src="<?= base_url('assets/') ?>js/vendor/jquery.validate/additional-methods.min.js"></script>
 <script src="<?= base_url('assets/') ?>js/vendor/bootstrap-submenu.js"></script>
+
 <script src="<?= base_url('assets/') ?>js/datatables.min.js"></script>
 <script src="<?= base_url('assets/') ?>js/vendor/bootstrap-notify.min.js"></script>
+<script src="<?= base_url('assets/') ?>js/vendor/mousetrap.min.js"></script>
 <!-- Vendor Scripts End -->
 
 <!-- Template Base Scripts Start -->
@@ -26,7 +28,6 @@
 <script src="<?= base_url('assets/') ?>js/pages/customerDetails.js"></script>
 <script src="<?= base_url('assets/') ?>js/pages/profile.standard.js"></script>
 <script src="<?= base_url('assets/') ?>js/plugins/notifies.js"></script>
-
 
 
 <script src="<?= base_url('assets/') ?>js/vendor/select2.full.min.js"></script>
@@ -110,58 +111,14 @@
     });
 </script>
 
-
-<div id="loading" style="z-index: 999999;"></div>
-<script type="text/javascript">
-    // LOADING PAGE
-    var timer;
-    function onReady(callback) {
-        var intervalID = window.setInterval(checkReady, 1000);
-
-        function checkReady() {
-            if (document.getElementsByTagName('body')[0] !== undefined) {
-                window.clearInterval(intervalID);
-                callback.call(this);
-            }
-        }
-    }
-
-    function show(id, value) {
-        document.getElementById(id).style.display = value ? 'block' : 'none';
-    }
-
-    onReady(function () {
-        show('page', true);
-        show('loading', false);
-    });
-
-    // LOADING AJAX
-    var $loading = $('#loading').hide();
-    $(document)
-        .ajaxStart(function () {
-            $loading.show();
-        })
-        .ajaxStop(function () {
-            $loading.hide();
-    });
-
-</script>
-
 <script>
-    document.onreadystatechange = function () {
-        if (document.readyState !== "complete") {
-            document.querySelector(
-                "body").style.visibility = "hidden";
-            document.querySelector(
-                "#loader").style.visibility = "visible";
-        } else {
-            document.querySelector(
-                "#loader").style.display = "none";
-            document.querySelector(
-                "body").style.visibility = "visible";
-        }
-    };
+    $(window).on('load',function(){
+        $('.loader').fadeOut(1000, function () {
+            $('.content-loader').show();
+        });
+    })
 </script>
+
 
 
 

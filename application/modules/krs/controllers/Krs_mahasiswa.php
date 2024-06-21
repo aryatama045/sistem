@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Jadwal_seleksi extends Admin_Controller  {
+class Krs_mahasiswa extends Admin_Controller  {
 
 	public function __construct()
 	{
@@ -12,7 +12,7 @@ class Jadwal_seleksi extends Admin_Controller  {
 		$this->data['pagetitle'] = capital($cn);
 		$this->data['function'] = capital($f);
 
-		$this->load->model('Model_jadwal_seleksi');
+		$this->load->model('Model_krs_mahasiswa');
 
 	}
 
@@ -25,7 +25,7 @@ class Jadwal_seleksi extends Admin_Controller  {
 	public function index()
 	{
 		$this->starter();
-		$this->render_template('jadwal_seleksi/index',$this->data);
+		$this->render_template('periode_pmb/index',$this->data);
 	}
 
 	public function store()
@@ -41,15 +41,15 @@ class Jadwal_seleksi extends Admin_Controller  {
         $output['data']	= array();
 		$search_name   = $this->input->post('search_name');
 
-		$data           = $this->Model_jadwal_seleksi->getDataStore('result',$search_name,$length,$start,$column,$order);
-		$data_jum       = $this->Model_jadwal_seleksi->getDataStore('numrows',$search_name);
+		$data           = $this->Model_jadwal_pengajaran->getDataStore('result',$search_name,$length,$start,$column,$order);
+		$data_jum       = $this->Model_jadwal_pengajaran->getDataStore('numrows',$search_name);
 
 		$output=array();
 		$output['draw'] = $draw;
 		$output['recordsTotal'] = $output['recordsFiltered'] = $data_jum;
 
 		if($search_name !=""  ){
-			$data_jum = $this->Model_jadwal_seleksi->getDataStore('numrows',$search_name);
+			$data_jum = $this->Model_jadwal_pengajaran->getDataStore('numrows',$search_name);
 			$output['recordsTotal']=$output['recordsFiltered']=$data_jum;
 		}
 
@@ -96,52 +96,51 @@ class Jadwal_seleksi extends Admin_Controller  {
 
         if ($this->form_validation->run() == TRUE) {
 
-			$create_form = $this->Model_jadwal_seleksi->saveTambah();
+			$create_form = $this->Model_jadwal_pengajaran->saveTambah();
 
 			if($create_form) {
 				$this->session->set_flashdata('success', ' Berhasil Disimpan !!');
-				redirect('admin/jadwal_seleksi', 'refresh');
+				redirect('admin/periode_pmb', 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('admin/jadwal_seleksi/tambah', 'refresh');
+				redirect('admin/periode_pmb/tambah', 'refresh');
 			}
 
 		}else{
 			$this->starter();
             $this->data['ta']           = $this->Model_global->getTahunAjaran();
-			$this->render_template('jadwal_seleksi/tambah',$this->data);
+			$this->render_template('periode_pmb/tambah',$this->data);
 		}
 
 	}
 
 	public function edit($id)
 	{
+
 		$this->form_validation->set_rules('gel' ,'Periode ' , 'required');
 
         if ($this->form_validation->run() == TRUE) {
 
-			$edit_form = $this->Model_jadwal_seleksi->saveEdit();
+			$edit_form = $this->Model_jadwal_pengajaran->saveEdit($id);
 
 			if($edit_form) {
-				$this->session->set_flashdata('success', 'Kode  : "'.$_POST['kode'].'" <br> Berhasil Di Update !!');
-				redirect('admin/jadwal_seleksi', 'refresh');
+				$this->session->set_flashdata('success', 'Gelombang  : "'.$_POST['gel'].'" <br> Berhasil Di Update !!');
+				redirect('admin/periode_pmb', 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('admin/jadwal_seleksi/edit/'.$id, 'refresh');
+				redirect('admin/periode_pmb' , 'refresh');
 			}
 
 		}else{
 			$this->starter();
             $this->data['ta']           = $this->Model_global->getTahunAjaran();
-            $this->data['jadwal_seleksi']  = $this->Model_global->getPeriodeDaftar($id);
+            $this->data['periode_pmb']  = $this->Model_global->getPeriodeDaftar($id);
 
-            // tesx($this->data['ta']);
-
-			if($this->data['jadwal_seleksi']['kode']){
-				$this->render_template('jadwal_seleksi/edit',$this->data);
+			if($this->data['periode_pmb']['kode']){
+				$this->render_template('periode_pmb/edit',$this->data);
 			}else{
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('admin/jadwal_seleksi/edit/'.$id, 'refresh');
+				redirect('admin/periode_pmb' , 'refresh');
 			}
 		}
 	}
@@ -153,7 +152,7 @@ class Jadwal_seleksi extends Admin_Controller  {
 
 		$response = array();
 		if($id) {
-			$delete = $this->Model_jadwal_seleksi->saveDelete($id);
+			$delete = $this->Model_jadwal_pengajaran->saveDelete($id);
 
 			if($delete == true) {
 				$response['success'] 	= true;

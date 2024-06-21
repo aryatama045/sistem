@@ -30,23 +30,27 @@
                     <span class="align-middle">Status Terkini</span>
                 </a>
                 <a class="nav-link <?php if($status=='2'){ echo 'active';} ?> px-0 border-bottom border-separator-light" data-bs-toggle="tab"
-                    href="#biodataTab" role="tab">
+                    href="<?php if($status >= '1' ){ echo '#biodataTab';} ?>" role="tab">
                     <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
                     <span class="align-middle">Biodata Pendaftar</span>
                 </a>
-                <a class="nav-link <?php if($status=='3'){ echo 'active';} ?> px-0 border-bottom border-separator-light" data-bs-toggle="tab" href="#uploadFotoTab" role="tab">
+                <a class="nav-link <?php if($status=='3'){ echo 'active';} ?> px-0 border-bottom border-separator-light" data-bs-toggle="tab"
+                    href="<?php if($status >= '3'){ echo '#uploadFotoTab';} ?>" role="tab">
                     <i data-acorn-icon="image" class="me-2" data-acorn-size="17"></i>
                     <span class="align-middle">Upload Foto</span>
                 </a>
-                <a class="nav-link <?php if($status=='4'){ echo 'active';} ?> px-0 border-bottom border-separator-light" data-bs-toggle="tab" href="#uploadBerkasTab" role="tab">
+                <a class="nav-link <?php if($status=='4'){ echo 'active';} ?> px-0 border-bottom border-separator-light" data-bs-toggle="tab"
+                    href="<?php if($status >='4'){ echo '#uploadBerkasTab';} ?>" role="tab">
                     <i data-acorn-icon="form" class="me-2" data-acorn-size="17"></i>
                     <span class="align-middle">Upload Berkas</span>
                 </a>
-                <a class="nav-link <?php if($status=='5'){ echo 'active';} ?> px-0" data-bs-toggle="tab" href="#pembayaranTagihanTab" role="tab">
+                <a class="nav-link <?php if($status=='5'){ echo 'active';} ?> px-0" data-bs-toggle="tab"
+                    href="<?php if($status >='5'){ echo '#pembayaranTagihanTab';} ?>" role="tab">
                     <i data-acorn-icon="credit-card" class="me-2" data-acorn-size="17"></i>
                     <span class="align-middle">Pembayaran Tagihan</span>
                 </a>
-                <a class="nav-link <?php if($status=='6'){ echo 'active';} ?> px-0" data-bs-toggle="tab" href="#finalisasiDataTab" role="tab">
+                <a class="nav-link <?php if($status=='6'){ echo 'active';} ?> px-0" data-bs-toggle="tab"
+                    href="<?php if($status >='6'){ echo '#finalisasiDataTab';} ?>" role="tab">
                     <i data-acorn-icon="shield-check" class="me-2" data-acorn-size="17"></i>
                     <span class="align-middle">Finalisasi Data</span>
                 </a>

@@ -1,6 +1,6 @@
 <?php
 
-class Model_jadwal_seleksi extends CI_Model
+class Model_jadwal_pengajaran extends CI_Model
 {
 	public $table;
 

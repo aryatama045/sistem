@@ -25,7 +25,6 @@
 <!-- Template Base Scripts End -->
 
 
-<script src="<?= base_url('assets/') ?>js/pages/customerDetails.js"></script>
 
 <script src="<?= base_url('assets/') ?>js/pages/profile.standard.js"></script>
 
@@ -46,9 +45,41 @@
 <script src="<?= base_url('assets/') ?>js/scripts_pmb.js"></script>
 <!-- Page Specific Scripts End -->
 
-
-
 <?php $url = $this->uri->segment(1); if($url != 'dashboard'){  ?>
 <script src="<?= base_url('assets/') ?>js/base/search.js"></script>
 <?php } ?>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(function() {
+            $('#selectTanggal').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+            });
+        });
+        $(function() {
+            $('#selectTanggalAwal').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+            });
+        });
+        $(function() {
+            $('#selectTanggalAkhir').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+            });
+        });
+    });
+</script>
+
+<script>
+    $(window).on('load',function(){
+        $('.loader').fadeOut(1000, function () {
+            $('.content-loader').show();
+        });
+    })
+</script>
+
+
 

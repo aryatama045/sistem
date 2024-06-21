@@ -1,4 +1,5 @@
 
+
 <div class="row">
 
     <!-- Left Sidebar Start -->
@@ -160,5 +161,7 @@
 
     </div>
     <!-- Right Sidebar End -->
+
+</div>
 
 </div>

@@ -49,7 +49,6 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/') ?>css/vendor/fancybox.css"/>
 
-    <!-- <script src="<?= base_url('assets/') ?>js/base/loader.js"></script> -->
     <style>
         .dataTables_length {
             margin-bottom: 2em;
@@ -62,53 +61,48 @@
         }
 
 
-        #page{
+        .dataTables_scroll
+        {
+            overflow:auto;
+        }
+
+        /* .table-bordered>:not(caption)>*>*{
+            border-width: 0 0px !important;
+        } */
+
+        .content-loader
+        {
             display: none;
         }
 
-        #loading {
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(192, 192, 192, 0.5);
-            background-image: url('../../../assets/Loading-Screen.gif');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 150px 150px;
-        }
-
-        /* Chrome, Safari, Edge, Opera */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        #loader {
-            border: 16px solid #f3f3f3; /* Light grey */
-            border-top: 16px solid #3498db; /* Blue */
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            animation: spin 5s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .center {
+        .load-wrapper{
             position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
+            left: 46%;
+            top: 35%;
+            z-index: 1000;
+        }
+
+        .loader
+        {
+            width: 100px;
+            padding: 8px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: #25b09b;
+            --_m:
+                conic-gradient(#0000 10%, #000),
+                linear-gradient(#000 0 0) content-box;
+            -webkit-mask: var(--_m);
+            mask: var(--_m);
+            -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+            animation: l3 1s infinite linear;
+        }
+
+        @keyframes l3 {
+            to {
+                transform: rotate(1turn)
+            }
         }
 
 
@@ -116,12 +110,20 @@
 </head>
 
 
-<body >
+<body>
 
-    <div id="loader" class="center"></div>
+    <div id="root">
+    <!-- Loading -->
+    <div class="load-wrapper">
+        <div class="loader">
+        </div>
+    </div>
 
-    <?php $this->load->view('templates/side_menubar'); ?>
+    <div class="content-loader">
+    <!-- END Loadning -->
 
-    <main>
-        <div class="container">
+        <?php $this->load->view('templates/side_menubar'); ?>
+
+        <main>
+            <div class="container">
 

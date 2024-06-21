@@ -69,7 +69,7 @@
 		<!-- Table Start -->
 		<div class="card">
 			<div class="card-body">
-				<table id="<?= $table_data ?>" class="table table-bordered data-table data-table-pagination responsive nowrap stripe w-100" >
+				<table id="<?= $table_data ?>" class="table table-bordered data-table responsive nowrap stripe w-100" >
 					<thead>
 						<tr >
 							<th class="text-bold text-uppercase">NIP</th>

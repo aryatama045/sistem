@@ -75,6 +75,8 @@ class Auth
         if ($this->validate($request)) {
             $this->user = $this->credentials($this->userName, $this->password);
 
+            $this->tahunajar = $this->credentials_tahunajar($this->userName, $this->password);
+
             if ($this->user) {
 
                 return $this->setUser();
@@ -124,6 +126,13 @@ class Auth
         }
 
         return false;
+    }
+
+
+    protected function credentials_tahunajar()
+    {
+        $ta = $this->CI->db->get_where("mst_ta", array( "aktif" => 1))->row(0);
+        return $ta;
     }
 
     /**
@@ -213,6 +222,8 @@ class Auth
             "username"      => $this->user->username,
             "pmb_proses"    => $this->user->pmb,
             "roles"         => $this->userWiseRoles(),
+            "semester_aktif"        => $this->tahunajar->smt,
+            "tahunajaran_aktif"     => $this->tahunajar->ta,
             "loginStatus"   => true
         ));
 

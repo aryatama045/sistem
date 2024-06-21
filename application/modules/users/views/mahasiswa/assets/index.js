@@ -9,6 +9,7 @@ $(document).ready(function() {
         'serverSide': true,
         'serverMethod': 'post',
         'scrollX': true,
+        'scrollY': true,
         'paging' : true,
         'autoWidth': false,
         'destroy': true,
@@ -33,6 +34,10 @@ $(document).ready(function() {
     $('#search_name').on('keyup', function(event) { // for text boxes
         tables.ajax.reload(); //just reload table
     });
+
+    $('#tanggal2').on('change', function(){ //button filter event click
+        tables.ajax.reload();  //just reload table
+    });
 });
 
 function remove(id)
@@ -40,7 +45,7 @@ function remove(id)
     $("#btn-delete").removeAttr('class');
     $("#btn-delete").text('Remove');
     $("#btn-delete").addClass('btn btn-danger');
-    $("#removeModal h5").text('Remove Mata Kuliah');
+    $("#removeModal h5").text('Remove');
     $("#messages_modal_remove").html('');
     $("#id span").html('Remove '+' <strong> '+id+'</strong>');
     if(id){

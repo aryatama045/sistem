@@ -104,7 +104,8 @@ $autoload['helper'] = array('file','text','url', 'form','language','main');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('');
+$autoload['config'] = array('global');
+
 
 
 /*
