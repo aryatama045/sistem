@@ -1,17 +1,19 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Role extends Admin_Controller  {
+class Approval extends Admin_Controller  {
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->auth->route_access();
+        $this->data['modul'] = 'Settings';
+
 		$cn 	= $this->router->fetch_class(); // Controller
 		$f 		= $this->router->fetch_method(); // Function
 
-		$this->data['pagetitle'] = capital($cn);
-		$this->data['function'] = capital($f);
-
+		$this->data['pagetitle']    = capital($cn);
+		$this->data['function']     = capital($f);
+        $this->data['page']         = to_strip(lowercase($cn));
 		// Load Model
 		$this->load->model('Model_role');
 
@@ -19,8 +21,6 @@ class Role extends Admin_Controller  {
 
 	public function starter()
 	{
-        $this->data['modul'] = 'Settings';
-        $this->data['page']   = $this->router->fetch_class();
 	}
 
 
@@ -92,7 +92,7 @@ class Role extends Admin_Controller  {
 	public function tambah()
 	{
 
-		$this->form_validation->set_rules('name' ,'Role Name ' , 'required');
+		$this->form_validation->set_rules('name' ,' Name ' , 'required');
 
         if ($this->form_validation->run() == TRUE) {
 
@@ -100,16 +100,16 @@ class Role extends Admin_Controller  {
 
 			if($create_form) {
 				$this->session->set_flashdata('success', ' Berhasil Disimpan !!');
-				redirect('settings/role', 'refresh');
+				redirect($this->data['modul'].'/'.$this->data['page'], 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('settings/role/tambah', 'refresh');
+				redirect($this->data['modul'].'/'.$this->data['page'].'/tambah', 'refresh');
 			}
 
 		}else{
 			$this->starter();
             $this->data['ta']           = $this->Model_global->getTahunAjaran();
-			$this->render_template('role/tambah',$this->data);
+			$this->render_template($this->data['page'].'/tambah',$this->data);
 		}
 
 	}
@@ -125,10 +125,10 @@ class Role extends Admin_Controller  {
 
 			if($edit_form) {
 				$this->session->set_flashdata('success', 'Role Name  : "'.$_POST['name'].'" <br> Berhasil Di Update !!');
-				redirect('settings/role', 'refresh');
+				redirect($this->data['modul'].'/'.$this->data['page'], 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('settings/role' , 'refresh');
+				redirect($this->data['modul'].'/'.$this->data['page'], 'refresh');
 			}
 
 		}else{
@@ -136,10 +136,10 @@ class Role extends Admin_Controller  {
             $this->data['role']  	= $this->Model_role->getDataRow($id);
 
 			if($this->data['role']['id']){
-				$this->render_template('role/edit',$this->data);
+				$this->render_template($this->data['page'].'/edit',$this->data);
 			}else{
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('settings/role' , 'refresh');
+				redirect($this->data['modul'].'/'.$this->data['page'], 'refresh');
 			}
 		}
 	}
