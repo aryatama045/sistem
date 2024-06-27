@@ -130,7 +130,7 @@ class Prodi extends Admin_Controller  {
 
 		}else{
 			$this->starter();
-			$this->data['prodi'] = $this->Model_global->getKodeProgram($id);
+			$this->data['prodi'] = $this->Model_global->getProdi($id);
 
 			if($this->data['prodi']['kd_prog']){
 				$this->render_template('prodi/edit',$this->data);

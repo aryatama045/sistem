@@ -36,15 +36,6 @@
 		<div class="row">
 			<!-- Search Start -->
 			<div class="col-sm-12 col-md-5 col-lg-9 col-xxl-9 mb-1">
-				<div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
-					<!-- <input class="form-control" placeholder="Search" type="text" name="search_name" id="search_name" />
-					<span class="search-magnifier-icon">
-						<i data-acorn-icon="search"></i>
-					</span>
-					<span class="search-delete-icon d-none">
-						<i data-acorn-icon="close"></i>
-					</span> -->
-				</div>
 			</div>
 			<!-- Search End -->
 

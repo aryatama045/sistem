@@ -1,34 +1,32 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mata_kuliah extends Admin_Controller  {
+class Daftar_pmb extends Admin_Controller  {
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->auth->route_access();
-		$this->data['modul'] = 'Master';
+		$this->data['modul'] = 'Admin';
 		$cn 	= $this->router->fetch_class(); // Controller
 		$f 		= $this->router->fetch_method(); // Function
+
 		$this->data['pagetitle'] = capital($cn);
 		$this->data['function'] = capital($f);
-
-		$this->load->model('Model_global');
-		$this->load->model('Model_mata_kuliah');
+		$this->load->model('Model_daftar_pmb');
 
 	}
 
 	public function starter()
 	{
-		$this->data['prodi'] = $this->Model_global->getProdi();
+        $this->data['page']   = $this->router->fetch_class();
 	}
 
 
 	public function index()
 	{
 		$this->starter();
-		$this->render_template('mata_kuliah/index',$this->data);
+		$this->render_template($this->data['page'].'/index',$this->data);
 	}
-
 
 	public function store()
 	{
@@ -43,22 +41,21 @@ class Mata_kuliah extends Admin_Controller  {
         $output['data']	= array();
 		$search_name   = $this->input->post('search_name');
 
-		$data           = $this->Model_mata_kuliah->getDataStore('result',$search_name,$length,$start,$column,$order);
-		$data_jum       = $this->Model_mata_kuliah->getDataStore('numrows',$search_name);
+		$data           = $this->Model_daftar_pmb->getDataStore('result',$search_name,$length,$start,$column,$order);
+		$data_jum       = $this->Model_daftar_pmb->getDataStore('numrows',$search_name);
 
 		$output=array();
 		$output['draw'] = $draw;
 		$output['recordsTotal'] = $output['recordsFiltered'] = $data_jum;
 
 		if($search_name !=""  ){
-			$data_jum = $this->Model_mata_kuliah->getDataStore('numrows',$search_name);
+			$data_jum = $this->Model_daftar_pmb->getDataStore('numrows',$search_name);
 			$output['recordsTotal']=$output['recordsFiltered']=$data_jum;
 		}
 
 		if($data){
 			foreach ($data as $key => $value) {
-
-				$id		= $value['kode_matkul'];
+				$id		= $value['kode'];
 
 				$btn 	= '';
 				$btn 	.= '<div class="btn-group">
@@ -66,7 +63,7 @@ class Mata_kuliah extends Admin_Controller  {
 								Opsi
 							</button>
 							<div class="dropdown-menu">
-								<a href="'.base_url('master/'.$cn.'/edit/'.$id).'" class="dropdown-item">
+								<a href="'.base_url('admin/'.$cn.'/edit/'.$id).'" class="dropdown-item">
 									<i data-acorn-icon="edit-square"></i> Edit</a>';
 
 								$btn .= ' <a class="dropdown-item" onclick="';
@@ -77,21 +74,11 @@ class Mata_kuliah extends Admin_Controller  {
 							</div>
 						</div>';
 
-                if($value['aktif'] == 1){
-                    $aktif = '<div class="btn-group"><span class=" btn-outline-info btn-sm">Aktif</span></div>';
-                }else{
-                    $aktif = '<div class="btn-group"><span class=" btn-outline-danger btn-sm">Nonktif</span></div>';
-                }
-
-                $matkul = '<strong>'.capital(lowercase($value['nama_matkul'])).'</strong>';
-
 				$output['data'][$key] = array(
-					$id,
-					$value['nama_prog'],
-                    $matkul,
-					$value['sks'],
-                    $value['smt'],
-                    $aktif,
+					$value['gel'],
+					$value['ta'],
+                    $value['tgl_awal'],
+                    $value['tgl_akhir'],
 					$btn,
 				);
 			}
@@ -102,56 +89,58 @@ class Mata_kuliah extends Admin_Controller  {
 		echo json_encode($output);
 	}
 
-
 	public function tambah()
 	{
 
-		$this->form_validation->set_rules('kode_matkul' ,'Kode Mata Kuliah' , 'required');
+		$this->form_validation->set_rules('gel' ,'Periode ' , 'required');
 
         if ($this->form_validation->run() == TRUE) {
 
-			$create_form = $this->Model_mata_kuliah->saveTambah();
+			$create_form = $this->Model_daftar_pmb->saveTambah();
 
 			if($create_form) {
-				$this->session->set_flashdata('success', 'Mata Kuliah Berhasil Disimpan !!');
-				redirect('master/mata_kuliah', 'refresh');
+				$this->session->set_flashdata('success', ' Berhasil Disimpan !!');
+				redirect('admin/daftar_pmb', 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('master/mata_kuliah/tambah', 'refresh');
+				redirect('admin/daftar_pmb/tambah', 'refresh');
 			}
 
 		}else{
 			$this->starter();
-			$this->render_template('mata_kuliah/tambah',$this->data);
+            $this->data['ta']           = $this->Model_global->getTahunAjaran();
+			$this->render_template('daftar_pmb/tambah',$this->data);
 		}
 
 	}
 
 	public function edit($id)
 	{
-		$this->form_validation->set_rules('kode_matkul' ,'Kode Mata Kuliah' , 'required');
+
+		$this->form_validation->set_rules('gel' ,'Periode ' , 'required');
 
         if ($this->form_validation->run() == TRUE) {
 
-			$edit_form = $this->Model_mata_kuliah->saveEdit();
+			$edit_form = $this->Model_daftar_pmb->saveEdit($id);
 
 			if($edit_form) {
-				$this->session->set_flashdata('success', 'Kode Mata Kuliah : "'.$_POST['kode_matkul'].'" <br> Berhasil Di Update !!');
-				redirect('master/mata_kuliah', 'refresh');
+				$this->session->set_flashdata('success', 'Gelombang  : "'.$_POST['gel'].'" <br> Berhasil Di Update !!');
+				redirect('admin/daftar_pmb', 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('master/mata_kuliah/edit/'.$id, 'refresh');
+				redirect('admin/daftar_pmb' , 'refresh');
 			}
 
 		}else{
 			$this->starter();
-			$this->data['matkul'] = $this->Model_global->getMataKuliah($id);
+            $this->data['ta']           = $this->Model_global->getTahunAjaran();
+            $this->data['daftar_pmb']  = $this->Model_global->getPeriodeDaftar($id);
 
-			if($this->data['matkul']['kode_matkul']){
-				$this->render_template('mata_kuliah/edit',$this->data);
+			if($this->data['daftar_pmb']['kode']){
+				$this->render_template('daftar_pmb/edit',$this->data);
 			}else{
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('master/mata_kuliah/edit/'.$id, 'refresh');
+				redirect('admin/daftar_pmb' , 'refresh');
 			}
 		}
 	}
@@ -163,7 +152,7 @@ class Mata_kuliah extends Admin_Controller  {
 
 		$response = array();
 		if($id) {
-			$delete = $this->Model_mata_kuliah->saveDelete($id);
+			$delete = $this->Model_daftar_pmb->saveDelete($id);
 
 			if($delete == true) {
 				$response['success'] 	= true;
@@ -180,6 +169,7 @@ class Mata_kuliah extends Admin_Controller  {
 
 		echo json_encode($response);
 	}
+
 
 }
 

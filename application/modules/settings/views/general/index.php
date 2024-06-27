@@ -1,3 +1,14 @@
+<?php
+	$mod = to_strip(lowercase($modul));
+	$func = to_strip(lowercase($pagetitle));
+	$table_data = $func; ?>
+
+<style>
+    th.sorting {
+            display: none;
+        }
+</style>
+
 <div class="row">
 	<div class="col">
 
@@ -8,71 +19,214 @@
 				<div class="col-12 col-md-7">
 					<h1 class="mb-0 pb-0 display-4" id="title"><?= $pagetitle ?></h1>
 
-					<nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
-						<ul class="breadcrumb pt-0">
-							<li class="breadcrumb-item"><a href="<?php base_url(); ?>">Home</a></li>
-							<li class="breadcrumb-item"><?= $modul ?></li>
-
-							<?php if(!is_null($pagetitle)){ ?>
-								<li class="breadcrumb-item"><?= $pagetitle ?></li>
-							<?php } ?>
-
-							<?php if(!is_null($function)){ ?>
-								<li class="breadcrumb-item"><?= $function ?></li>
-							<?php } ?>
-						</ul>
-					</nav>
+					<?php $this->load->view('templates/breadcrumb'); ?>
 
 				</div>
 				<!-- Title End -->
 
-				<!-- Top Buttons Start -->
-				<div class="col-12 col-md-5 d-flex align-items-start justify-content-end">
-					<!-- Add New Button Start -->
-					<button type="button" class="btn btn-outline-primary btn-icon btn-icon-start w-100 w-md-auto add-datatable">
-						<i data-acorn-icon="plus"></i>
-						<span>Add New</span>
-					</button>
-					<!-- Add New Button End -->
-
-					<!-- Check Button Start -->
-					<div class="btn-group ms-1 check-all-container">
-						<div class="btn btn-outline-primary btn-custom-control p-0 ps-3 pe-2" id="datatableCheckAllButton">
-						<span class="form-check float-end">
-							<input type="checkbox" class="form-check-input" id="datatableCheckAll" />
-						</span>
-						</div>
-						<button
-						type="button"
-						class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split"
-						data-bs-offset="0,3"
-						data-bs-toggle="dropdown"
-						aria-haspopup="true"
-						aria-expanded="false"
-						data-submenu
-						></button>
-						<div class="dropdown-menu dropdown-menu-end">
-						<div class="dropdown dropstart dropdown-submenu">
-							<button class="dropdown-item dropdown-toggle tag-datatable caret-absolute disabled" type="button">Tag</button>
-							<div class="dropdown-menu">
-							<button class="dropdown-item tag-done" type="button">Done</button>
-							<button class="dropdown-item tag-new" type="button">New</button>
-							<button class="dropdown-item tag-sale" type="button">Sale</button>
-							</div>
-						</div>
-						<div class="dropdown-divider"></div>
-						<button class="dropdown-item disabled delete-datatable" type="button">Delete</button>
-						</div>
-					</div>
-					<!-- Check Button End -->
-				</div>
-				<!-- Top Buttons End -->
 			</div>
 		</div>
 		<!-- Title and Top Buttons End -->
 
-        
+        <?php $this->load->view('templates/notif') ?>
+
+		<div class="row">
+
+			<!-- Icons Apart Start -->
+			<div class="col-xl-3 mb-1">
+				<div class="card">
+					<a href="<?= base_url('settings/general/edit'); ?>" class="row g-0 sh-10">
+						<div class="col-auto">
+							<div class="sw-9 sh-10 d-inline-block d-flex justify-content-center align-items-center">
+								<i data-acorn-icon="cupcake" class="text-primary"></i>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+								<div class="d-flex flex-column">
+									<div class="title text-black fw-bold">General Info</div>
+									<div class="text-small text-black">Setup Info General Akademik.</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- Icons Apart End -->
+
+			<!-- Icons Start -->
+			<div class="col-xl-3 mb-1">
+				<div class="card">
+					<a href="<?= base_url('master/tahun_ajaran') ?>" class="row g-0 sh-10">
+						<div class="col-auto">
+							<div class="sw-9 sh-10 d-inline-block d-flex justify-content-center align-items-center">
+								<i data-acorn-icon="presentation" class="text-primary"></i>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+								<div class="d-flex flex-column">
+									<div class="title text-black fw-bold">Tahun Ajaran</div>
+									<div class="text-small text-black">Setup Tahun Ajaran Aktif.</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- Icons End -->
+
+			<!-- Icons Start -->
+			<div class="col-xl-3 mb-1">
+				<div class="card">
+					<a href="<?= base_url('master/tahun_ajaran') ?>" class="row g-0 sh-10">
+						<div class="col-auto">
+							<div class="sw-9 sh-10 d-inline-block d-flex justify-content-center align-items-center">
+								<i data-acorn-icon="presentation" class="text-primary"></i>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+								<div class="d-flex flex-column">
+									<div class="title text-black fw-bold">Periode PMB</div>
+									<div class="text-small text-black">Setup Masa Berlaku Periode PMB.</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- Icons End -->
+
+			<!-- Icons Start -->
+			<div class="col-xl-3 mb-1">
+				<div class="card">
+					<a href="<?= base_url('master/tahun_ajaran') ?>" class="row g-0 sh-10">
+						<div class="col-auto">
+							<div class="sw-9 sh-10 d-inline-block d-flex justify-content-center align-items-center">
+								<i data-acorn-icon="presentation" class="text-primary"></i>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+								<div class="d-flex flex-column">
+									<div class="title text-black fw-bold">Jam Absensi</div>
+									<div class="text-small text-black">Setup Jam Absensi.</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- Icons End -->
+
+			<!-- Icons Apart Start -->
+			<div class="col-xl-3 mb-1">
+				<div class="card">
+					<a href="#" class="row g-0 sh-10">
+						<div class="col-auto">
+							<div class="sw-9 sh-10 d-inline-block d-flex justify-content-center align-items-center">
+								<i data-acorn-icon="cupcake" class="text-primary"></i>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+								<div class="d-flex flex-column">
+									<div class="title text-black fw-bold">User Staff</div>
+									<div class="text-small text-black">Manage User Akses.</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- Icons Apart End -->
+
+			<!-- Icons Apart Start -->
+			<div class="col-xl-3 mb-1">
+				<div class="card">
+					<a href="#" class="row g-0 sh-10">
+						<div class="col-auto">
+							<div class="sw-9 sh-10 d-inline-block d-flex justify-content-center align-items-center">
+								<i data-acorn-icon="cupcake" class="text-primary"></i>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+								<div class="d-flex flex-column">
+									<div class="title text-black fw-bold">Approval</div>
+									<div class="text-small text-black">Setup Approve User.</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- Icons Apart End -->
+
+			<!-- Icons Start -->
+			<div class="col-xl-3 mb-1">
+				<div class="card">
+					<a href="<?= base_url('settings/role') ?>" class="row g-0 sh-10">
+						<div class="col-auto">
+							<div class="sw-9 sh-10 d-inline-block d-flex justify-content-center align-items-center">
+								<i data-acorn-icon="presentation" class="text-primary"></i>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+								<div class="d-flex flex-column">
+									<div class="title text-black fw-bold">Role </div>
+									<div class="text-small text-black">Setup User Role.</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- Icons End -->
+
+			<!-- Icons Start -->
+			<div class="col-xl-3 mb-1">
+				<div class="card">
+					<a href="<?= base_url('settings/permission') ?>" class="row g-0 sh-10">
+						<div class="col-auto">
+							<div class="sw-9 sh-10 d-inline-block d-flex justify-content-center align-items-center">
+								<i data-acorn-icon="presentation" class="text-primary"></i>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+								<div class="d-flex flex-column">
+									<div class="title text-black fw-bold">Menu Permission</div>
+									<div class="text-small text-black">Setup User Menu Akses.</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- Icons End -->
 
 
-    </div>
+
+		</div>
+
+	</div>
 </div>
+
+<style>
+	/* .footer-content {
+	position: absolute;
+	bottom: 0;
+	height: 6.5rem;
+	} */
+</style>
+<script type="text/javascript">
+	window.base_url = '<?php echo base_url() ?>';
+	window.linkstore = '<?php echo $func.'/store' ?>';
+    window.tableData = '<?= $table_data ?>'
+</script>
+<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+
+<?php echo $this->load->assets(to_strip(lowercase($pagetitle)), 'index', 'js');  ?>

@@ -7,13 +7,7 @@ $(document).ready(function() {
     tables = $('#'+tableData).DataTable({
         'processing': true,
         'serverSide': true,
-        'serverMethod': 'post',
         'scrollX': true,
-        'scrollY': true,
-        'paging' : true,
-        'autoWidth': false,
-        'destroy': true,
-        'responsive': false,
         'ajax': {
             'url': linkstore,
             'type': 'POST',
@@ -21,9 +15,8 @@ $(document).ready(function() {
                 data.search_name = $('#search_name').val();
             },
         },
-        'order': [0, 'ASC'],
-        "columnDefs":[
-            {"orderData": 1, "targets": 2}]
+        'sDom': '<"row"<"col-sm-12"<"table-container"t>r>><"row"<"col-12"p>>', //
+       
     });
 
     $("#"+tableData+"_filter").css("display", "none");
@@ -33,10 +26,6 @@ $(document).ready(function() {
 
     $('#search_name').on('keyup', function(event) { // for text boxes
         tables.ajax.reload(); //just reload table
-    });
-
-    $('#tanggal2').on('change', function(){ //button filter event click
-        tables.ajax.reload();  //just reload table
     });
 });
 

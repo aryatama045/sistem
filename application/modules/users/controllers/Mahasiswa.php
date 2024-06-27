@@ -77,6 +77,7 @@ class Mahasiswa extends Admin_Controller  {
 		}
 
 		if($data){
+			$no=1;
 			foreach ($data as $key => $value) {
 
 				$id		= $value['nim'];
@@ -100,6 +101,7 @@ class Mahasiswa extends Admin_Controller  {
 								</div>
 							</div>';
 				$output['data'][$key] = array(
+					$no++,
 					$value['nim'],
 					capital(uppercase($value['nama_mhs'])),
 					capital(uppercase($value['nama_prog'])),
@@ -135,7 +137,7 @@ class Mahasiswa extends Admin_Controller  {
 
 		}else{
 			$this->starter();
-			$this->data['prodi']        = $this->Model_global->getKodeProgram();
+			$this->data['prodi']        = $this->Model_global->getProdi();
             $this->data['ta'] 			= $this->Model_global->getTahunAjaran();
             $this->data['biaya']        = $this->Model_global->getBiaya();
 			$this->data['agama']        = $this->Model_global->getAgama();

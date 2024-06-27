@@ -7,7 +7,12 @@ $(document).ready(function() {
     tables = $('#'+tableData).DataTable({
         'processing': true,
         'serverSide': true,
+        'serverMethod': 'post',
         'scrollX': true,
+        'paging' : true,
+        'autoWidth': false,
+        'destroy': true,
+        'responsive': false,
         'ajax': {
             'url': linkstore,
             'type': 'POST',
@@ -15,8 +20,7 @@ $(document).ready(function() {
                 data.search_name = $('#search_name').val();
             },
         },
-        'sDom': '<"row"<"col-sm-12"<"table-container"t>r>><"row"<"col-12"p>>', //
-       
+        'order': [0, 'ASC'],
     });
 
     $("#"+tableData+"_filter").css("display", "none");

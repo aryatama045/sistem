@@ -29,6 +29,12 @@ class General extends Admin_Controller  {
 		$this->render_template('general/index',$this->data);
 	}
 
+	public function edit()
+	{
+		$this->starter();
+		$this->render_template('general/edit',$this->data);
+	}
+
 
 
 }

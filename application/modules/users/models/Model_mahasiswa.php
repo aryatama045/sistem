@@ -18,11 +18,20 @@ class Model_mahasiswa extends CI_Model
         $this->db->from($this->table);
 		$this->db->join('mst_prodi', 'mst_mhs.kd_prog = mst_prodi.kd_prog', 'left');
 		$this->db->join('mst_ta', 'mst_mhs.kd_ta = mst_ta.kd_ta', 'left');
-        $this->db->order_by('nim', 'ASC');
 
-        if($search_name !="")
+        if($search_name !=""){
 			$this->db->like('nama_mhs',$search_name);
 			$this->db->or_like('nim',$search_name);
+		}
+
+		if($column == 0){
+			$this->db->order_by('nim', $order);
+		}elseif($column == 1){
+			$this->db->order_by('nama_mhs', $order);
+		}elseif($column == 4){
+			$this->db->order_by('ta', $order);
+		}
+
 
 		if($result == 'result'){
 			$this->db->limit($length,$start);

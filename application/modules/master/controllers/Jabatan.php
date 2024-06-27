@@ -19,7 +19,7 @@ class Jabatan extends Admin_Controller  {
 
 	public function starter()
 	{
-		$this->data['prodi'] = $this->Model_global->getKodeProgram();
+		$this->data['prodi'] = $this->Model_global->getProdi();
 	}
 
 

@@ -69,9 +69,10 @@
 		<!-- Table Start -->
 		<div class="card">
 			<div class="card-body">
-				<table id="<?= $table_data ?>" class="table table-bordered data-table data-table-pagination responsive nowrap stripe w-100" >
+				<table id="<?= $table_data ?>" class="table align-middle" >
 					<thead>
 						<tr >
+							<th class="text-bold text-uppercase"></th>
 							<th class="text-bold text-uppercase">Nim</th>
 							<th class="text-bold text-uppercase">Nama </th>
 							<th class="text-bold text-uppercase">Prodi</th>

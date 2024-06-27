@@ -51,7 +51,7 @@ class Model_global extends CI_Model {
         }
     }
 
-    function getKodeProgram($kode_prog = NULL)
+    function getProdi($kode_prog = NULL)
     {
         $this->db->select('*');
 		$this->db->from('mst_prodi');

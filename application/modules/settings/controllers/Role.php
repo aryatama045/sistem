@@ -1,34 +1,34 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mata_kuliah extends Admin_Controller  {
+class Role extends Admin_Controller  {
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->auth->route_access();
-		$this->data['modul'] = 'Master';
+		$this->data['modul'] = 'Settings';
 		$cn 	= $this->router->fetch_class(); // Controller
 		$f 		= $this->router->fetch_method(); // Function
+
 		$this->data['pagetitle'] = capital($cn);
 		$this->data['function'] = capital($f);
 
-		$this->load->model('Model_global');
-		$this->load->model('Model_mata_kuliah');
+		// Load Model
+		$this->load->model('Model_role');
 
 	}
 
 	public function starter()
 	{
-		$this->data['prodi'] = $this->Model_global->getProdi();
+        $this->data['page']   = $this->router->fetch_class();
 	}
 
 
 	public function index()
 	{
 		$this->starter();
-		$this->render_template('mata_kuliah/index',$this->data);
+		$this->render_template($this->data['page'].'/index',$this->data);
 	}
-
 
 	public function store()
 	{
@@ -43,22 +43,21 @@ class Mata_kuliah extends Admin_Controller  {
         $output['data']	= array();
 		$search_name   = $this->input->post('search_name');
 
-		$data           = $this->Model_mata_kuliah->getDataStore('result',$search_name,$length,$start,$column,$order);
-		$data_jum       = $this->Model_mata_kuliah->getDataStore('numrows',$search_name);
+		$data           = $this->Model_role->getDataStore('result',$search_name,$length,$start,$column,$order);
+		$data_jum       = $this->Model_role->getDataStore('numrows',$search_name);
 
 		$output=array();
 		$output['draw'] = $draw;
 		$output['recordsTotal'] = $output['recordsFiltered'] = $data_jum;
 
 		if($search_name !=""  ){
-			$data_jum = $this->Model_mata_kuliah->getDataStore('numrows',$search_name);
+			$data_jum = $this->Model_role->getDataStore('numrows',$search_name);
 			$output['recordsTotal']=$output['recordsFiltered']=$data_jum;
 		}
 
 		if($data){
 			foreach ($data as $key => $value) {
-
-				$id		= $value['kode_matkul'];
+				$id		= $value['id'];
 
 				$btn 	= '';
 				$btn 	.= '<div class="btn-group">
@@ -66,7 +65,7 @@ class Mata_kuliah extends Admin_Controller  {
 								Opsi
 							</button>
 							<div class="dropdown-menu">
-								<a href="'.base_url('master/'.$cn.'/edit/'.$id).'" class="dropdown-item">
+								<a href="'.base_url('settings/'.$cn.'/edit/'.$id).'" class="dropdown-item">
 									<i data-acorn-icon="edit-square"></i> Edit</a>';
 
 								$btn .= ' <a class="dropdown-item" onclick="';
@@ -77,21 +76,9 @@ class Mata_kuliah extends Admin_Controller  {
 							</div>
 						</div>';
 
-                if($value['aktif'] == 1){
-                    $aktif = '<div class="btn-group"><span class=" btn-outline-info btn-sm">Aktif</span></div>';
-                }else{
-                    $aktif = '<div class="btn-group"><span class=" btn-outline-danger btn-sm">Nonktif</span></div>';
-                }
-
-                $matkul = '<strong>'.capital(lowercase($value['nama_matkul'])).'</strong>';
-
 				$output['data'][$key] = array(
-					$id,
-					$value['nama_prog'],
-                    $matkul,
-					$value['sks'],
-                    $value['smt'],
-                    $aktif,
+					capital(strtolower($value['name'])),
+					capital(strtolower($value['sts'])),
 					$btn,
 				);
 			}
@@ -102,60 +89,60 @@ class Mata_kuliah extends Admin_Controller  {
 		echo json_encode($output);
 	}
 
-
 	public function tambah()
 	{
 
-		$this->form_validation->set_rules('kode_matkul' ,'Kode Mata Kuliah' , 'required');
+		$this->form_validation->set_rules('name' ,'Role Name ' , 'required');
 
         if ($this->form_validation->run() == TRUE) {
 
-			$create_form = $this->Model_mata_kuliah->saveTambah();
+			$create_form = $this->Model_role->saveTambah();
 
 			if($create_form) {
-				$this->session->set_flashdata('success', 'Mata Kuliah Berhasil Disimpan !!');
-				redirect('master/mata_kuliah', 'refresh');
+				$this->session->set_flashdata('success', ' Berhasil Disimpan !!');
+				redirect('settings/role', 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('master/mata_kuliah/tambah', 'refresh');
+				redirect('settings/role/tambah', 'refresh');
 			}
 
 		}else{
 			$this->starter();
-			$this->render_template('mata_kuliah/tambah',$this->data);
+            $this->data['ta']           = $this->Model_global->getTahunAjaran();
+			$this->render_template('role/tambah',$this->data);
 		}
 
 	}
 
 	public function edit($id)
 	{
-		$this->form_validation->set_rules('kode_matkul' ,'Kode Mata Kuliah' , 'required');
+
+		$this->form_validation->set_rules('name' ,'Role Name ' , 'required');
 
         if ($this->form_validation->run() == TRUE) {
 
-			$edit_form = $this->Model_mata_kuliah->saveEdit();
+			$edit_form = $this->Model_role->saveEdit($id);
 
 			if($edit_form) {
-				$this->session->set_flashdata('success', 'Kode Mata Kuliah : "'.$_POST['kode_matkul'].'" <br> Berhasil Di Update !!');
-				redirect('master/mata_kuliah', 'refresh');
+				$this->session->set_flashdata('success', 'Role Name  : "'.$_POST['name'].'" <br> Berhasil Di Update !!');
+				redirect('settings/role', 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('master/mata_kuliah/edit/'.$id, 'refresh');
+				redirect('settings/role' , 'refresh');
 			}
 
 		}else{
 			$this->starter();
-			$this->data['matkul'] = $this->Model_global->getMataKuliah($id);
+            $this->data['role']  	= $this->Model_role->getDataRow($id);
 
-			if($this->data['matkul']['kode_matkul']){
-				$this->render_template('mata_kuliah/edit',$this->data);
+			if($this->data['role']['id']){
+				$this->render_template('role/edit',$this->data);
 			}else{
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('master/mata_kuliah/edit/'.$id, 'refresh');
+				redirect('settings/role' , 'refresh');
 			}
 		}
 	}
-
 
 	public function delete()
 	{
@@ -163,7 +150,7 @@ class Mata_kuliah extends Admin_Controller  {
 
 		$response = array();
 		if($id) {
-			$delete = $this->Model_mata_kuliah->saveDelete($id);
+			$delete = $this->Model_role->saveDelete($id);
 
 			if($delete == true) {
 				$response['success'] 	= true;

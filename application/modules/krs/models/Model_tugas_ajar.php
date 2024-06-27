@@ -1,6 +1,6 @@
 <?php
 
-class Model_jadwal_pengajaran extends CI_Model
+class Model_tugas_ajar extends CI_Model
 {
 	public $table;
 
@@ -18,7 +18,7 @@ class Model_jadwal_pengajaran extends CI_Model
 		$semester		= $ta['smt'];
 		if($semester == 1){ $mod = '2<>'; }else{ $mod = '2='; }
 
-		$this->db->select('*');
+		$this->db->select('*, mst_matkul.kode_matkul kdmatkul');
         $this->db->from('mst_matkul');
 		$this->db->join('trn_tugas_ajar', 'mst_matkul.kode_matkul = trn_tugas_ajar.kode_matkul AND trn_tugas_ajar.nip = "'.$search_dosen.'"', 'left');
 		$this->db->join('mst_ta', 'trn_tugas_ajar.kd_ta = mst_ta.kd_ta', 'left');
@@ -48,26 +48,17 @@ class Model_jadwal_pengajaran extends CI_Model
 	}
 
 	// ---- Action Start
-	function saveTambah()
+	function saveTambah($data)
 	{
-		$data = $_POST;
-		$insert = $this->db->insert($this->table, $data);
+
+		$insert = $this->db->insert_batch($this->table, $data);
 
 		return ($insert)?TRUE:FALSE;
 	}
 
-	function saveEdit($id)
+	function saveDelete($id_dosen, $id_prodi)
 	{
-		$data = $_POST;
-		$this->db->where(['id' => $id, ]);
-		$update = $this->db->update($this->table, $data);
-
-		return ($update)?TRUE:FALSE;
-	}
-
-	function saveDelete($id)
-	{
-		$this->db->where(['id' => $id, ]);
+		$this->db->where(['nip' => $id_dosen, 'kd_prog' => $id_prodi]);
 		$delete = $this->db->delete($this->table);
 
 		return ($delete)?TRUE:FALSE;
