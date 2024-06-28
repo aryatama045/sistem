@@ -129,7 +129,8 @@
 	</div>
 </div>
 
-<div class="modal modal-right large fade" id="largeRightModalExample" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal modal-right large fade" id="largeRightModalExample" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="<?= base_url($mod.'/'.$func.'/tambah'); ?>" method="POST">

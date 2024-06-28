@@ -13,7 +13,11 @@ class Model_tahun_ajaran extends CI_Model
 	public function getDataStore($result, $search_name = "", $length = "", $start = "", $column = "", $order = "")
 	{
 
-		$this->db->select('*');
+		$this->db->select("*,
+			CASE WHEN (smt)= '1' THEN '<b>GASAL</b>'
+			WHEN (smt)='2' THEN '<b>GENAP</b>'
+			ELSE 'Belum Ada Status' END smt
+		");
         $this->db->from($this->table);
         $this->db->order_by('ta', 'DESC');
 

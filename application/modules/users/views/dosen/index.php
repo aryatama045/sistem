@@ -81,7 +81,7 @@
 			</div>
 
 			<div class="card-body">
-				<table id="<?= $table_data ?>" class="table table-bordered table-striped" >
+				<table id="<?= $table_data ?>" class="table table-striped" >
 					<thead>
 						<tr >
 							<th class="text-bold text-uppercase">NIP</th>

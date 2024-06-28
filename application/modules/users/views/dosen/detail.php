@@ -59,6 +59,11 @@
                 aria-controls="second" aria-selected="false">DATA BERKAS</a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" id="second-tab" data-bs-toggle="tab" href="#second" role="tab"
+                aria-controls="second" aria-selected="false">TUGAS AJAR</a>
+        </li>
+
     </ul>
 
     <div class="tab-content">

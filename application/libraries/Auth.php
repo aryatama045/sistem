@@ -246,7 +246,7 @@ class Auth
     protected function failedLogin($request)
     {
 
-        $this->data['errors'] = 'Username or Password Incorrect.';
+        $this->data['error'] = 'Username or Password Incorrect.';
 
         return $this->data;
     }

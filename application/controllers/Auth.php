@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Auth extends Admin_Controller
+class Auasdth extends Admin_Controller
 {
 
 	public function __construct()
@@ -61,21 +61,21 @@ class Auth extends Admin_Controller
 						redirect('dashboard', 'refresh');
 
 					} else {
-						$this->data['errors'] = 'Incorrect user login/password combination';
-						$this->load->view('login', $this->data);
+						$this->session->set_flashdata('error', 'Incorrect user login/password combination');
+						redirect('login' , 'refresh');
 					}
 
 				} else {
-					$this->data['errors'] = 'User login does not exists';
-					$this->load->view('login', $this->data);
+					$this->session->set_flashdata('error', 'User login does not exists');
+					redirect('login' , 'refresh');
 				}
 
 
 		} else {
 			// false case
 			$this->logged_in();
-			$this->data['title'] = "Login Page";
-			$this->load->view('login', $this->data);
+			$this->session->set_flashdata('error', 'Check Again your data !!');
+			redirect('login' , 'refresh');
 		}
 	}
 

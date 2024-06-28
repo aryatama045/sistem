@@ -23,7 +23,7 @@ class Common {
     this._initTooltips();
     this._initPopovers();
     this._initToasts();
-    this._initDropdownAsSelect();
+    // this._initDropdownAsSelect();
     this._initDropdownSubMenu();
     this._initClamp();
     this._initScrollspy();
