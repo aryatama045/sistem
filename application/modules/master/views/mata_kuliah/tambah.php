@@ -43,20 +43,20 @@
 
                 <form class="row g-3" action="<?= base_url($mod.'/'.$func.'/tambah'); ?>" method="POST">
                     <div class="col-12 col-md-4">
-                        <label class="form-label text-black-50"><strong>Kode Mata Kuliah<span style="color:red">*</span></strong></label>
+                        <label class="form-label"><strong>Kode Mata Kuliah<span style="color:red">*</span></strong></label>
                         <input type="text" class="form-control" required name="kode_matkul" placeholder="Input Kode Mata Kuliah" />
                     </div>
                     <div class="col-12 col-md-8">
-                        <label class="form-label text-black-50"><strong>Nama Mata Kuliah<span style="color:red">*</span></strong></label>
+                        <label class="form-label"><strong>Nama Mata Kuliah<span style="color:red">*</span></strong></label>
                         <input type="text" class="form-control" required name="nama_matkul" placeholder="Input Nama Mata Kuliah" />
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label text-black-50"><strong>Jumlah SKS<span style="color:red">*</span></strong></label>
+                        <label class="form-label"><strong>Jumlah SKS<span style="color:red">*</span></strong></label>
                         <input type="text" class="form-control" required name="sks" placeholder="Input Jumlah SKS" />
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label text-black-50"><strong> Kode Program<span style="color:red">*</span></strong></label>
+                        <label class="form-label"><strong> Kode Program<span style="color:red">*</span></strong></label>
                         <select name="kd_prog" required class="form-select">
                             <option value="">-- Select Kode Program --</option>
                             <?php foreach($prodi as $key => $val){ ?>
@@ -65,7 +65,7 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label text-black-50"><strong> Semester<span style="color:red">*</span></strong></label>
+                        <label class="form-label"><strong> Semester<span style="color:red">*</span></strong></label>
                         <select name="smt" required class="form-select">
                             <option value="">-- Select Semester --</option>
                             <option value="1"> Semester 1</option>

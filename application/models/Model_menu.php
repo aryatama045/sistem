@@ -17,7 +17,7 @@ function __construct() {
         $this->db->from($this->tableName);
         $this->db->where('parent_id', '0');
         $this->db->order_by('parent_id');
-        $this->db->order_by('sequence');
+        $this->db->order_by('sequence ASC');
         $query = $this->db->get();
         // die(nl2br($this->db->last_query()));
         return $query->result_array();
@@ -27,7 +27,7 @@ function __construct() {
         $this->db->select('*');
         $this->db->from($this->tableName);
         $this->db->where('id', $id);
-        $this->db->order_by('sequence');
+        $this->db->order_by('sequence ASC');
         $query = $this->db->get();
         return $query->row_array();
     }
@@ -37,7 +37,7 @@ function __construct() {
         $this->db->from($this->tableName);
         $this->db->where('parent_id', $id);
         $this->db->where_not_in('parent_id', array('0'));
-        $this->db->order_by('sequence');
+        $this->db->order_by('sequence ASC');
         $query = $this->db->get();
         // die(nl2br($this->db->last_query()));
         return $query->result_array();
@@ -47,7 +47,7 @@ function __construct() {
         $this->db->select('*');
         $this->db->from($this->tableName);
         $this->db->where('parent_id', $id);
-        $this->db->order_by('sequence');
+        $this->db->order_by('sequence ASC');
         $query = $this->db->get();
         // die(nl2br($this->db->last_query()));
         return $query->num_rows();

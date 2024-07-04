@@ -1,31 +1,32 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Agama extends Admin_Controller  {
+class Generate_krs extends Admin_Controller  {
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->auth->route_access();
-		$this->data['modul'] = 'Master';
+		$this->data['modul'] = 'Settings';
 		$cn 	= $this->router->fetch_class(); // Controller
 		$f 		= $this->router->fetch_method(); // Function
 		$this->data['pagetitle'] = capital($cn);
 		$this->data['function'] = capital($f);
 
-		$this->load->model('Model_agama');
+		$this->load->model('Model_generate_krs');
 
 	}
 
 	public function starter()
 	{
-		$this->data['prodi'] = $this->Model_global->getProdi();
+        $this->data['getTa']    = $this->Model_global->getTahunAjaran();
+		$this->data['getSmt']   = $this->Model_global->getSemesterMahasiswaAktif();
 	}
 
 
 	public function index()
 	{
 		$this->starter();
-		$this->render_template('agama/index',$this->data);
+		$this->render_template('generate_krs/index',$this->data);
 	}
 
 
@@ -42,22 +43,21 @@ class Agama extends Admin_Controller  {
         $output['data']	= array();
 		$search_name   = $this->input->post('search_name');
 
-		$data           = $this->Model_agama->getDataStore('result',$search_name,$length,$start,$column,$order);
-		$data_jum       = $this->Model_agama->getDataStore('numrows',$search_name);
+		$data           = $this->Model_generate_krs->getDataStore('result',$search_name,$length,$start,$column,$order);
+		$data_jum       = $this->Model_generate_krs->getDataStore('numrows',$search_name);
 
 		$output=array();
 		$output['draw'] = $draw;
 		$output['recordsTotal'] = $output['recordsFiltered'] = $data_jum;
 
 		if($search_name !=""  ){
-			$data_jum = $this->Model_agama->getDataStore('numrows',$search_name);
+			$data_jum = $this->Model_generate_krs->getDataStore('numrows',$search_name);
 			$output['recordsTotal']=$output['recordsFiltered']=$data_jum;
 		}
 
 		if($data){
-			$no=1;
 			foreach ($data as $key => $value) {
-				$id		= $value['id'];
+				$id		= $value['id_krs'];
 
 				$btn 	= '';
 				$btn 	.= '<div class="btn-group">
@@ -65,7 +65,7 @@ class Agama extends Admin_Controller  {
 								Opsi
 							</button>
 							<div class="dropdown-menu">
-								<a href="'.base_url('master/'.$cn.'/edit/'.$id).'" class="dropdown-item">
+								<a href="'.base_url('settings/'.$cn.'/edit/'.$id).'" class="dropdown-item">
 									<i data-acorn-icon="edit-square"></i> Edit</a>';
 
 								$btn .= ' <a class="dropdown-item" onclick="';
@@ -75,10 +75,16 @@ class Agama extends Admin_Controller  {
 
 							</div>
 						</div>';
+                $mahasiswa  = $value['nama_mhs'].'<br> <b>('.$value['nim'].')</b>';
+
+                $matkul     = $value['kode_matkul'].'<br> <b>('.$value['nama_matkul'].')</b>';
+
+                $ta_smt     = '<b>'.$value['ta'].'</b>';
 
 				$output['data'][$key] = array(
-					$no++,
-					$value['nama'],
+					$mahasiswa,
+                    $matkul,
+                    $ta_smt,
 					$btn,
 				);
 			}
@@ -93,23 +99,23 @@ class Agama extends Admin_Controller  {
 	public function tambah()
 	{
 
-		$this->form_validation->set_rules('nama' ,'Nama' , 'required');
+		$this->form_validation->set_rules('kd_ta' ,'Nama' , 'required');
 
         if ($this->form_validation->run() == TRUE) {
 
-			$create_form = $this->Model_agama->saveTambah();
+			$create_form = $this->Model_generate_krs->saveTambah();
 
 			if($create_form) {
-				$this->session->set_flashdata('success', 'Mata Kuliah Berhasil Disimpan !!');
-				redirect('master/agama', 'refresh');
+				$this->session->set_flashdata('success', 'Berhasil Disimpan !!');
+				redirect('settings/generate_krs', 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('master/agama/tambah', 'refresh');
+				redirect('settings/generate_krs/tambah', 'refresh');
 			}
 
 		}else{
 			$this->starter();
-			$this->render_template('agama/tambah',$this->data);
+			$this->render_template('generate_krs/tambah',$this->data);
 		}
 
 	}
@@ -120,25 +126,25 @@ class Agama extends Admin_Controller  {
 
         if ($this->form_validation->run() == TRUE) {
 
-			$edit_form = $this->Model_agama->saveEdit($id);
+			$edit_form = $this->Model_generate_krs->saveEdit($id);
 
 			if($edit_form) {
 				$this->session->set_flashdata('success', 'Nama : "'.$_POST['nama'].'" <br> Berhasil Di Update !!');
-				redirect('master/agama', 'refresh');
+				redirect('settings/generate_krs', 'refresh');
 			} else {
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('master/agama/edit/'.$id, 'refresh');
+				redirect('settings/generate_krs/edit/'.$id, 'refresh');
 			}
 
 		}else{
 			$this->starter();
-			$this->data['agama'] = $this->Model_global->getAgama($id);
+			$this->data['generate_krs'] = $this->Model_global->getAgama($id);
 
-			if($this->data['agama']['id']){
-				$this->render_template('agama/edit',$this->data);
+			if($this->data['generate_krs']['id']){
+				$this->render_template('generate_krs/edit',$this->data);
 			}else{
 				$this->session->set_flashdata('error', 'Silahkan Cek kembali data yang di input !!');
-				redirect('master/agama/edit/'.$id, 'refresh');
+				redirect('settings/generate_krs/edit/'.$id, 'refresh');
 			}
 		}
 	}
@@ -150,7 +156,7 @@ class Agama extends Admin_Controller  {
 
 		$response = array();
 		if($id) {
-			$delete = $this->Model_agama->saveDelete($id);
+			$delete = $this->Model_generate_krs->saveDelete($id);
 
 			if($delete == true) {
 				$response['success'] 	= true;

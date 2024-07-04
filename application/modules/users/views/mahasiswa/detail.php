@@ -58,6 +58,11 @@
                 aria-controls="second" aria-selected="false">DATA BERKAS</a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" id="second-tab" data-bs-toggle="tab" href="#second" role="tab"
+                aria-controls="second" aria-selected="false">DATA KRS</a>
+        </li>
+
     </ul>
 
     <div class="tab-content">
@@ -81,8 +86,9 @@
                                             </a>
                                     <?php } ?>
 
-                                    <div class="h5 text-black text-center mb-1"><b><?= $data_mhs['no_pendaftaran'] ?></b></div>
-                                    <div class="h4 text-black text-center mb-1"><?= capital($data_mhs['nama']) ?></div>
+                                    <div class="h5 text-black text-center mb-1"><b><?= $data_mhs['nim'] ?></b></div>
+                                    <div class="h4 text-black text-center mb-1"><?= capital($data_mhs['nama_mhs']) ?></div>
+                                    <div class="h6 text-black text-center mb-1"><b>Semester <?= $smt_aktif['zem'] ?></b></div>
 
                                 </div>
                             </div>

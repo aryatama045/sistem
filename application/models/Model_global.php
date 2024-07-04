@@ -9,6 +9,17 @@ class Model_global extends CI_Model {
         $this->load->library('auth');
     }
 
+    function getMenuSetting()
+    {
+        $this->db->select('*');
+        $this->db->from('permissions');
+        $this->db->where('parent_id', '8');
+        $this->db->order_by('sequence', 'ASC');
+        $query = $this->db->get();
+        // die(nl2br($this->db->last_query()));
+        return $query->result_array();
+    }
+
     function getTahunAjaranAktif() {
         $this->db->select('*');
         $this->db->from('mst_ta');
@@ -17,6 +28,65 @@ class Model_global extends CI_Model {
         $query = $this->db->get();
         // die(nl2br($this->db->last_query()));
         return $query->row_array();
+    }
+
+    function getTahunAjaran($kd_ta = NULL)
+    {
+        $this->db->select("*,
+            CASE WHEN (smt)= '1' THEN '<b>GASAL</b>'
+			WHEN (smt)='2' THEN '<b>GENAP</b>'
+			ELSE 'Belum Ada Status' END smt_gage
+        ");
+		$this->db->from('mst_ta');
+        $this->db->order_by('ta DESC, smt ASC');
+
+        if($kd_ta){
+            $this->db->where('kd_ta', $kd_ta);
+            $query=$this->db->get();
+            return $query->row_array();
+        }else{
+            $query=$this->db->get();
+            return $query->result_array();
+        }
+    }
+
+    function getSemesterMahasiswaAktif($nim="",$ta="")
+    {
+        #--- Search
+        $where_ta = '';
+        if($ta){
+            $where_ta = ',(SELECT kd_ta FROM mst_ta WHERE kd_ta = "'.$ta.'")ta_aktif
+                        ,(SELECT smt FROM mst_ta WHERE kd_ta = "'.$ta.'")smt_aktif';
+        }else{
+            $where_ta = ",(SELECT kd_ta FROM mst_ta WHERE aktif = 1)ta_aktif
+                        ,(SELECT smt FROM mst_ta WHERE aktif = 1)smt_aktif";
+        }
+
+        $where_nim = '';
+        if($nim){
+            $where_nim = 'WHERE a.nim = "'.$nim.'" ';
+        }
+        #--- End Search
+
+
+        $sql = "SELECT *, (ta_aktif-kd_ta)+1 zem
+                    FROM(
+                        SELECT nim, nama_mhs,a.kd_prog,a.kd_ta, b.ta
+                        $where_ta
+                        FROM mst_mhs a
+                        LEFT JOIN mst_ta b ON a.kd_ta=b.kd_ta
+                    )a
+                $where_nim
+        ";
+        $query = $this->db->query($sql);
+        // die(nl2br($this->db->last_query()));
+
+        if($nim){
+            return $query->row_array();
+        }else{
+            return $query->result_array();
+        }
+
     }
 
     function getMhsNik($nik)
@@ -74,22 +144,6 @@ class Model_global extends CI_Model {
         $this->db->order_by('nama_matkul', 'ASC');
         if($kode_matkul){
             $this->db->where('kode_matkul', $kode_matkul);
-            $query=$this->db->get();
-            return $query->row_array();
-        }else{
-            $query=$this->db->get();
-            return $query->result_array();
-        }
-    }
-
-    function getTahunAjaran($kd_ta = NULL)
-    {
-        $this->db->select('*');
-		$this->db->from('mst_ta');
-        $this->db->order_by('ta', 'DESC');
-
-        if($kd_ta){
-            $this->db->where('kd_ta', $kd_ta);
             $query=$this->db->get();
             return $query->row_array();
         }else{

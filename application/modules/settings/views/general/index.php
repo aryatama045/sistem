@@ -32,6 +32,33 @@
 
 		<div class="row">
 
+			<?php foreach($getMenus as $val){ ?>
+			<!-- Icons Start -->
+			<div class="col-xl-3 mb-1">
+				<div class="card">
+					<a href="<?= base_url(''.$val['link'].'') ?>" class="row g-0 sh-10">
+						<div class="col-auto">
+							<div class="sw-9 sh-10 d-inline-block d-flex justify-content-center align-items-center">
+								<i data-acorn-icon="<?= $val['icon'] ?>" class="text-primary"></i>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+								<div class="d-flex flex-column">
+									<div class="title text-black fw-bold"><?= $val['display_name'] ?></div>
+									<div class="text-small text-black"><?= $val['description'] ?></div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- Icons End -->
+			<?php } ?>
+
+		</div>
+
+		<div class="row" hidden>
 			<!-- Icons Apart Start -->
 			<div class="col-xl-3 mb-1">
 				<div class="card">
@@ -123,7 +150,7 @@
 			<!-- Icons Apart Start -->
 			<div class="col-xl-3 mb-1">
 				<div class="card">
-					<a href="#" class="row g-0 sh-10">
+					<a href="<?= base_url('settings/user_staff') ?>" class="row g-0 sh-10">
 						<div class="col-auto">
 							<div class="sw-9 sh-10 d-inline-block d-flex justify-content-center align-items-center">
 								<i data-acorn-icon="cupcake" class="text-primary"></i>
@@ -145,7 +172,7 @@
 			<!-- Icons Apart Start -->
 			<div class="col-xl-3 mb-1">
 				<div class="card">
-					<a href="#" class="row g-0 sh-10">
+					<a href="<?= base_url('settings/approval') ?>" class="row g-0 sh-10">
 						<div class="col-auto">
 							<div class="sw-9 sh-10 d-inline-block d-flex justify-content-center align-items-center">
 								<i data-acorn-icon="cupcake" class="text-primary"></i>
@@ -200,6 +227,29 @@
 								<div class="d-flex flex-column">
 									<div class="title text-black fw-bold">Menu Permission</div>
 									<div class="text-small text-black">Setup User Menu Akses.</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- Icons End -->
+
+
+			<!-- Icons Start -->
+			<div class="col-xl-3 mb-1">
+				<div class="card">
+					<a href="<?= base_url('settings/generate_krs') ?>" class="row g-0 sh-10">
+						<div class="col-auto">
+							<div class="sw-9 sh-10 d-inline-block d-flex justify-content-center align-items-center">
+								<i data-acorn-icon="form-check" class="text-primary"></i>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+								<div class="d-flex flex-column">
+									<div class="title text-black fw-bold">Generate KRS Mahasiswa</div>
+									<div class="text-small text-black">Setup KRS/Mahasiswa.</div>
 								</div>
 							</div>
 						</div>
