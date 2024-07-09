@@ -59,8 +59,8 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" id="second-tab" data-bs-toggle="tab" href="#second" role="tab"
-                aria-controls="second" aria-selected="false">DATA KRS</a>
+            <a class="nav-link" id="three-tab" data-bs-toggle="tab" href="#three" role="tab"
+                aria-controls="three" aria-selected="false">DATA KRS</a>
         </li>
 
     </ul>
@@ -139,7 +139,6 @@
             </div>
         </div>
 
-
         <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
             <div class="row">
                 <div class="col-12 col-md-12">
@@ -151,5 +150,18 @@
                 </div>
             </div>
         </div>
+
+        <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="three-tab">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="card d-flex flex-row mb-4">
+                        <div class="card-body">
+                            <?php $this->load->view('3matkul') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

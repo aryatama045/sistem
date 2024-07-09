@@ -89,6 +89,22 @@ class Model_global extends CI_Model {
 
     }
 
+    function getCekKrs($kd_ta="",$nim="",$kode_matkul="")
+    {
+        $this->db->select('*');
+		$this->db->from('trn_krs_paket');
+        $this->db->where('kd_ta', $kd_ta);
+        $this->db->where('nim', $nim);
+        $this->db->where('kode_matkul', $kode_matkul);
+        $query=$this->db->get();
+
+        if($kd_ta != "" || $nim != "" || $kode_matkul != ""){
+            return $query->row_array();
+        }else{
+            return $query->result_array();
+        }
+    }
+
     function getMhsNik($nik)
     {
         $this->db->select('*');
@@ -141,7 +157,7 @@ class Model_global extends CI_Model {
         $this->db->select('*');
 		$this->db->from('mst_matkul');
         $this->db->join('mst_prodi', 'mst_matkul.kd_prog = mst_prodi.kd_prog', 'left');
-        $this->db->order_by('nama_matkul', 'ASC');
+        $this->db->order_by('smt, nama_matkul ', 'ASC');
         if($kode_matkul){
             $this->db->where('kode_matkul', $kode_matkul);
             $query=$this->db->get();
@@ -150,6 +166,22 @@ class Model_global extends CI_Model {
             $query=$this->db->get();
             return $query->result_array();
         }
+    }
+
+    function getMatkulPersmt($smt = NULL)
+    {
+        $this->db->select('*');
+		$this->db->from('mst_matkul');
+        $this->db->join('mst_prodi', 'mst_matkul.kd_prog = mst_prodi.kd_prog', 'left');
+        $this->db->order_by('smt, nama_matkul ', 'ASC');
+        if($smt){
+            $this->db->where('smt', $smt);
+        }else{
+            $this->db->group_by('smt', 'ASC');
+        }
+
+        $query=$this->db->get();
+        return $query->result_array();
     }
 
     function getJenma($kd_jenma = NULL)

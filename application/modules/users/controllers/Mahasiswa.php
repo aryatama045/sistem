@@ -39,7 +39,13 @@ class Mahasiswa extends Admin_Controller  {
 
 			$this->data['mhs_user'] 	= $this->Model_mahasiswa->getMhsUserlogin($id);
 
-			$this->data['smt_aktif'] = $this->Model_global->getSemesterMahasiswaAktif($id, '');
+			$this->data['smt_aktif'] 	= $this->Model_global->getSemesterMahasiswaAktif($id, '');
+
+			$this->data['data_matkul'] 	= $this->Model_global->getMataKuliah();
+
+			$this->data['data_matkulsmt'] 	= $this->Model_global->getMatkulPersmt();
+
+			// tesx($this->data['data_matkulsmt'], $this->data['data_matkul']);
 
 			$this->data['data_pmb'] 	= $this->Model_pmb->getDataPendaftaran($this->data['mhs_user']['no_pmb']);
 
