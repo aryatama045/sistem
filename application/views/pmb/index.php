@@ -24,7 +24,7 @@
                             Your registration completed successfully! <br>
                             <?php echo $this->session->flashdata('success'); ?>
                         </p>
-                        <a href="<?php base_url('auth/login') ?>" class="btn btn-icon btn-icon-start btn-primary" type="button">
+                        <a href="<?php base_url('') ?>" class="btn btn-icon btn-icon-start btn-primary" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="acorn-icons acorn-icons-login undefined"><path d="M8 5 12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L8 15M2 10H12"></path><path d="M12 18L14.5 18C15.9045 18 16.6067 18 17.1111 17.6629C17.3295 17.517 17.517 17.3295 17.6629 17.1111C18 16.6067 18 15.9045 18 14.5L18 5.5C18 4.09554 18 3.39331 17.6629 2.88886C17.517 2.67048 17.3295 2.48298 17.1111 2.33706C16.6067 2 15.9045 2 14.5 2L12 2"></path></svg>
                             <span>Login</span>
                         </a>

@@ -30,7 +30,7 @@
                             <img id="preview-bukti-bayar">
                         </div>
                         <input type="text" name="no_pendaftaran" value="<?php echo $no_pendaftaran ?>" hidden>
-                        <input required type="file" class="form-control" name="foto_bukti[]" id="file-ip-1" accept="image/*" onchange="showPreview(event);" style="width:250px;">
+                        <input required type="file" class="form-control" name="foto_bukti[]" id="file-ip-1" accept="image/*" onchange="showPreviewBB(event);" style="width:250px;">
                     </div>
 
                     <!-- Notif -->
@@ -77,7 +77,7 @@
                         <div class="mb-2">
                             <p class="text-black cta-3 mb-1">Total Bayar</p>
                             <div class="cta-2">
-                                <span class="text-black text-muted cta-2"><strong>Rp. 321.500</strong></span>
+                                <span class="text-black text-muted cta-2"><strong>Rp. 350.000</strong></span>
                             </div>
                         </div>
 
@@ -111,12 +111,12 @@
 
 
 <script>
-	function showPreview(event){
+	function showPreviewBB(event){
         if(event.target.files.length > 0){
             var src = URL.createObjectURL(event.target.files[0]);
-            var preview1 = document.getElementById("preview-bukti-bayar");
-            preview1.src = src;
-            preview1.style.display = "block";
+            var previewbb = document.getElementById("preview-bukti-bayar");
+            previewbb.src = src;
+            previewbb.style.display = "block";
         }
     }
 </script>

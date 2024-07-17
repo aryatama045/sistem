@@ -247,16 +247,16 @@ class Pmb extends Admin_Controller
 			);
 			array_push($log_berkas, $data_foto);
 
-			// $where = array('no_pendaftaran' => $_POST['no_pendaftaran']);
-			// $this->db->where($where);
-			// $update = $this->db->update('trn_pmb',$data_foto);
+			$where = array('no_pendaftaran' => $_POST['no_pendaftaran']);
+			$this->db->where($where);
+			$update = $this->db->update('trn_pmb',$data_foto);
 		}
 
-		tesx($log_berkas);
+		// tesx($log_berkas);
 
 
 		if($update) {
-			$this->session->set_flashdata('success', 'PPembayaran Berhasil Disimpan!!');
+			$this->session->set_flashdata('success', 'Pembayaran Berhasil Disimpan!!');
 			redirect('pmb/dashboard_pmb', 'refresh');
 		} else {
 			$this->session->set_flashdata('error', 'Database belum bisa Disimpan!!');

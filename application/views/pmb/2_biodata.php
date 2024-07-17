@@ -78,7 +78,7 @@
                             </div>
                         </div>
 
-                        <!-- Tempat Lahir & Agama -->
+                        <!-- Tempat Lahir & Tanggal -->
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="mb-3 top-label">
@@ -86,6 +86,16 @@
                                     <span class="text-black">TEMPAT LAHIR <small style="color:red;">*</small></span>
                                 </label>
                             </div>
+                            <div class="col-md-6">
+                                <label class="mb-3 top-label">
+                                    <input class="form-control" type="text" name="tanggal_lahir" value="<?= ($get_data_pmb['tanggal_lahir'])?date("Y-m-d", strtotime($get_data_pmb['tanggal_lahir'])):''; ?>"  required id="selectTanggalAwal" />
+                                    <span class="text-black">TANGGAL LAHIR <small style="color:red;">*</small></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Agama -->
+                        <div class="row g-3 mb-5">
                             <div class="col-md-6">
                                 <div class="mb-3 top-label">
                                     <select class="form-control" name="agama" required>
@@ -99,23 +109,64 @@
                             </div>
                         </div>
 
-                        <!-- Tanggal Lahir -->
-                        <div class="row g-3 mb-5">
+                        <h5><strong>Data Orang Tua & Wali</strong></h5> <hr class="mb-2">
+                        <!-- Tanggal Lahir & Ibu Kandung -->
+                        <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="mb-3 top-label">
-                                    <input class="form-control" type="text" name="tanggal_lahir" value="<?= ($get_data_pmb['tanggal_lahir'])?date("Y-m-d", strtotime($get_data_pmb['tanggal_lahir'])):''; ?>"  required id="selectTanggalAwal" />
-                                    <span class="text-black">TANGGAL LAHIR <small style="color:red;">*</small></span>
+                                    <input class="form-control" name="nama_ayah_kandung" value="<?= $get_data_pmb['nama_ibu_kandung'] ?>" required/>
+                                    <span class="text-black"><strong>NAMA AYAH KANDUNG <small style="color:red;">*</small></strong></span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-3 top-label">
+                                    <input class="form-control" name="nama_ibu_kandung" value="<?= $get_data_pmb['nama_ibu_kandung'] ?>" required/>
+                                    <span class="text-black"><strong>NAMA IBU KANDUNG <small style="color:red;">*</small></strong></span>
                                 </label>
                             </div>
                         </div>
 
-                        <h5><strong>Data Orang Tua</strong></h5> <hr class="mb-2">
-                        <!-- Tanggal Lahir & Ibu Kandung -->
-                        <div class="row g-3 mb-5">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="mb-3 top-label">
+                                    <input class="form-control" name="nama_ayah_kandung" value="<?= $get_data_pmb['nama_ibu_kandung'] ?>" required/>
+                                    <span class="text-black"><strong>PEKERJAAN AYAH<small style="color:red;">*</small></strong></span>
+                                </label>
+                            </div>
                             <div class="col-md-6">
                                 <label class="mb-3 top-label">
                                     <input class="form-control" name="nama_ibu_kandung" value="<?= $get_data_pmb['nama_ibu_kandung'] ?>" required/>
-                                    <span class="text-black">NAMA IBU KANDUNG <small style="color:red;">*</small></span>
+                                    <span class="text-black"><strong>PEKERJAAN IBU <small style="color:red;">*</small></strong></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="mb-3 top-label">
+                                    <input class="form-control" name="nama_ayah_kandung" value="<?= $get_data_pmb['nama_ibu_kandung'] ?>" required/>
+                                    <span class="text-black"><strong>ALAMAT AYAH<small style="color:red;">*</small></strong></span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-3 top-label">
+                                    <input class="form-control" name="nama_ibu_kandung" value="<?= $get_data_pmb['nama_ibu_kandung'] ?>" required/>
+                                    <span class="text-black"><strong>ALAMAT IBU <small style="color:red;">*</small></strong></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-5">
+                            <div class="col-md-6">
+                                <label class="mb-3 top-label">
+                                    <input class="form-control" name="nama_ayah_kandung" value="<?= $get_data_pmb['nama_ibu_kandung'] ?>" required/>
+                                    <span class="text-black"><strong>NAMA WALI<small style="color:red;">*</small></strong></span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-3 top-label">
+                                    <input class="form-control" name="nama_ibu_kandung" value="<?= $get_data_pmb['nama_ibu_kandung'] ?>" required/>
+                                    <span class="text-black"><strong>ALAMAT WALI <small style="color:red;">*</small></strong></span>
                                 </label>
                             </div>
                         </div>
@@ -131,7 +182,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="mb-3 top-label">
-                                    <input class="form-control" name="telepon" value="" />
+                                    <input class="form-control" name="telepon" value="<?= $get_data_pmb['telepon'] ?>" />
                                     <span>TELEPON</span>
                                 </label>
                             </div>
@@ -148,7 +199,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="mb-3 top-label">
-                                    <input class="form-control" name="no_hp" value="<?= $get_data_pmb['no_php'] ?>" />
+                                    <input class="form-control" name="no_hp" value="<?= $get_data_pmb['no_hp'] ?>" />
                                     <span>NOMOR HP.</span>
                                 </label>
                             </div>
@@ -180,10 +231,19 @@
                                 </label>
                             </div>
                             <div class="col-md-6">
-                                <label class="mb-3 top-label">
-                                    <input class="form-control" name="kewarganegaraan" value="<?= $get_data_pmb['kewarganegaraan'] ?>"  required/>
+                                <div class="mb-3 top-label">
+                                    <select class="form-control" name="kewarganegaraan" required>
+                                        <?php  if(!empty($get_data_pmb['kewarganegaraan'])) { ?>
+                                            <option value="<?= $get_data_pmb['kewarganegaraan']?>"> -- <?= $get_data_pmb['kewarganegaraan'] ?> --</option>
+                                        <?php }else{ ?>
+                                            <option value=""> -- Select KEWARGANEGARAAN --</option>
+                                        <?php } ?>
+
+                                        <option value="WNI"> WNI</option>
+                                        <option value="WNI"> WNA</option>
+                                    </select>
                                     <span class="text-black">KEWARGANEGARAAN<small style="color:red;">*</small></span>
-                                </label>
+                                </div>
                             </div>
 
                         </div>
@@ -192,7 +252,7 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="mb-3 top-label">
-                                    <input class="form-control" name="jenis_tinggal"  />
+                                    <input class="form-control" name="jenis_tinggal" value="<?= $get_data_pmb['jenis_tinggal'] ?>"  />
                                     <span class="text-black">JENIS TINGGAL</span>
                                 </label>
                             </div>
@@ -228,19 +288,19 @@
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label class="mb-3 top-label">
-                                    <input class="form-control" name="rt"/>
+                                    <input class="form-control" type="text" name="rt" value="<?= $get_data_pmb['rt'] ?>"/>
                                     <span>RT</span>
                                 </label>
                             </div>
                             <div class="col-md-4">
                                 <label class="mb-3 top-label">
-                                    <input class="form-control" name="rw"/>
+                                    <input class="form-control" type="text" name="rw" value="<?= $get_data_pmb['rw'] ?>"/>
                                     <span>RW</span>
                                 </label>
                             </div>
                             <div class="col-md-4">
                                 <label class="mb-3 top-label">
-                                    <input class="form-control" name="kode_pos"/>
+                                    <input class="form-control" type="text" name="kode_pos" value="<?= $get_data_pmb['kode_pos'] ?>"/>
                                     <span>KODE POS</span>
                                 </label>
                             </div>

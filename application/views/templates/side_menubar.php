@@ -18,7 +18,7 @@
         <div class="user-container d-flex">
             <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="profile" alt="profile" src="<?= base_url('assets/') ?>img/profile/profile-1.webp" />
-                <div class="name">Zayn Hartley</div>
+                <div class="name">ADIMAS SATRIO PRASIDA</div>
             </a>
             <div class="dropdown-menu dropdown-menu-end user-menu wide">
                 <div class="row mb-3 ms-0 me-0">

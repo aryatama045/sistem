@@ -123,6 +123,15 @@ class Model_global extends CI_Model {
 		return $query->row_array();
     }
 
+    function getDataUsername($username)
+	{
+		$this->db->select('*');
+		$this->db->from('users');
+        $this->db->where('username', $username);
+		$query=$this->db->get();
+		return $query->row_array();
+	}
+
     function getDosen($id = NULL)
     {
         $this->db->select('*');
@@ -306,6 +315,20 @@ class Model_global extends CI_Model {
         $query=$this->db->query($sql);
         return $query->row_array();
 
+    }
+
+    function krs_khs($nim, $kd_ta)
+    {
+        $sql = "SELECT * FROM trn_krs_paket a
+                    LEFT JOIN mst_matkul b ON a.kode_matkul = b.kode_matkul
+                    LEFT JOIN trn_tugas_ajar c ON a.id_ajar=c.id
+                    LEFT JOIN mst_dosen d ON c.nip = d.nip
+                    WHERE nim=$nim AND a.kd_ta=$kd_ta
+                ";
+        $query= $this->db->query($sql);
+
+        // die(nl2br($this->db->last_query()));
+        return $query->result_array();
     }
 
 }
