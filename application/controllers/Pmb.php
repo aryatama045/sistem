@@ -233,6 +233,38 @@ class Pmb extends Admin_Controller
 
 	}
 
+	public function action_pembayaran_pmb()
+	{
+		$this->UploadPembayaran();
+		$count_berkas 	= count($_FILES['foto_bukti']['name']);
+
+		$log_berkas 	= array();
+		for($x=0; $x < $count_berkas; $x++ ){
+			$data_foto = array(
+				'foto_bukti'	 => $_POST['no_pendaftaran'].'-'.$_FILES['foto_bukti']['name'][$x],
+				'status_terkini' => '6',
+				'tgl_bayar'		 => date('d-m-y h:i:s')
+			);
+			array_push($log_berkas, $data_foto);
+
+			// $where = array('no_pendaftaran' => $_POST['no_pendaftaran']);
+			// $this->db->where($where);
+			// $update = $this->db->update('trn_pmb',$data_foto);
+		}
+
+		tesx($log_berkas);
+
+
+		if($update) {
+			$this->session->set_flashdata('success', 'PPembayaran Berhasil Disimpan!!');
+			redirect('pmb/dashboard_pmb', 'refresh');
+		} else {
+			$this->session->set_flashdata('error', 'Database belum bisa Disimpan!!');
+			redirect('pmb/dashboard_pmb', 'refresh');
+		}
+
+	}
+
 	public function UploadFoto()
 	{
 		if(!empty($_FILES['foto_profil']['name']) && count(array_filter($_FILES['foto_profil']['name'])) > 0){
@@ -317,5 +349,46 @@ class Pmb extends Admin_Controller
 		}
 	}
 
+	public function UploadPembayaran()
+	{
+		if(!empty($_FILES['foto_bukti']['name']) && count(array_filter($_FILES['foto_bukti']['name'])) > 0){
+			$filesCount = count($_FILES['foto_bukti']['name']);
+
+			for($i = 0; $i < $filesCount; $i++){
+				$_FILES['file']['name']     	= $_POST['no_pendaftaran'].'-'.$_FILES['foto_bukti']['name'][$i];
+				$_FILES['file']['type']     	= $_FILES['foto_bukti']['type'][$i];
+				$_FILES['file']['tmp_name'] 	= $_FILES['foto_bukti']['tmp_name'][$i];
+				$_FILES['file']['error']     	= $_FILES['foto_bukti']['error'][$i];
+				$_FILES['file']['size']     	= $_FILES['foto_bukti']['size'][$i];
+
+				// File upload configuration
+				$uploadPath = FCPATH. 'upload/berkas/'.$_POST['no_pendaftaran'].'/';
+				$config['upload_path'] 		= $uploadPath;
+				$config['allowed_types'] 	= 'jpg|jpeg|png';
+				$config['overwrite']     	= true;
+				$config['max_size']         = 1024; // 1MB
+				//$config['max_width'] = '1024';
+				//$config['max_height'] = '768';
+
+				// Load and initialize upload library
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+
+				// If username folder does not exist, create it
+				if(!is_dir($config['upload_path'])) {
+					mkdir($config['upload_path'], 0777, TRUE);
+				}
+
+				// Upload file
+				if($this->upload->do_upload('file')){
+					// Uploaded file data
+					$fileData = $this->upload->data();
+				}else{
+					$this->session->set_flashdata('error', 'Silahkan Cek Size/Format Foto Profil Anda Kembali!!');
+					redirect('pmb/dashboard_pmb', 'refresh');
+				}
+			}
+		}
+	}
 
 }

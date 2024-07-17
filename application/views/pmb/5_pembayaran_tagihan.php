@@ -1,3 +1,19 @@
+<style>
+    .center {
+        height:100%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+    img#preview-bukti-bayar {
+        width: 250px;
+        margin-bottom: 2em;
+    }
+</style>
+
+
+<form class="tooltip-end-top mb-5" action="<?= base_url('pmb/action_pembayaran_pmb');?>" enctype="multipart/form-data" method="POST">
 
     <div class="row">
         <div class="col-12 col-md-8">
@@ -7,71 +23,28 @@
                     <p>Silahkan cek kembali data Anda dengan benar</p>
                     <hr class="mb-2">
 
-                    <div class="mb-5">
-                        <p class="text-small text-muted mb-2">ME</p>
-                        <p>
-                            Jujubes brownie marshmallow apple pie donut ice cream jelly-o jelly-o gummi bears. Tootsie roll chocolate bar dragée bonbon cheesecake
-                            icing. Danish wafer donut cookie caramels gummies topping.
-                        </p>
+                    <h5> <b>Upload Bukti Pembayaran<span style="color:red;">*</span> </b></h5>
+                    <hr class="">
+                    <div class="form-input ">
+                        <div class="preview1">
+                            <img id="preview-bukti-bayar">
+                        </div>
+                        <input type="text" name="no_pendaftaran" value="<?php echo $no_pendaftaran ?>" hidden>
+                        <input required type="file" class="form-control" name="foto_bukti[]" id="file-ip-1" accept="image/*" onchange="showPreview(event);" style="width:250px;">
                     </div>
-                    <div class="mb-5">
-                        <p class="text-small text-muted mb-2">INTERESTS</p>
-                        <p>
-                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
-                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
-                        </p>
+
+                    <!-- Notif -->
+                    <div class="alert alert-primary mt-4" role="alert">
+                        <p> <b>Keterangan :</b></p>
+                        <ul>
+                            <li>Tipe Foto yang dibolehkan JPG , PNG</li>
+                            <li>Maksimal ukuran setiap file adalah 1mb</li>
+                            <li><span style="color:red;">*</span> (Require/Wajib)</li>
+                        </ul>
                     </div>
-                    <div class="mb-5">
-                        <p class="text-small text-muted mb-2">INTERESTS</p>
-                        <p>
-                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
-                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
-                        </p>
-                    </div>
-                    <div class="mb-5">
-                        <p class="text-small text-muted mb-2">INTERESTS</p>
-                        <p>
-                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
-                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
-                        </p>
-                    </div>
-                    <div class="mb-5">
-                        <p class="text-small text-muted mb-2">INTERESTS</p>
-                        <p>
-                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
-                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
-                        </p>
-                    </div>
-                    <div class="mb-5">
-                        <p class="text-small text-muted mb-2">INTERESTS</p>
-                        <p>
-                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
-                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
-                        </p>
-                    </div>
-                    <div class="mb-5">
-                        <p class="text-small text-muted mb-2">INTERESTS</p>
-                        <p>
-                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
-                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
-                        </p>
-                    </div>
-                    <div class="mb-5">
-                        <p class="text-small text-muted mb-2">INTERESTS</p>
-                        <p>
-                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
-                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
-                        </p>
-                    </div>
-                    <div class="mb-5">
-                        <p class="text-small text-muted mb-2">INTERESTS</p>
-                        <p>
-                            Chocolate cake biscuit donut cotton candy soufflé cake macaroon. Halvah chocolate cotton candy sweet roll jelly-o candy danish dragée.
-                            Apple pie cotton candy tiramisu biscuit cake muffin tootsie roll bear claw cake. Cupcake cake fruitcake.
-                        </p>
-                    </div>
-                    <div>
-                        <p class="text-small text-muted mb-2">CONTACT</p>
+
+                    <div class="mt-5">
+                        <p class="text-black text-bold-600 mb-1">CONTACT</p>
                         <a href="#" class="d-block body-link mb-1">
                             <i data-acorn-icon="screen" class="me-2" data-acorn-size="17"></i>
                             <span class="align-middle">blainecottrell.com</span>
@@ -85,52 +58,32 @@
             </div>
         </div>
 
-
         <div class="col-12 col-md-4">
             <div class="card" style="position:-webkit-sticky; position:sticky; top: 5rem;">
                 <div class="card-body mb-n5">
                     <div class="mb-3">
                         <div class="mb-2">
-                            <p class="text-small text-muted mb-1">ITEMS</p>
+                            <p class="text-black cta-3 mb-1">Transfer Dari Bank<span style="color:red;">*</span></p>
                             <p>
-                                <span class="text-alternate">5</span>
+                                <input class="form-control" required name="dari_bank" placeholder="Input Bank Transfer, Contoh : BCA" />
                             </p>
                         </div>
                         <div class="mb-2">
-                            <p class="text-small text-muted mb-1">TOTAL</p>
+                            <p class="text-black cta-3 mb-1">Atas Nama Pengirim<span style="color:red;">*</span></p>
                             <p>
-                                <span class="text-alternate">
-                                    <span class="text-small text-muted">$</span>
-                                    285.25
-                                </span>
+                                <input class="form-control" required name="nama_pengirim" placeholder="Input Nama Pengirim" />
                             </p>
                         </div>
                         <div class="mb-2">
-                            <p class="text-small text-muted mb-1">SHIPPING</p>
-                            <p>
-                                <span class="text-alternate">
-                                    <span class="text-small text-muted">$</span>
-                                    12.50
-                                </span>
-                            </p>
-                        </div>
-                        <div class="mb-2">
-                            <p class="text-small text-muted mb-1">SALE</p>
-                            <p>
-                                <span class="text-alternate">
-                                    <span class="text-small text-muted">$</span>
-                                    -24.50
-                                </span>
-                            </p>
-                        </div>
-                        <div class="mb-2">
-                            <p class="text-small text-muted mb-1">GRAND TOTAL</p>
+                            <p class="text-black cta-3 mb-1">Total Bayar</p>
                             <div class="cta-2">
-                                <span>
-                                    <span class="text-small text-muted cta-2">$</span>
-                                    321.50
-                                </span>
+                                <span class="text-black text-muted cta-2"><strong>Rp. 321.500</strong></span>
                             </div>
+                        </div>
+
+                        <!-- Notif -->
+                        <div class="alert alert-warning mt-4" role="alert">
+                            <p style="color:red;"> <b>Pembayaran harus sesuai dengan Total Bayar.</b></p>
                         </div>
                     </div>
                     <div class="form-check mb-4">
@@ -142,7 +95,7 @@
                     </div>
                     <div class="d-flex justify-content-center">
                         <div class="d-flex flex-column flex-sm-row justify-content-between mb-5 w-100">
-                            <button class="btn btn-icon btn-icon-end btn-primary w-100" type="button">
+                            <button class="btn btn-icon btn-icon-end btn-primary w-100" type="submit">
                                 <i data-acorn-icon="credit-card" class="me-2" data-acorn-size="17"></i>
                                 <span>Pembayaran</span>
                             </button>
@@ -151,4 +104,19 @@
                 </div>
             </div>
         </div>
+
     </div>
+
+</form>
+
+
+<script>
+	function showPreview(event){
+        if(event.target.files.length > 0){
+            var src = URL.createObjectURL(event.target.files[0]);
+            var preview1 = document.getElementById("preview-bukti-bayar");
+            preview1.src = src;
+            preview1.style.display = "block";
+        }
+    }
+</script>
