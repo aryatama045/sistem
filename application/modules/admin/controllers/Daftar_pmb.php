@@ -55,7 +55,7 @@ class Daftar_pmb extends Admin_Controller  {
 
 		if($data){
 			foreach ($data as $key => $value) {
-				$id		= $value['kode'];
+				$id		= $value['no_pendaftaran'];
 
 				$btn 	= '';
 				$btn 	.= '<div class="btn-group">
@@ -75,11 +75,10 @@ class Daftar_pmb extends Admin_Controller  {
 						</div>';
 
 				$output['data'][$key] = array(
-					$value['gel'],
-					$value['ta'],
-                    $value['tgl_awal'],
-                    $value['tgl_akhir'],
-					$btn,
+					$value['no_pendaftaran'],
+					$value['nama'],
+					'',
+					// $btn,
 				);
 			}
 

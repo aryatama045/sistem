@@ -58,14 +58,12 @@
 		<!-- Table Start -->
 		<div class="card">
 			<div class="card-body">
-				<table id="<?= $table_data ?>" class="table table-bordered table-striped" >
+				<table id="<?= $table_data ?>" class="table table-striped nowrap w-100" >
 					<thead >
 						<tr>
-							<th class="text-bold text-uppercase">Periode</th>
-							<th class="text-bold text-uppercase">Tahun Ajaran</th>
-							<th class="text-bold text-uppercase">Tgl. Awal</th>
-                            <th class="text-bold text-uppercase">Tgl. Akhir</th>
-							<th class="text-bold text-uppercase">Action</th>
+							<th class="text-bold text-uppercase">No. Pendaftaran</th>
+							<th class="text-bold text-uppercase">Nama</th>
+							<th class="text-bold text-uppercase"></th>
 						</tr>
 					</thead>
 				</table>
